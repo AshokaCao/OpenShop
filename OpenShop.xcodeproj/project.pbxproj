@@ -1,0 +1,537 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		511FFD091E1BB4CD0069ADC3 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 511FFD081E1BB4CD0069ADC3 /* main.m */; };
+		511FFD0C1E1BB4CD0069ADC3 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 511FFD0B1E1BB4CD0069ADC3 /* AppDelegate.m */; };
+		511FFD0F1E1BB4CD0069ADC3 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 511FFD0E1E1BB4CD0069ADC3 /* ViewController.m */; };
+		511FFD121E1BB4CD0069ADC3 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 511FFD101E1BB4CD0069ADC3 /* Main.storyboard */; };
+		511FFD141E1BB4CD0069ADC3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 511FFD131E1BB4CD0069ADC3 /* Assets.xcassets */; };
+		511FFD171E1BB4CD0069ADC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 511FFD151E1BB4CD0069ADC3 /* LaunchScreen.storyboard */; };
+		511FFD221E1BB4CD0069ADC3 /* OpenShopTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 511FFD211E1BB4CD0069ADC3 /* OpenShopTests.m */; };
+		511FFD2D1E1BB4CD0069ADC3 /* OpenShopUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 511FFD2C1E1BB4CD0069ADC3 /* OpenShopUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		511FFD1E1E1BB4CD0069ADC3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 511FFCFC1E1BB4CA0069ADC3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 511FFD031E1BB4CA0069ADC3;
+			remoteInfo = OpenShop;
+		};
+		511FFD291E1BB4CD0069ADC3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 511FFCFC1E1BB4CA0069ADC3 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 511FFD031E1BB4CA0069ADC3;
+			remoteInfo = OpenShop;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		511FFD041E1BB4CC0069ADC3 /* OpenShop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OpenShop.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		511FFD081E1BB4CD0069ADC3 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		511FFD0A1E1BB4CD0069ADC3 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		511FFD0B1E1BB4CD0069ADC3 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		511FFD0D1E1BB4CD0069ADC3 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		511FFD0E1E1BB4CD0069ADC3 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		511FFD111E1BB4CD0069ADC3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		511FFD131E1BB4CD0069ADC3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		511FFD161E1BB4CD0069ADC3 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		511FFD181E1BB4CD0069ADC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		511FFD1D1E1BB4CD0069ADC3 /* OpenShopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenShopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		511FFD211E1BB4CD0069ADC3 /* OpenShopTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenShopTests.m; sourceTree = "<group>"; };
+		511FFD231E1BB4CD0069ADC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		511FFD281E1BB4CD0069ADC3 /* OpenShopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenShopUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		511FFD2C1E1BB4CD0069ADC3 /* OpenShopUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenShopUITests.m; sourceTree = "<group>"; };
+		511FFD2E1E1BB4CD0069ADC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		511FFD011E1BB4CA0069ADC3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		511FFD1A1E1BB4CD0069ADC3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		511FFD251E1BB4CD0069ADC3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		511FFCFB1E1BB4CA0069ADC3 = {
+			isa = PBXGroup;
+			children = (
+				511FFD061E1BB4CC0069ADC3 /* OpenShop */,
+				511FFD201E1BB4CD0069ADC3 /* OpenShopTests */,
+				511FFD2B1E1BB4CD0069ADC3 /* OpenShopUITests */,
+				511FFD051E1BB4CC0069ADC3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		511FFD051E1BB4CC0069ADC3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				511FFD041E1BB4CC0069ADC3 /* OpenShop.app */,
+				511FFD1D1E1BB4CD0069ADC3 /* OpenShopTests.xctest */,
+				511FFD281E1BB4CD0069ADC3 /* OpenShopUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		511FFD061E1BB4CC0069ADC3 /* OpenShop */ = {
+			isa = PBXGroup;
+			children = (
+				511FFD0A1E1BB4CD0069ADC3 /* AppDelegate.h */,
+				511FFD0B1E1BB4CD0069ADC3 /* AppDelegate.m */,
+				511FFD0D1E1BB4CD0069ADC3 /* ViewController.h */,
+				511FFD0E1E1BB4CD0069ADC3 /* ViewController.m */,
+				511FFD101E1BB4CD0069ADC3 /* Main.storyboard */,
+				511FFD131E1BB4CD0069ADC3 /* Assets.xcassets */,
+				511FFD151E1BB4CD0069ADC3 /* LaunchScreen.storyboard */,
+				511FFD181E1BB4CD0069ADC3 /* Info.plist */,
+				511FFD071E1BB4CD0069ADC3 /* Supporting Files */,
+			);
+			path = OpenShop;
+			sourceTree = "<group>";
+		};
+		511FFD071E1BB4CD0069ADC3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				511FFD081E1BB4CD0069ADC3 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		511FFD201E1BB4CD0069ADC3 /* OpenShopTests */ = {
+			isa = PBXGroup;
+			children = (
+				511FFD211E1BB4CD0069ADC3 /* OpenShopTests.m */,
+				511FFD231E1BB4CD0069ADC3 /* Info.plist */,
+			);
+			path = OpenShopTests;
+			sourceTree = "<group>";
+		};
+		511FFD2B1E1BB4CD0069ADC3 /* OpenShopUITests */ = {
+			isa = PBXGroup;
+			children = (
+				511FFD2C1E1BB4CD0069ADC3 /* OpenShopUITests.m */,
+				511FFD2E1E1BB4CD0069ADC3 /* Info.plist */,
+			);
+			path = OpenShopUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		511FFD031E1BB4CA0069ADC3 /* OpenShop */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 511FFD311E1BB4CD0069ADC3 /* Build configuration list for PBXNativeTarget "OpenShop" */;
+			buildPhases = (
+				511FFD001E1BB4CA0069ADC3 /* Sources */,
+				511FFD011E1BB4CA0069ADC3 /* Frameworks */,
+				511FFD021E1BB4CA0069ADC3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = OpenShop;
+			productName = OpenShop;
+			productReference = 511FFD041E1BB4CC0069ADC3 /* OpenShop.app */;
+			productType = "com.apple.product-type.application";
+		};
+		511FFD1C1E1BB4CD0069ADC3 /* OpenShopTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 511FFD341E1BB4CD0069ADC3 /* Build configuration list for PBXNativeTarget "OpenShopTests" */;
+			buildPhases = (
+				511FFD191E1BB4CD0069ADC3 /* Sources */,
+				511FFD1A1E1BB4CD0069ADC3 /* Frameworks */,
+				511FFD1B1E1BB4CD0069ADC3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				511FFD1F1E1BB4CD0069ADC3 /* PBXTargetDependency */,
+			);
+			name = OpenShopTests;
+			productName = OpenShopTests;
+			productReference = 511FFD1D1E1BB4CD0069ADC3 /* OpenShopTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		511FFD271E1BB4CD0069ADC3 /* OpenShopUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 511FFD371E1BB4CD0069ADC3 /* Build configuration list for PBXNativeTarget "OpenShopUITests" */;
+			buildPhases = (
+				511FFD241E1BB4CD0069ADC3 /* Sources */,
+				511FFD251E1BB4CD0069ADC3 /* Frameworks */,
+				511FFD261E1BB4CD0069ADC3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				511FFD2A1E1BB4CD0069ADC3 /* PBXTargetDependency */,
+			);
+			name = OpenShopUITests;
+			productName = OpenShopUITests;
+			productReference = 511FFD281E1BB4CD0069ADC3 /* OpenShopUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		511FFCFC1E1BB4CA0069ADC3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = hangzhou.cao;
+				TargetAttributes = {
+					511FFD031E1BB4CA0069ADC3 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = L96B2RUGS8;
+						ProvisioningStyle = Automatic;
+					};
+					511FFD1C1E1BB4CD0069ADC3 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = L96B2RUGS8;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 511FFD031E1BB4CA0069ADC3;
+					};
+					511FFD271E1BB4CD0069ADC3 = {
+						CreatedOnToolsVersion = 8.0;
+						DevelopmentTeam = L96B2RUGS8;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 511FFD031E1BB4CA0069ADC3;
+					};
+				};
+			};
+			buildConfigurationList = 511FFCFF1E1BB4CA0069ADC3 /* Build configuration list for PBXProject "OpenShop" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 511FFCFB1E1BB4CA0069ADC3;
+			productRefGroup = 511FFD051E1BB4CC0069ADC3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				511FFD031E1BB4CA0069ADC3 /* OpenShop */,
+				511FFD1C1E1BB4CD0069ADC3 /* OpenShopTests */,
+				511FFD271E1BB4CD0069ADC3 /* OpenShopUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		511FFD021E1BB4CA0069ADC3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				511FFD171E1BB4CD0069ADC3 /* LaunchScreen.storyboard in Resources */,
+				511FFD141E1BB4CD0069ADC3 /* Assets.xcassets in Resources */,
+				511FFD121E1BB4CD0069ADC3 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		511FFD1B1E1BB4CD0069ADC3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		511FFD261E1BB4CD0069ADC3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		511FFD001E1BB4CA0069ADC3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				511FFD0F1E1BB4CD0069ADC3 /* ViewController.m in Sources */,
+				511FFD0C1E1BB4CD0069ADC3 /* AppDelegate.m in Sources */,
+				511FFD091E1BB4CD0069ADC3 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		511FFD191E1BB4CD0069ADC3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				511FFD221E1BB4CD0069ADC3 /* OpenShopTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		511FFD241E1BB4CD0069ADC3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				511FFD2D1E1BB4CD0069ADC3 /* OpenShopUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		511FFD1F1E1BB4CD0069ADC3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 511FFD031E1BB4CA0069ADC3 /* OpenShop */;
+			targetProxy = 511FFD1E1E1BB4CD0069ADC3 /* PBXContainerItemProxy */;
+		};
+		511FFD2A1E1BB4CD0069ADC3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 511FFD031E1BB4CA0069ADC3 /* OpenShop */;
+			targetProxy = 511FFD291E1BB4CD0069ADC3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		511FFD101E1BB4CD0069ADC3 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				511FFD111E1BB4CD0069ADC3 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		511FFD151E1BB4CD0069ADC3 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				511FFD161E1BB4CD0069ADC3 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		511FFD2F1E1BB4CD0069ADC3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		511FFD301E1BB4CD0069ADC3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		511FFD321E1BB4CD0069ADC3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = L96B2RUGS8;
+				INFOPLIST_FILE = OpenShop/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuemin.hangzhou.OpenShop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		511FFD331E1BB4CD0069ADC3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = L96B2RUGS8;
+				INFOPLIST_FILE = OpenShop/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuemin.hangzhou.OpenShop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		511FFD351E1BB4CD0069ADC3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = L96B2RUGS8;
+				INFOPLIST_FILE = OpenShopTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuemin.hangzhou.OpenShopTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenShop.app/OpenShop";
+			};
+			name = Debug;
+		};
+		511FFD361E1BB4CD0069ADC3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = L96B2RUGS8;
+				INFOPLIST_FILE = OpenShopTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuemin.hangzhou.OpenShopTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/OpenShop.app/OpenShop";
+			};
+			name = Release;
+		};
+		511FFD381E1BB4CD0069ADC3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = L96B2RUGS8;
+				INFOPLIST_FILE = OpenShopUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuemin.hangzhou.OpenShopUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = OpenShop;
+			};
+			name = Debug;
+		};
+		511FFD391E1BB4CD0069ADC3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = L96B2RUGS8;
+				INFOPLIST_FILE = OpenShopUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuemin.hangzhou.OpenShopUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = OpenShop;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		511FFCFF1E1BB4CA0069ADC3 /* Build configuration list for PBXProject "OpenShop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				511FFD2F1E1BB4CD0069ADC3 /* Debug */,
+				511FFD301E1BB4CD0069ADC3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		511FFD311E1BB4CD0069ADC3 /* Build configuration list for PBXNativeTarget "OpenShop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				511FFD321E1BB4CD0069ADC3 /* Debug */,
+				511FFD331E1BB4CD0069ADC3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		511FFD341E1BB4CD0069ADC3 /* Build configuration list for PBXNativeTarget "OpenShopTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				511FFD351E1BB4CD0069ADC3 /* Debug */,
+				511FFD361E1BB4CD0069ADC3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		511FFD371E1BB4CD0069ADC3 /* Build configuration list for PBXNativeTarget "OpenShopUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				511FFD381E1BB4CD0069ADC3 /* Debug */,
+				511FFD391E1BB4CD0069ADC3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 511FFCFC1E1BB4CA0069ADC3 /* Project object */;
+}
