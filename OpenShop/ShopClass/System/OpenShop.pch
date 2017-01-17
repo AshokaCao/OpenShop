@@ -1,0 +1,55 @@
+//
+//  OpenShop.pch
+//  OpenShop
+//
+//  Created by yuemin3 on 2017/1/6.
+//  Copyright © 2017年 hangzhou.cao. All rights reserved.
+//
+
+#ifndef OpenShop_pch
+#define OpenShop_pch
+
+#ifdef DEBUG
+# define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#define tLocalUrl @"115.29.247.29"
+#else
+# define DLog(...)
+//192.168.1.188
+#define tLocalUrl @"192.168.1.188:88"
+#endif
+
+
+
+//获取屏幕 宽度、高度
+#define SCREEN_WIDTH ([UIScreen mainScreen].bounds.size.width)
+#define SCREEN_HEIGHT ([UIScreen mainScreen].bounds.size.height)
+//带有RGBA的颜色设置
+#define RGB_COLOR(R, G, B, A) [UIColor colorWithRed:R/255.0 green:G/255.0 blue:B/255.0 alpha:A]
+//弱引用/强引用
+#define LRWeakSelf(type)  __weak typeof(type) weak##type = type;
+#define LRStrongSelf(type)  __strong typeof(type) type = weak##type;
+#define YBWeak(selfName,weakSelf) __weak __typeof(selfName *)weakSelf = self
+#define WS(weakSelf)  __weak __typeof(&*self)weakSelf = self
+//获取系统版本
+#define IOS_SYSTEM_STRING [[UIDevice currentDevice] systemVersion]
+//获取temp
+#define kPathTemp NSTemporaryDirectory()
+//通知
+#define nNotification [NSNotificationCenter defaultCenter]
+//
+#define nNsuserdefaul [NSUserDefaults standardUserDefaults]
+//获取沙盒 Document
+#define kPathDocument [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject]
+
+//获取沙盒 Cache
+#define kPathCache [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) firstObject]
+//多语言
+#define ASLocalizedString(key)  [NSString stringWithFormat:@"%@", [[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"appLanguage"]] ofType:@"lproj"]] localizedStringForKey:(key) value:nil table:@"ASLocalized"]]
+
+#import "UIColor+Help.h"
+#import "UIView+SDExtension.h"
+
+
+
+
+#endif /* OpenShop_pch */

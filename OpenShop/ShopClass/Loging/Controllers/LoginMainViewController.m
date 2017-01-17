@@ -1,0 +1,72 @@
+//
+//  LoginMainViewController.m
+//  OpenShop
+//
+//  Created by yuemin3 on 2017/1/6.
+//  Copyright © 2017年 hangzhou.cao. All rights reserved.
+//
+
+#import "LoginMainViewController.h"
+#import "PPNetworkHelper.h"
+
+#define TESTURL @"http://192.168.1.188:88/Page/setting/SendSMS.ashx?mobile=13800571505&verifytype=register"
+
+@interface LoginMainViewController ()
+@property (weak, nonatomic) IBOutlet UITextField *phoneNumberTextField;
+@property (weak, nonatomic) IBOutlet UITextField *passWordTextField;
+@property (weak, nonatomic) IBOutlet UIButton *logBtn;
+@property (weak, nonatomic) IBOutlet UIButton *registerBtn;
+
+@end
+
+@implementation LoginMainViewController
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do any additional setup after loading the view from its nib.
+    self.view.backgroundColor = [UIColor colorWithHexString:@"#345456"];
+    
+    
+}
+
+- (void)getCodeNumberWithPhoneNumber:(NSString *)number
+{
+    NSString *urlCode = [NSString stringWithFormat:@"http://%@/Page/setting/SendSMS.ashx?mobile=%@&verifytype=register",tLocalUrl,number];
+    [PPNetworkHelper GET:urlCode parameters:nil success:^(id responseObject) {
+        
+        NSLog(@"success:  %@",[self jsonToString:responseObject]);
+        
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
+
+- (IBAction)loginAction:(UIButton *)sender {
+}
+- (IBAction)registerAction:(UIButton *)sender {
+}
+
+- (NSString *)jsonToString:(NSDictionary *)dic
+{
+    if(!dic){
+        return nil;
+    }
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
+    return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
+
+@end
