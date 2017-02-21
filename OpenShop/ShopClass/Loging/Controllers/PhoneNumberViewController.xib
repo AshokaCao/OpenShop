@@ -8,8 +8,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PhoneNumberViewController">
             <connections>
-                <outlet property="nextBtn" destination="bP0-hA-ZnJ" id="tAs-x3-zq1"/>
-                <outlet property="phoneNumberTextField" destination="jX8-ot-coc" id="ThY-go-sVd"/>
+                <outlet property="agreementBtn" destination="c2D-HP-9XS" id="vJJ-Mm-cUr"/>
+                <outlet property="nextBtn" destination="ve0-2V-sTx" id="8OE-4a-2C8"/>
+                <outlet property="phoneNumberTextField" destination="exV-RJ-6fw" id="R6r-R4-0Nl"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -18,30 +19,66 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jX8-ot-coc">
-                    <nil key="textColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bP0-hA-ZnJ">
-                    <state key="normal" title="Button"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="apT-oS-dZY">
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PhoneNum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OmS-A6-dQt">
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Input your Phone number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="exV-RJ-6fw">
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="wFE-U2-RDc"/>
+                            </connections>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="1fo-3E-9uv"/>
+                        <constraint firstAttribute="bottom" secondItem="exV-RJ-6fw" secondAttribute="bottom" id="GKs-Wq-UCW"/>
+                        <constraint firstAttribute="trailing" secondItem="exV-RJ-6fw" secondAttribute="trailing" id="L4h-5x-m70"/>
+                        <constraint firstItem="exV-RJ-6fw" firstAttribute="top" secondItem="apT-oS-dZY" secondAttribute="top" id="Ly1-LU-jRg"/>
+                        <constraint firstItem="exV-RJ-6fw" firstAttribute="leading" secondItem="OmS-A6-dQt" secondAttribute="trailing" constant="17" id="PNy-fg-aeS"/>
+                        <constraint firstItem="OmS-A6-dQt" firstAttribute="centerY" secondItem="apT-oS-dZY" secondAttribute="centerY" id="hyu-cA-DZE"/>
+                        <constraint firstItem="OmS-A6-dQt" firstAttribute="leading" secondItem="apT-oS-dZY" secondAttribute="leading" constant="12" id="vSs-a7-FLO"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ve0-2V-sTx">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="imx-EB-oAK"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="Next" backgroundImage="content_btn_next_default"/>
                     <connections>
-                        <action selector="nextAction:" destination="-1" eventType="touchUpInside" id="pJN-l5-mSz"/>
+                        <action selector="nextAction:" destination="-1" eventType="touchUpInside" id="D1v-Gh-s5Z"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c2D-HP-9XS">
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <state key="normal" title="Read and agree《Terms of service and privacy》"/>
+                    <connections>
+                        <action selector="agreementAction:" destination="-1" eventType="touchUpInside" id="Zlr-GY-J9M"/>
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="jX8-ot-coc" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="4Pq-Z3-Ixx"/>
-                <constraint firstItem="jX8-ot-coc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="4jb-cm-jgc"/>
-                <constraint firstAttribute="trailing" secondItem="bP0-hA-ZnJ" secondAttribute="trailing" constant="40" id="91R-zE-u7d"/>
-                <constraint firstAttribute="trailing" secondItem="jX8-ot-coc" secondAttribute="trailing" constant="40" id="9O9-2N-MMY"/>
-                <constraint firstItem="bP0-hA-ZnJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="B39-O4-W3d"/>
-                <constraint firstItem="jX8-ot-coc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="NET-2j-deP"/>
-                <constraint firstItem="bP0-hA-ZnJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="c8k-nz-gRw"/>
-                <constraint firstItem="bP0-hA-ZnJ" firstAttribute="top" secondItem="jX8-ot-coc" secondAttribute="bottom" constant="20" id="r9b-bO-be9"/>
+                <constraint firstAttribute="trailing" secondItem="apT-oS-dZY" secondAttribute="trailing" constant="14" id="9Pi-L3-FHQ"/>
+                <constraint firstItem="apT-oS-dZY" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="37" id="B8w-1E-U2L"/>
+                <constraint firstAttribute="trailing" secondItem="ve0-2V-sTx" secondAttribute="trailing" constant="14" id="Fsv-QF-GnX"/>
+                <constraint firstItem="apT-oS-dZY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="14" id="Ski-qy-Iza"/>
+                <constraint firstItem="ve0-2V-sTx" firstAttribute="top" secondItem="apT-oS-dZY" secondAttribute="bottom" constant="23" id="av5-PN-PiX"/>
+                <constraint firstItem="c2D-HP-9XS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="dIA-9W-Rff"/>
+                <constraint firstItem="c2D-HP-9XS" firstAttribute="top" secondItem="ve0-2V-sTx" secondAttribute="bottom" constant="15" id="gEb-FA-nci"/>
+                <constraint firstItem="ve0-2V-sTx" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="14" id="vuP-aB-5Wb"/>
             </constraints>
-            <point key="canvasLocation" x="-231" y="55"/>
+            <point key="canvasLocation" x="-189" y="53"/>
         </view>
     </objects>
+    <resources>
+        <image name="content_btn_next_default" width="347" height="48"/>
+    </resources>
 </document>

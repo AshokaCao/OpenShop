@@ -11,7 +11,7 @@
 
 #ifdef DEBUG
 # define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
-#define tLocalUrl @"115.29.247.29"
+#define tLocalUrl @"192.168.1.188:88"
 #else
 # define DLog(...)
 //192.168.1.188

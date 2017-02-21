@@ -8,10 +8,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RegisterViewController">
             <connections>
-                <outlet property="codeBtn" destination="krb-hL-ZOm" id="s3n-ki-vNT"/>
-                <outlet property="codeNumberTextField" destination="H9w-hn-B0R" id="2tl-bk-Lf3"/>
-                <outlet property="doneBtn" destination="vN1-h5-HT6" id="BeW-TJ-Jbn"/>
-                <outlet property="passWordTextField" destination="p9h-qq-x3S" id="ETh-ez-YOP"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,48 +15,8 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <subviews>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H9w-hn-B0R">
-                    <nil key="textColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="krb-hL-ZOm">
-                    <constraints>
-                        <constraint firstAttribute="width" constant="50" id="Cdo-kn-nqA"/>
-                    </constraints>
-                    <state key="normal" title="Code"/>
-                    <connections>
-                        <action selector="getCodeNumberAction:" destination="-1" eventType="touchUpInside" id="00h-mj-NRN"/>
-                    </connections>
-                </button>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="p9h-qq-x3S">
-                    <nil key="textColor"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vN1-h5-HT6">
-                    <state key="normal" title="Done"/>
-                    <connections>
-                        <action selector="finishAction:" destination="-1" eventType="touchUpInside" id="sJ3-RG-UMy"/>
-                    </connections>
-                </button>
-            </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-            <constraints>
-                <constraint firstItem="krb-hL-ZOm" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="2hX-vk-cps"/>
-                <constraint firstItem="H9w-hn-B0R" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="91q-wq-ccS"/>
-                <constraint firstAttribute="trailing" secondItem="vN1-h5-HT6" secondAttribute="trailing" constant="40" id="Dyy-nK-wZg"/>
-                <constraint firstItem="vN1-h5-HT6" firstAttribute="top" secondItem="p9h-qq-x3S" secondAttribute="bottom" constant="20" id="P9t-gh-dk5"/>
-                <constraint firstItem="p9h-qq-x3S" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="RkF-Q3-PHd"/>
-                <constraint firstItem="vN1-h5-HT6" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="40" id="dak-Py-DLu"/>
-                <constraint firstItem="H9w-hn-B0R" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="60" id="e9g-0r-x46"/>
-                <constraint firstItem="krb-hL-ZOm" firstAttribute="leading" secondItem="H9w-hn-B0R" secondAttribute="trailing" constant="20" id="fRg-sx-bjP"/>
-                <constraint firstItem="p9h-qq-x3S" firstAttribute="top" secondItem="H9w-hn-B0R" secondAttribute="bottom" constant="20" id="had-Wd-gjM"/>
-                <constraint firstAttribute="trailing" secondItem="p9h-qq-x3S" secondAttribute="trailing" constant="40" id="oXE-LC-JCd"/>
-                <constraint firstAttribute="trailing" secondItem="krb-hL-ZOm" secondAttribute="trailing" constant="40" id="uca-QG-jf7"/>
-                <constraint firstItem="krb-hL-ZOm" firstAttribute="leading" secondItem="H9w-hn-B0R" secondAttribute="trailing" constant="20" id="zFw-Eu-qg0"/>
-            </constraints>
+            <point key="canvasLocation" x="-140" y="15"/>
         </view>
     </objects>
 </document>

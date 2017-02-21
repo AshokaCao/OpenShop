@@ -7,10 +7,12 @@
 //
 
 #import "PhoneNumberViewController.h"
+#import "RegisterViewController.h"
 
-@interface PhoneNumberViewController ()
+@interface PhoneNumberViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumberTextField;
 @property (weak, nonatomic) IBOutlet UIButton *nextBtn;
+@property (weak, nonatomic) IBOutlet UIButton *agreementBtn;
 
 @end
 
@@ -19,8 +21,31 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.title = ASLocalizedString(@"Register Account");
+    self.phoneNumberTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
+    
+    [self.phoneNumberTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
 }
+
 - (IBAction)nextAction:(UIButton *)sender {
+    RegisterViewController *regist = [[RegisterViewController alloc] init];
+    regist.phoneNum = self.phoneNumberTextField.text;
+    [self.navigationController pushViewController:regist animated:YES];
+}
+
+- (IBAction)agreementAction:(UIButton *)sender {
+    
+}
+
+- (void)textFieldDidChange:(UITextField *)textField
+{
+    if (textField == self.phoneNumberTextField) {
+        if (textField.text.length >= 1) {
+            [self.nextBtn setBackgroundImage:[UIImage imageNamed:@"btn_login_selected"] forState:UIControlStateNormal];
+        } else {
+            [self.nextBtn setBackgroundImage:[UIImage imageNamed:@"content_btn_login_default"] forState:UIControlStateNormal];
+        }
+    }
 }
 
 - (void)didReceiveMemoryWarning {

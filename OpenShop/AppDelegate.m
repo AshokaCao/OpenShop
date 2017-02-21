@@ -27,9 +27,11 @@ static NSString *appLanguage = @"appLanguage";
     self.window = [[UIWindow alloc] init];
     self.window.frame = [UIScreen mainScreen].bounds;
     RootViewController *rootVC = [[RootViewController alloc] init];
-    LoginMainViewController *logVC = [[LoginMainViewController alloc] init];
     
-    self.window.rootViewController = logVC;
+    LoginMainViewController *logVC = [[LoginMainViewController alloc] init];
+    UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:logVC];
+    
+    self.window.rootViewController = navc;
     
     // 多语言切换
     if (![nNsuserdefaul objectForKey:appLanguage]) {
