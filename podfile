@@ -1,6 +1,7 @@
 platform:ios,'7.0'
 target "OpenShop" do
 pod 'SDCycleScrollView'
+pod 'MJRefresh'
 pod 'YYCache'
 pod 'GTSDK'
 pod 'MBProgressHUD', '~> 0.9.2'   

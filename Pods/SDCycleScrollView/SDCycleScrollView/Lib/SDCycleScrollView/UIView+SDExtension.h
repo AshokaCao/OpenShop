@@ -41,4 +41,9 @@
 @property (nonatomic, assign) CGFloat sd_y;
 @property (nonatomic, assign) CGFloat sd_x;
 
+@property (nonatomic, assign) CGFloat centerX;
+@property (nonatomic, assign) CGFloat centerY;
+
+@property (nonatomic, assign) CGSize size;
+
 @end

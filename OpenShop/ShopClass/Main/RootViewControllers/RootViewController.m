@@ -26,10 +26,10 @@
     CommodityMainViewController *commdity = [[CommodityMainViewController alloc] init];
     ShopMainViewController *shop = [[ShopMainViewController alloc] init];
     PersonalMainViewController *personal = [[PersonalMainViewController alloc] init];
-    [self addChildVc:market title:ASLocalizedString(@"好货市场") image:@"" selectedImage:@""];
-    [self addChildVc:commdity title:ASLocalizedString(@"商品管理") image:@"" selectedImage:@""];
-    [self addChildVc:shop title:ASLocalizedString(@"店铺管理") image:@"" selectedImage:@""];
-    [self addChildVc:personal title:ASLocalizedString(@"设置") image:@"" selectedImage:@""];
+    [self addChildVc:market title:ASLocalizedString(@"Market") image:@"tab_icon_market_default" selectedImage:@"tab_icon_market_selected"];
+    [self addChildVc:commdity title:ASLocalizedString(@"Products") image:@"tab_icon_products_default" selectedImage:@"tab_icon_products_selected"];
+    [self addChildVc:shop title:ASLocalizedString(@"Shop") image:@"tab_icon_shop_default" selectedImage:@"tab_icon_shop_selected"];
+    [self addChildVc:personal title:ASLocalizedString(@"Settings") image:@"tab_icon_setting_default" selectedImage:@"tab_icon_setting_selected"];
 }
 
 - (void)addChildVc:(UIViewController *)childVc title:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage

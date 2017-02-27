@@ -27,6 +27,29 @@
     [self.phoneNumberTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
 }
 
+- (void)leftItem
+{
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn addTarget:self action:@selector(backToMain) forControlEvents:UIControlEventTouchUpInside];
+    // 设置图片
+    [btn setBackgroundImage:[UIImage imageNamed:@"nav_icon_back"] forState:UIControlStateNormal];
+    [btn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateHighlighted];
+    
+    // 设置尺寸
+    btn.size = btn.currentBackgroundImage.size;
+    
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    space.width = 14;//自己设定
+    
+    [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:space,leftItem, nil]];
+}
+
+- (void)backToMain
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 - (IBAction)nextAction:(UIButton *)sender {
     RegisterViewController *regist = [[RegisterViewController alloc] init];
     regist.phoneNum = self.phoneNumberTextField.text;

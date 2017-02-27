@@ -20,6 +20,7 @@ PODS:
   - GTSDK (1.5.0)
   - MBProgressHUD (0.9.2)
   - MJExtension (3.0.13)
+  - MJRefresh (3.1.12)
   - SDCycleScrollView (1.65):
     - SDWebImage (~> 3.7)
   - SDWebImage (3.8.2):
@@ -33,6 +34,7 @@ DEPENDENCIES:
   - GTSDK
   - MBProgressHUD (~> 0.9.2)
   - MJExtension
+  - MJRefresh
   - SDCycleScrollView
   - YYCache
 
@@ -42,10 +44,11 @@ SPEC CHECKSUMS:
   GTSDK: 4380de452178d8ba2a67189f10c6743d0f9536b9
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
+  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
 
-PODFILE CHECKSUM: a9870f9de15cbe02d11004fbe8637bec3484ecc7
+PODFILE CHECKSUM: 51995f0ba9f6180e5a2bc19a1021be5f52e445de
 
 COCOAPODS: 1.1.1

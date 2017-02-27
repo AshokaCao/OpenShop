@@ -29,9 +29,9 @@ static NSString *appLanguage = @"appLanguage";
     RootViewController *rootVC = [[RootViewController alloc] init];
     
     LoginMainViewController *logVC = [[LoginMainViewController alloc] init];
-    UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:logVC];
+    UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:rootVC];
     
-    self.window.rootViewController = navc;
+    self.window.rootViewController = rootVC;
     
     // 多语言切换
     if (![nNsuserdefaul objectForKey:appLanguage]) {

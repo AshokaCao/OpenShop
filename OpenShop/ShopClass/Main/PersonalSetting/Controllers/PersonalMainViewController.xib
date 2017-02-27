@@ -1,12 +1,18 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PersonalMainViewController">
             <connections>
+                <outlet property="personalTableView" destination="3yo-Ma-7wt" id="klu-ns-iNF"/>
+                <outlet property="userHeaderImage" destination="B3j-QY-oSD" id="2bX-j4-f31"/>
+                <outlet property="userImageView" destination="Fj4-NV-Ird" id="Hbt-ao-fZO"/>
+                <outlet property="userNameLabel" destination="PkZ-xk-xkj" id="bne-Vr-WEI"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -14,7 +20,59 @@
         <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fj4-NV-Ird">
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="setting_img_touxiang" translatesAutoresizingMaskIntoConstraints="NO" id="B3j-QY-oSD">
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="B3j-QY-oSD" secondAttribute="height" multiplier="1:1" id="hLT-0q-Inl"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Suchada" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PkZ-xk-xkj">
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="liebiao_icon_jiantou" translatesAutoresizingMaskIntoConstraints="NO" id="khw-by-RrF"/>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="khw-by-RrF" secondAttribute="trailing" constant="14" id="BI6-py-LXE"/>
+                        <constraint firstItem="khw-by-RrF" firstAttribute="centerY" secondItem="Fj4-NV-Ird" secondAttribute="centerY" id="IOR-gJ-Saf"/>
+                        <constraint firstItem="PkZ-xk-xkj" firstAttribute="centerY" secondItem="Fj4-NV-Ird" secondAttribute="centerY" id="O2U-BD-cin"/>
+                        <constraint firstAttribute="height" constant="109" id="d3G-dj-T6O"/>
+                        <constraint firstItem="B3j-QY-oSD" firstAttribute="leading" secondItem="Fj4-NV-Ird" secondAttribute="leading" constant="14" id="g1A-PO-n7g"/>
+                        <constraint firstItem="PkZ-xk-xkj" firstAttribute="leading" secondItem="B3j-QY-oSD" secondAttribute="trailing" constant="15" id="qDR-ZY-Hia"/>
+                        <constraint firstItem="B3j-QY-oSD" firstAttribute="centerY" secondItem="Fj4-NV-Ird" secondAttribute="centerY" id="tEN-rd-JKu"/>
+                        <constraint firstAttribute="width" secondItem="Fj4-NV-Ird" secondAttribute="height" multiplier="375:109" id="vUp-Gq-3bV"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3yo-Ma-7wt">
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="318" id="fwM-1j-tce"/>
+                        <constraint firstAttribute="width" secondItem="3yo-Ma-7wt" secondAttribute="height" multiplier="125:106" id="y00-pe-IWg"/>
+                    </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="PdU-9M-uP7"/>
+                        <outlet property="delegate" destination="-1" id="SjY-sm-6dP"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="3yo-Ma-7wt" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7Ol-PQ-QjS"/>
+                <constraint firstAttribute="trailing" secondItem="3yo-Ma-7wt" secondAttribute="trailing" id="J4T-fe-Vmd"/>
+                <constraint firstItem="3yo-Ma-7wt" firstAttribute="top" secondItem="Fj4-NV-Ird" secondAttribute="bottom" id="M7j-l0-jL8"/>
+                <constraint firstItem="Fj4-NV-Ird" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="jBt-ZY-k7M"/>
+                <constraint firstItem="Fj4-NV-Ird" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="oZT-Dg-nVa"/>
+                <constraint firstAttribute="trailing" secondItem="Fj4-NV-Ird" secondAttribute="trailing" id="v2n-in-QDL"/>
+            </constraints>
+            <point key="canvasLocation" x="-598" y="-142"/>
         </view>
     </objects>
+    <resources>
+        <image name="liebiao_icon_jiantou" width="9" height="14"/>
+        <image name="setting_img_touxiang" width="65" height="65"/>
+    </resources>
 </document>

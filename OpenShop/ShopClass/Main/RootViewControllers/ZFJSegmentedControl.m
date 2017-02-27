@@ -7,6 +7,7 @@
 //
 
 #import "ZFJSegmentedControl.h"
+#import "UIView+SDExtension.h"
 
 @interface ZFJSegmentedControl ()<UICollectionViewDelegate>
 
@@ -43,8 +44,8 @@
     _selectIndex = 0;//默认选中第一个
     _SCType_Underline_HEI = 2;
     _btnCount = self.titleArr.count!=0 ? self.titleArr.count : self.iconArr.count;
-    _titleColor = [UIColor blackColor];
-    _selectTitleColor = [UIColor colorWithRed:0.933 green:0.204 blue:0.035 alpha:1.00];//RGB:238 52 9
+    _titleColor = [UIColor colorWithHexString:@"#585858"];
+    _selectTitleColor = [UIColor colorWithHexString:@"#ff213b"];//RGB:238 52 9
     _ellipseBackColor = [UIColor colorWithRed:0.000 green:0.000 blue:0.000 alpha:0.2];
     _titleBtnBackColor = [UIColor clearColor];
     _cornerRadius = 2;
@@ -124,7 +125,9 @@
         if(self.stateView==nil){
             self.stateView = [[UIView alloc]init];
         }
-        self.stateView.frame = CGRectMake(selectBtn.frame.origin.x, self.frame.size.height - _SCType_Underline_HEI, _selectBtnWID, _SCType_Underline_HEI);
+//        self.stateView.frame = CGRectMake(selectBtn.frame.origin.x, self.frame.size.height - _SCType_Underline_HEI, _selectBtnWID, _SCType_Underline_HEI);
+        self.stateView.frame = CGRectMake(selectBtn.frame.origin.x, self.frame.size.height - _SCType_Underline_HEI, selectBtn.currentTitle.length * 9, _SCType_Underline_HEI);
+        self.stateView.centerX = selectBtn.centerX;
         self.stateView.backgroundColor = _selectTitleColor;
         [self.scrollView addSubview:self.stateView];
     }else if(self.SCType == SCType_Dot){
@@ -188,10 +191,12 @@
     CGPoint offset = CGPointMake(offsetx, self.scrollView.contentOffset.y);
     [self.scrollView setContentOffset:offset animated:YES];
     
+    NSLog(@"%@",button.currentTitle);
     if(self.SCType == SCType_Underline){
         //下划线
         [UIView animateWithDuration:_animateDuration animations:^{
-            self.stateView.frame = CGRectMake(button.frame.origin.x, self.frame.size.height - _SCType_Underline_HEI, _selectBtnWID, _SCType_Underline_HEI);
+            self.stateView.frame = CGRectMake(button.frame.origin.x, self.frame.size.height - _SCType_Underline_HEI, button.currentTitle.length * 9, _SCType_Underline_HEI);
+            self.stateView.centerX = button.centerX;
         }];
     }else if(self.SCType == SCType_Dot){
         [UIView animateWithDuration:_animateDuration animations:^{
@@ -268,7 +273,9 @@
     _SCType_Underline_HEI = SCType_Underline_HEI;
     UIButton *selectBtn = (UIButton *)self.scrollView.subviews[_selectIndex];
     if(self.SCType == SCType_Underline){
-        self.stateView.frame = CGRectMake(selectBtn.frame.origin.x, self.frame.size.height - _SCType_Underline_HEI, _selectBtnWID, _SCType_Underline_HEI);
+//        self.stateView.frame = CGRectMake(selectBtn.frame.origin.x, self.frame.size.height - _SCType_Underline_HEI, _selectBtnWID, _SCType_Underline_HEI);
+        self.stateView.frame = CGRectMake(selectBtn.frame.origin.x, self.frame.size.height - _SCType_Underline_HEI, selectBtn.currentTitle.length * 9, _SCType_Underline_HEI);
+        self.stateView.centerX = selectBtn.centerX;
     }else if(self.SCType == SCType_Dot){
         self.stateView.frame = CGRectMake(selectBtn.frame.origin.x + (_selectBtnWID - _SCType_Underline_HEI)/2, self.frame.size.height - _SCType_Underline_HEI, _SCType_Underline_HEI, _SCType_Underline_HEI);
         self.stateView.layer.cornerRadius = _SCType_Underline_HEI/2;

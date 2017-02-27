@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChangeUserNameViewController">
+            <connections>
+                <outlet property="userNameTextField" destination="L0B-4G-eox" id="k9g-jk-3gb"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bu8-Sl-wQa">
+                    <subviews>
+                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="L0B-4G-eox">
+                            <color key="textColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <textInputTraits key="textInputTraits"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="FSg-Og-TxF"/>
+                            </connections>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="L0B-4G-eox" secondAttribute="trailing" constant="14" id="Dj8-eg-nyO"/>
+                        <constraint firstItem="L0B-4G-eox" firstAttribute="leading" secondItem="Bu8-Sl-wQa" secondAttribute="leading" constant="14" id="KYE-Ox-eWC"/>
+                        <constraint firstItem="L0B-4G-eox" firstAttribute="top" secondItem="Bu8-Sl-wQa" secondAttribute="top" id="Rcx-iD-d8c"/>
+                        <constraint firstAttribute="bottom" secondItem="L0B-4G-eox" secondAttribute="bottom" id="RhW-fn-F0m"/>
+                        <constraint firstAttribute="height" constant="48" id="rsW-ZK-QHA"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Bu8-Sl-wQa" secondAttribute="trailing" id="CQy-9x-kLs"/>
+                <constraint firstItem="Bu8-Sl-wQa" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="15" id="V5E-Ol-zpj"/>
+                <constraint firstItem="Bu8-Sl-wQa" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="v1g-LV-PaX"/>
+            </constraints>
+        </view>
+    </objects>
+</document>
