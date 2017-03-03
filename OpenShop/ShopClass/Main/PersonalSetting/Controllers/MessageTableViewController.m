@@ -19,7 +19,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    self.title = ASLocalizedString(@"");
+    self.title = ASLocalizedString(@"Message");
     [self leftItem];
     
     [self.messageTaleView registerNib:[UINib nibWithNibName:@"MessageTableTableViewCell" bundle:nil] forCellReuseIdentifier:@"messageTableCell"];
