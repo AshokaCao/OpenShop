@@ -13,6 +13,7 @@
                 <outlet property="accountLa" destination="kfj-Od-LQM" id="nfb-Lm-MvE"/>
                 <outlet property="accountView" destination="LFo-Ix-8ux" id="BKX-V0-Jdq"/>
                 <outlet property="changePasswordLa" destination="Xng-Qp-JiE" id="Nxh-yh-Agl"/>
+                <outlet property="headerNameLabel" destination="kDn-Pm-FKV" id="6VS-ZO-Gkc"/>
                 <outlet property="nameView" destination="b6g-mD-r4T" id="cuh-Ti-4M6"/>
                 <outlet property="nickNameLa" destination="pks-kb-e8I" id="BH1-lA-l6q"/>
                 <outlet property="outBtn" destination="ZpT-hV-0qY" id="LYh-pU-k1H"/>
@@ -30,9 +31,11 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K1D-UK-8ku">
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gerenxinxi_touxiang_img" translatesAutoresizingMaskIntoConstraints="NO" id="6Ws-G7-2JV">
+                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gerenxinxi_touxiang_img" translatesAutoresizingMaskIntoConstraints="NO" id="6Ws-G7-2JV">
                             <constraints>
+                                <constraint firstAttribute="width" constant="75" id="LNK-eb-r6g"/>
                                 <constraint firstAttribute="width" secondItem="6Ws-G7-2JV" secondAttribute="height" multiplier="1:1" id="MnP-ye-wHh"/>
+                                <constraint firstAttribute="height" constant="75" id="Y1Z-Rw-oW1"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDn-Pm-FKV">
@@ -184,7 +187,7 @@
                 <constraint firstItem="bEu-SU-W1n" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="snq-ps-f8I"/>
                 <constraint firstItem="bEu-SU-W1n" firstAttribute="top" secondItem="b6g-mD-r4T" secondAttribute="bottom" id="wwt-es-um5"/>
             </constraints>
-            <point key="canvasLocation" x="-188" y="43"/>
+            <point key="canvasLocation" x="-365" y="-109"/>
         </view>
     </objects>
     <resources>

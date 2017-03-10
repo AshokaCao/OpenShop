@@ -28,8 +28,8 @@ static NSString *appLanguage = @"appLanguage";
     self.window.frame = [UIScreen mainScreen].bounds;
     RootViewController *rootVC = [[RootViewController alloc] init];
     
-    LoginMainViewController *logVC = [[LoginMainViewController alloc] init];
-    UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:rootVC];
+//    LoginMainViewController *logVC = [[LoginMainViewController alloc] init];
+//    UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:rootVC];
     
     self.window.rootViewController = rootVC;
     

@@ -20,5 +20,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *distributionLabel;
 @property (weak, nonatomic) IBOutlet UIView *discardView;
 @property (weak, nonatomic) IBOutlet UILabel *disLabel;
+@property (weak, nonatomic) IBOutlet UILabel *distributeLabel;
 
 @end

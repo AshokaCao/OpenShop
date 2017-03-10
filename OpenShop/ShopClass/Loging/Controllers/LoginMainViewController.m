@@ -52,6 +52,15 @@
 }
 
 - (IBAction)loginAction:(UIButton *)sender {
+    NSString *logUrl = [NSString stringWithFormat:@"http://192.168.1.154:8101/Account/Login.ashx"];
+    NSMutableDictionary *dic = [NSMutableDictionary dictionary];
+    dic[@"Mobile"] = [NSString stringWithFormat:@"%@",self.phoneNumberTextField.text];
+    dic[@"Password"] = [NSString stringWithFormat:@"%@",self.passWordTextField.text];
+    [PPNetworkHelper POST:logUrl parameters:dic success:^(id responseObject) {
+        NSLog(@"yes");
+    } failure:^(NSError *error) {
+         NSLog(@"no");
+    }];
     
 }
 

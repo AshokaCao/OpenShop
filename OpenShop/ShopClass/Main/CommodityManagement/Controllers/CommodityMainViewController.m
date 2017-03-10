@@ -8,6 +8,7 @@
 
 #import "CommodityMainViewController.h"
 #import "ProductsTableViewCell.h"
+#import "ShelveTableViewCell.h"
 #import "EditingGoodsViewController.h"
 
 @interface CommodityMainViewController () <UITableViewDelegate, UITableViewDataSource>
@@ -27,13 +28,18 @@
     
     self.navigationController.navigationBar.translucent = NO;
     self.tabBarController.tabBar.translucent = NO;
-    [self.productTableView registerNib:[UINib nibWithNibName:@"ProductsTableViewCell" bundle:nil] forCellReuseIdentifier:@"productCell"];
     self.shelveBtn.selected = NO;
     self.shelveLine.hidden = YES;
     self.saleBtn.selected = !self.shelveBtn.isSelected;
     self.saleLine.hidden = !self.shelveLine.hidden;
-    
+    [self registTableView];
     [self mjRefalish];
+}
+
+- (void)registTableView
+{
+    [self.productTableView registerNib:[UINib nibWithNibName:@"ProductsTableViewCell" bundle:nil] forCellReuseIdentifier:@"productCell"];
+    [self.productTableView registerNib:[UINib nibWithNibName:@"ShelveTableViewCell" bundle:nil] forCellReuseIdentifier:@"sheleveCell"];
 }
 
 - (void)mjRefalish
@@ -97,13 +103,17 @@
     self.saleBtn.selected = !self.shelveBtn.isSelected;
     self.saleLine.hidden = !self.shelveLine.hidden;
 }
+
 - (IBAction)shelveAction:(UIButton *)sender {
     self.shelveBtn.selected = YES;
     self.shelveLine.hidden = NO;
     self.saleBtn.selected = !self.shelveBtn.isSelected;
     self.saleLine.hidden = !self.shelveLine.hidden;
 }
+
 - (IBAction)addGoodsAction:(UIButton *)sender {
+    EditingGoodsViewController *editView = [[EditingGoodsViewController alloc] init];
+    [self.navigationController pushViewController:editView animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

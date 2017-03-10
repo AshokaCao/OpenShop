@@ -12,6 +12,7 @@
 #import "PPNetworkHelper.h"
 #import "HomeGoodListTableViewCell.h"
 #import "MarkerGoodListViewController.h"
+#import "AFNetworking.h"
 
 @interface MarketMainViewController () <SDCycleScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *tabHeaderView;
@@ -20,6 +21,7 @@
 @end
 
 @implementation MarketMainViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -100,7 +102,8 @@
         }else if (kIsWiFiNetwork){
             NSLog(@"WiFi网络");
         }
-    }
+    } 
+    
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

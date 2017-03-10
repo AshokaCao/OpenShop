@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PromoteViewController">
+            <connections>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w6w-ie-RqU">
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zMW-r8-oKm">
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="Voo-nR-gtc"/>
+                            </constraints>
+                            <state key="normal">
+                                <attributedString key="attributedTitle">
+                                    <fragment content="cancel">
+                                        <attributes>
+                                            <color key="NSColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="16" name="STHeitiSC-Medium"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                            </state>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ycf-gr-9oi">
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="I5l-wP-I0P"/>
+                                <constraint firstAttribute="height" constant="48" id="ZKw-qz-fYZ"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                            <state key="normal" title="Save the picture">
+                                <color key="titleColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bg1-aA-DUm">
+                            <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="e1h-Sd-hLr"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sN0-CD-rb7">
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="fVX-HS-S1K"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                            <state key="normal" title="copy the name &amp; link">
+                                <color key="titleColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5cw-8b-i7Z">
+                            <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="PU1-iB-ZcK"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hxm-Jx-WEi">
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="EOb-ah-2xk"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                            <state key="normal" title="copy the name">
+                                <color key="titleColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7n9-ia-Jse">
+                            <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="fBI-kf-rX6"/>
+                            </constraints>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ryj-3D-1qD">
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="48" id="UDi-Y9-5OI"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                            <state key="normal" title="copy the link">
+                                <color key="titleColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="5cw-8b-i7Z" secondAttribute="trailing" id="5RM-tk-C7s"/>
+                        <constraint firstAttribute="trailing" secondItem="Hxm-Jx-WEi" secondAttribute="trailing" id="ATl-QL-7QD"/>
+                        <constraint firstItem="sN0-CD-rb7" firstAttribute="leading" secondItem="w6w-ie-RqU" secondAttribute="leading" id="Av5-Af-8zp"/>
+                        <constraint firstAttribute="bottom" secondItem="zMW-r8-oKm" secondAttribute="bottom" id="E9Y-NC-13M"/>
+                        <constraint firstItem="sN0-CD-rb7" firstAttribute="top" secondItem="Bg1-aA-DUm" secondAttribute="bottom" id="FlL-ob-hnW"/>
+                        <constraint firstItem="ryj-3D-1qD" firstAttribute="top" secondItem="7n9-ia-Jse" secondAttribute="bottom" id="HKV-KY-ASL"/>
+                        <constraint firstItem="Bg1-aA-DUm" firstAttribute="top" secondItem="Ycf-gr-9oi" secondAttribute="bottom" id="Ia9-2i-dYx"/>
+                        <constraint firstAttribute="height" constant="250" id="KyW-VA-OiG"/>
+                        <constraint firstItem="Ycf-gr-9oi" firstAttribute="leading" secondItem="w6w-ie-RqU" secondAttribute="leading" id="SRk-Zr-931"/>
+                        <constraint firstItem="Bg1-aA-DUm" firstAttribute="leading" secondItem="w6w-ie-RqU" secondAttribute="leading" id="SnY-xO-KDV"/>
+                        <constraint firstItem="Hxm-Jx-WEi" firstAttribute="leading" secondItem="w6w-ie-RqU" secondAttribute="leading" id="T7u-cT-uBl"/>
+                        <constraint firstAttribute="trailing" secondItem="Bg1-aA-DUm" secondAttribute="trailing" id="Tx0-Jb-Shs"/>
+                        <constraint firstAttribute="trailing" secondItem="Ycf-gr-9oi" secondAttribute="trailing" id="Zb8-da-qVN"/>
+                        <constraint firstItem="zMW-r8-oKm" firstAttribute="leading" secondItem="w6w-ie-RqU" secondAttribute="leading" id="akw-oT-csU"/>
+                        <constraint firstItem="ryj-3D-1qD" firstAttribute="leading" secondItem="w6w-ie-RqU" secondAttribute="leading" id="byI-qU-C1y"/>
+                        <constraint firstAttribute="trailing" secondItem="sN0-CD-rb7" secondAttribute="trailing" id="cKz-XJ-kyE"/>
+                        <constraint firstItem="Ycf-gr-9oi" firstAttribute="top" secondItem="w6w-ie-RqU" secondAttribute="top" id="eaA-n7-p3F"/>
+                        <constraint firstAttribute="trailing" secondItem="7n9-ia-Jse" secondAttribute="trailing" id="ecT-wE-NGU"/>
+                        <constraint firstItem="7n9-ia-Jse" firstAttribute="leading" secondItem="w6w-ie-RqU" secondAttribute="leading" id="f2m-MM-p9P"/>
+                        <constraint firstItem="5cw-8b-i7Z" firstAttribute="leading" secondItem="w6w-ie-RqU" secondAttribute="leading" id="iRS-ig-3Xg"/>
+                        <constraint firstAttribute="trailing" secondItem="zMW-r8-oKm" secondAttribute="trailing" id="n17-V0-7c0"/>
+                        <constraint firstAttribute="trailing" secondItem="ryj-3D-1qD" secondAttribute="trailing" id="nyF-Fl-UKZ"/>
+                        <constraint firstItem="7n9-ia-Jse" firstAttribute="top" secondItem="Hxm-Jx-WEi" secondAttribute="bottom" id="pGg-iL-Q4x"/>
+                        <constraint firstItem="Hxm-Jx-WEi" firstAttribute="top" secondItem="5cw-8b-i7Z" secondAttribute="bottom" id="uPn-pX-wl3"/>
+                        <constraint firstItem="5cw-8b-i7Z" firstAttribute="top" secondItem="sN0-CD-rb7" secondAttribute="bottom" id="wTX-02-E2I"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="w6w-ie-RqU" secondAttribute="bottom" id="bsZ-8i-9OU"/>
+                <constraint firstAttribute="trailing" secondItem="w6w-ie-RqU" secondAttribute="trailing" id="qEF-Qx-xd8"/>
+                <constraint firstItem="w6w-ie-RqU" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="uUz-du-YCe"/>
+            </constraints>
+            <point key="canvasLocation" x="-139" y="56"/>
+        </view>
+    </objects>
+</document>

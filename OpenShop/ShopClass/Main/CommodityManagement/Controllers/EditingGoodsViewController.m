@@ -7,8 +7,11 @@
 //
 
 #import "EditingGoodsViewController.h"
+#import "GoodsImageCollectionViewCell.h"
+#import "HXPhotoView.h"
 
-@interface EditingGoodsViewController () <UITextFieldDelegate>
+@interface EditingGoodsViewController () <UITextFieldDelegate, HXPhotoViewDelegate>
+@property (strong, nonatomic) HXPhotoManager *manager;
 @property (weak, nonatomic) IBOutlet UITextField *productTitleTextField;
 @property (weak, nonatomic) IBOutlet UITextView *productListTextView;
 @property (weak, nonatomic) IBOutlet UITextField *priceTextField;
@@ -24,17 +27,23 @@
 
 @implementation EditingGoodsViewController
 
+- (HXPhotoManager *)manager
+{
+    if (!_manager) {
+        _manager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhotoAndVideo];
+    }
+    return _manager;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = ASLocalizedString(@"Edit Item Detail");
     [self leftItem];
+    HXPhotoView *photoView = [[HXPhotoView alloc] initWithFrame:CGRectMake(14, 151, SCREEN_WIDTH - 28, 55) WithManager:self.manager];
+    photoView.delegate = self;
+    photoView.backgroundColor = [UIColor whiteColor];
+    [self.lineView addSubview:photoView];
     
-    // 键盘通知
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(KeyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
-    // Do any additional setup after loading the view from its nib.
-    UITextField *nameTitle = [[UITextField alloc] initWithFrame:CGRectMake(14, 30, SCREEN_WIDTH - 14, SCREEN_WIDTH *0.1146)];
-    nameTitle.delegate = self;
-    [self.lineView addSubview:nameTitle];
 }
 
 - (void)viewDidLayoutSubviews
@@ -46,18 +55,18 @@
 
 - (void)leftItem
 {
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn addTarget:self action:@selector(backToMain) forControlEvents:UIControlEventTouchUpInside];
-    // 设置图片
-    [btn setBackgroundImage:[UIImage imageNamed:@"nav_quxiao_icon"] forState:UIControlStateNormal];
-    [btn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateHighlighted];
-    
-    // 设置尺寸
-    btn.size = btn.currentBackgroundImage.size;
-    
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    space.width = 14;//自己设定
+//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [btn addTarget:self action:@selector(backToMain) forControlEvents:UIControlEventTouchUpInside];
+//    // 设置图片
+//    [btn setBackgroundImage:[UIImage imageNamed:@"nav_quxiao_icon"] forState:UIControlStateNormal];
+//    [btn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateHighlighted];
+//    
+//    // 设置尺寸
+//    btn.size = btn.currentBackgroundImage.size;
+//    
+//    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+//    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    space.width = 14;//自己设定
     
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightBtn addTarget:self action:@selector(backToMain) forControlEvents:UIControlEventTouchUpInside];
@@ -68,16 +77,36 @@
     rightBtn.size = CGSizeMake(70, 44);
     rightBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+//    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     
-    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:space,rightItem, nil]];
-    [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:space,leftItem, nil]];
+//    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:space,rightItem, nil]];
+//    [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:space,leftItem, nil]];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
+    
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(backToMain) image:@"nav_quxiao_icon" highImage:@""];
 }
 
 - (void)backToMain
 {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
+- (void)photoViewChangeComplete:(NSArray *)allList Photos:(NSArray *)photos Videos:(NSArray *)videos Original:(BOOL)isOriginal
+{
+    NSLog(@"%ld - %ld - %ld",allList.count,photos.count,videos.count);
+    NSLog(@"%@",photos);
+}
+
+- (void)photoViewUpdateFrame:(CGRect)frame WithView:(UIView *)view
+{
+    NSLog(@"%@",NSStringFromCGRect(frame));
+}
+
+
+
+#pragma mark   键盘弹出事件
 - (void)textFieldDidBeginEditing:(UITextField *)textField
 {
     CGFloat heights;
@@ -94,19 +123,14 @@
     int offset = heights + 42 - ( self.view.sd_height - 216.0-35.0);//键盘高度216
     NSLog(@" offset   %d",offset);
     NSTimeInterval animationDuration = 0.30f;
-    
     [UIView beginAnimations:@"ResizeForKeyBoard" context:nil];
-    
     [UIView setAnimationDuration:animationDuration];
     
     float width = self.view.frame.size.width;
-    
     float height = self.view.frame.size.height;
     
-    if(offset > 0)
-    {
+    if(offset > 0) {
         CGRect rect = CGRectMake(0.0f, -offset,width,height);
-        
         self.view.frame = rect;
     }
     [UIView commitAnimations];

@@ -42,18 +42,21 @@
                         </textField>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XVm-Mb-5aa">
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="XVm-Mb-5aa" secondAttribute="height" multiplier="347:68" id="SaL-iJ-yc5"/>
+                            </constraints>
                             <attributedString key="attributedText"/>
                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                         </textView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="8pj-Uh-f1y" secondAttribute="height" multiplier="125:74" id="0or-dI-J1l"/>
                         <constraint firstItem="ryJ-uQ-bjN" firstAttribute="top" secondItem="8pj-Uh-f1y" secondAttribute="top" id="99B-d4-DlI"/>
                         <constraint firstItem="ryJ-uQ-bjN" firstAttribute="leading" secondItem="8pj-Uh-f1y" secondAttribute="leading" constant="14" id="Gf5-Ls-xmA"/>
                         <constraint firstItem="XVm-Mb-5aa" firstAttribute="top" secondItem="TT6-YO-Qeh" secondAttribute="bottom" constant="18" id="P28-TQ-5AX"/>
-                        <constraint firstAttribute="bottom" secondItem="XVm-Mb-5aa" secondAttribute="bottom" constant="87" id="XXQ-If-dJw"/>
+                        <constraint firstAttribute="bottom" secondItem="XVm-Mb-5aa" secondAttribute="bottom" constant="92" id="XXQ-If-dJw"/>
                         <constraint firstItem="TT6-YO-Qeh" firstAttribute="leading" secondItem="8pj-Uh-f1y" secondAttribute="leading" constant="14" id="aRF-39-VEY"/>
+                        <constraint firstAttribute="width" secondItem="8pj-Uh-f1y" secondAttribute="height" multiplier="125:74" id="dvx-OM-frF"/>
                         <constraint firstItem="TT6-YO-Qeh" firstAttribute="top" secondItem="8pj-Uh-f1y" secondAttribute="top" constant="43" id="egI-fC-AxW"/>
                         <constraint firstItem="TT6-YO-Qeh" firstAttribute="top" secondItem="ryJ-uQ-bjN" secondAttribute="bottom" id="keI-Me-neQ"/>
                         <constraint firstAttribute="trailing" secondItem="ryJ-uQ-bjN" secondAttribute="trailing" id="lIU-2D-Rke"/>
@@ -89,8 +92,8 @@
                         <constraint firstItem="fkX-q7-FeW" firstAttribute="leading" secondItem="6Yi-DV-eyx" secondAttribute="leading" constant="14" id="JsG-et-5TL"/>
                         <constraint firstItem="nIN-gr-ENb" firstAttribute="leading" secondItem="6Yi-DV-eyx" secondAttribute="leading" constant="14" id="LAo-Gd-Udf"/>
                         <constraint firstItem="6Tp-gQ-bJD" firstAttribute="centerY" secondItem="6Yi-DV-eyx" secondAttribute="centerY" id="LbR-Q3-wGN"/>
+                        <constraint firstAttribute="width" secondItem="6Yi-DV-eyx" secondAttribute="height" multiplier="125:16" id="NlV-QX-BRf"/>
                         <constraint firstItem="psr-xW-jeq" firstAttribute="centerY" secondItem="6Yi-DV-eyx" secondAttribute="centerY" id="aPx-sF-5CR"/>
-                        <constraint firstAttribute="width" secondItem="6Yi-DV-eyx" secondAttribute="height" multiplier="125:16" id="cN1-V0-KCY"/>
                         <constraint firstAttribute="trailing" secondItem="fkX-q7-FeW" secondAttribute="trailing" id="i6d-3y-epA"/>
                         <constraint firstItem="6Tp-gQ-bJD" firstAttribute="leading" secondItem="psr-xW-jeq" secondAttribute="trailing" constant="9" id="oz6-Hs-2P9"/>
                         <constraint firstAttribute="trailing" secondItem="6Tp-gQ-bJD" secondAttribute="trailing" constant="14" id="y2N-pQ-iWn"/>
@@ -205,7 +208,7 @@
                 <constraint firstItem="8pj-Uh-f1y" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qQO-9X-I5b"/>
                 <constraint firstAttribute="trailing" secondItem="waX-nT-cEF" secondAttribute="trailing" id="w8b-tB-EIi"/>
             </constraints>
-            <point key="canvasLocation" x="-1460" y="-190"/>
+            <point key="canvasLocation" x="-1981" y="-284"/>
         </view>
     </objects>
     <resources>

@@ -21,35 +21,30 @@
 
 @implementation PersonalMainViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
     self.navigationController.navigationBar.translucent = NO;
-    [self leftItem];
+    
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(nextPage:)];
     [self.userImageView addGestureRecognizer:tap];
     self.personalTableView.scrollEnabled = NO;
     [self.personalTableView registerNib:[UINib nibWithNibName:@"PersonSettingTableViewCell" bundle:nil] forCellReuseIdentifier:@"personCell"];
+    
+    [self leftItem];
 }
 
 - (void)leftItem
 {
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn addTarget:self action:@selector(messageTable) forControlEvents:UIControlEventTouchUpInside];
-    // 设置图片
-    [btn setBackgroundImage:[UIImage imageNamed:@"nav_icon_xiaoxi"] forState:UIControlStateNormal];
-    [btn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateHighlighted];
-    
-    // 设置尺寸
-    btn.size = btn.currentBackgroundImage.size;
-    
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    space.width = 14;//自己设定
-    
-    [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:space,leftItem, nil]];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_icon_xiaoxi"] style:UIBarButtonItemStylePlain target:self action:@selector(messageTable)];
 }
 
 - (void)messageTable

@@ -1,19 +1,105 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="ShelveTableViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="shelveCell" id="KGk-i7-Jjw" customClass="ShelveTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="152"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="320" height="43"/>
+                <frame key="frameInset" width="375" height="151"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shangping_img" translatesAutoresizingMaskIntoConstraints="NO" id="xgS-KI-oCx">
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="xgS-KI-oCx" secondAttribute="height" multiplier="17:18" id="SGS-rj-drH"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="characterWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b8M-Da-xsg">
+                        <attributedString key="attributedText">
+                            <fragment content="Six Panel Cap Butgundy">
+                                <attributes>
+                                    <font key="NSFont" size="15" name="STHeitiSC-Medium"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tJc-4x-ate">
+                        <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="DFj-0k-TIV"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price: $1200" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qtx-AF-ir4">
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YfV-VV-pWq">
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="7" maxY="0.0"/>
+                        <state key="normal" title="Preview" image="yulan_icon">
+                            <color key="titleColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.34509803921568627" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Sp-at-yll">
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="7" maxY="0.0"/>
+                        <state key="normal" title="On sale" image="shangjia_icon">
+                            <color key="titleColor" red="0.34509803919999998" green="0.34509803919999998" blue="0.34509803919999998" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MQo-C9-rm3">
+                        <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="1" id="Ehn-yo-uPw"/>
+                            <constraint firstAttribute="height" constant="18" id="Io1-tq-I0I"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="price: $1200" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nn3-cJ-QjU">
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="7Sp-at-yll" secondAttribute="bottom" id="0Ti-SP-DDH"/>
+                    <constraint firstItem="Qtx-AF-ir4" firstAttribute="top" secondItem="nn3-cJ-QjU" secondAttribute="bottom" constant="5" id="1d5-Ww-LwC"/>
+                    <constraint firstItem="YfV-VV-pWq" firstAttribute="top" secondItem="tJc-4x-ate" secondAttribute="bottom" id="8Oe-aF-Tx5"/>
+                    <constraint firstItem="7Sp-at-yll" firstAttribute="centerY" secondItem="YfV-VV-pWq" secondAttribute="centerY" id="9ie-T9-N7d"/>
+                    <constraint firstItem="b8M-Da-xsg" firstAttribute="leading" secondItem="xgS-KI-oCx" secondAttribute="trailing" constant="10" id="ADT-ym-Orf"/>
+                    <constraint firstItem="tJc-4x-ate" firstAttribute="top" secondItem="Qtx-AF-ir4" secondAttribute="bottom" constant="21" id="GKc-hm-aJm"/>
+                    <constraint firstAttribute="trailing" secondItem="7Sp-at-yll" secondAttribute="trailing" id="Goi-Ar-TyO"/>
+                    <constraint firstAttribute="trailing" secondItem="b8M-Da-xsg" secondAttribute="trailing" constant="57" id="IvK-cJ-F6b"/>
+                    <constraint firstItem="Qtx-AF-ir4" firstAttribute="leading" secondItem="nn3-cJ-QjU" secondAttribute="leading" id="LhL-Zy-fo4"/>
+                    <constraint firstItem="tJc-4x-ate" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="115" id="V7B-eb-EKf"/>
+                    <constraint firstAttribute="trailing" secondItem="tJc-4x-ate" secondAttribute="trailing" id="Vz8-Dc-9lv"/>
+                    <constraint firstItem="xgS-KI-oCx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="XY6-Ku-IaM"/>
+                    <constraint firstItem="tJc-4x-ate" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="XZG-IU-Z1P"/>
+                    <constraint firstItem="7Sp-at-yll" firstAttribute="top" secondItem="tJc-4x-ate" secondAttribute="bottom" id="YZw-iJ-6vJ"/>
+                    <constraint firstItem="b8M-Da-xsg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="b03-O7-9rU"/>
+                    <constraint firstItem="7Sp-at-yll" firstAttribute="leading" secondItem="MQo-C9-rm3" secondAttribute="trailing" id="cGt-tM-fKx"/>
+                    <constraint firstItem="MQo-C9-rm3" firstAttribute="centerY" secondItem="YfV-VV-pWq" secondAttribute="centerY" id="d48-IK-5RW"/>
+                    <constraint firstItem="YfV-VV-pWq" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="f3j-UJ-uE3"/>
+                    <constraint firstItem="MQo-C9-rm3" firstAttribute="leading" secondItem="YfV-VV-pWq" secondAttribute="trailing" id="hnl-9j-veV"/>
+                    <constraint firstItem="Qtx-AF-ir4" firstAttribute="leading" secondItem="xgS-KI-oCx" secondAttribute="trailing" constant="10" id="m5j-g1-Pzh"/>
+                    <constraint firstItem="xgS-KI-oCx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="mjg-Cc-7ZZ"/>
+                    <constraint firstItem="7Sp-at-yll" firstAttribute="width" secondItem="YfV-VV-pWq" secondAttribute="width" id="tc2-v4-iH4"/>
+                    <constraint firstItem="7Sp-at-yll" firstAttribute="height" secondItem="YfV-VV-pWq" secondAttribute="height" id="wcX-xq-Mbi"/>
+                    <constraint firstAttribute="bottom" secondItem="YfV-VV-pWq" secondAttribute="bottom" id="zBI-Rx-G5X"/>
+                </constraints>
             </tableViewCellContentView>
+            <point key="canvasLocation" x="-127.5" y="0.0"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="shangjia_icon" width="15" height="15"/>
+        <image name="shangping_img" width="85" height="90"/>
+        <image name="yulan_icon" width="15" height="15"/>
+    </resources>
 </document>

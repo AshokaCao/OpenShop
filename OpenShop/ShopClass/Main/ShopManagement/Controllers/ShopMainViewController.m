@@ -59,8 +59,8 @@
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     rightBtn.size = rightBtn.currentBackgroundImage.size;
     
-    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:space,rightItem, nil]];
-    [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:space,leftItem, nil]];
+    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:rightItem, nil]];
+    [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:leftItem, nil]];
 }
 
 - (void)shopShowAction
