@@ -9,6 +9,7 @@
 #import "ShopMainViewController.h"
 #import "IdentificationViewController.h"
 #import "CQCustomActionSheet.h"
+#import "ChangeUserNameViewController.h"
 
 @interface ShopMainViewController () <CQCustomActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *logoImage;
@@ -34,33 +35,22 @@
 
 - (void)setNavigationItems
 {
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn addTarget:self action:@selector(shopShowAction) forControlEvents:UIControlEventTouchUpInside];
-    // 设置图片
-//    [btn setBackgroundImage:[UIImage imageNamed:@"nav_icon_back"] forState:UIControlStateNormal];
-//    [btn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateHighlighted];
     [btn setTitle:@"Preview" forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor colorWithHexString:@"#111111"] forState:UIControlStateNormal];
     btn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:13];
     btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     // 设置尺寸
-//    btn.size = btn.currentTitle.;
+    //    btn.size = btn.currentTitle.;
     btn.size = CGSizeMake(79, 44);
     
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    space.width = 14;//自己设定
-    
-    UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [rightBtn addTarget:self action:@selector(shareAction) forControlEvents:UIControlEventTouchUpInside];
-    // 设置图片
-    [rightBtn setBackgroundImage:[UIImage imageNamed:@"tuiguang_icon"] forState:UIControlStateNormal];
-    [rightBtn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateHighlighted];
-    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
-    rightBtn.size = rightBtn.currentBackgroundImage.size;
-    
-    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:rightItem, nil]];
-    [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:leftItem, nil]];
+    space.width = -7;//自己设定
+    self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:space,leftItem, nil];
+//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:ASLocalizedString(@"Preview") style:UIBarButtonItemStylePlain target:self action:@selector(shopShowAction)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(shareAction) image:@"tuiguang_icon" highImage:@""];
 }
 
 - (void)shopShowAction
@@ -80,6 +70,11 @@
                              @{@"name" : @"CopyLink" , @"icon" : @"copylink_icon"}];
     [cusSheet showInView:[UIApplication sharedApplication].keyWindow contentArray:contenArray];
 }
+#pragma mark shareDelegate
+- (void)customActionSheetButtonClick:(CQActionSheetButton *)btn
+{
+    
+}
 
 - (void)addTapGens
 {
@@ -94,6 +89,12 @@
     
     UITapGestureRecognizer *identityTop = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(odentityAction)];
     [self.odenttityView addGestureRecognizer:identityTop];
+    
+    UITapGestureRecognizer *facebookTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(facebookNum)];
+    [self.facebookView addGestureRecognizer:facebookTap];
+    
+    UITapGestureRecognizer *lineTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(lineNum)];
+    [self.lineView addGestureRecognizer:lineTap];
 }
 
 - (void)changeLogoImage
@@ -103,12 +104,16 @@
 
 - (void)changShopName
 {
-    
+    ChangeUserNameViewController *changeVc = [[ChangeUserNameViewController alloc] init];
+    changeVc.changeStr = @"shopName";
+    [self.navigationController pushViewController:changeVc animated:YES];
 }
 
 - (void)welcomeString
 {
-    
+    ChangeUserNameViewController *changeVc = [[ChangeUserNameViewController alloc] init];
+    changeVc.changeStr = @"welcome";
+    [self.navigationController pushViewController:changeVc animated:YES];
 }
 
 - (void)odentityAction
@@ -124,12 +129,16 @@
 
 - (void)facebookNum
 {
-    
+    ChangeUserNameViewController *changeVc = [[ChangeUserNameViewController alloc] init];
+    changeVc.changeStr = @"facebook";
+    [self.navigationController pushViewController:changeVc animated:YES];
 }
 
 - (void)lineNum
 {
-    
+    ChangeUserNameViewController *changeVc = [[ChangeUserNameViewController alloc] init];
+    changeVc.changeStr = @"line";
+    [self.navigationController pushViewController:changeVc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

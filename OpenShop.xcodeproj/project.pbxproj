@@ -98,12 +98,15 @@
 		5161C18E1E714AF900B11DBC /* PPNetworkCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 5161C18B1E714AF900B11DBC /* PPNetworkCache.m */; };
 		5161C18F1E714AF900B11DBC /* PPNetworkHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 5161C18D1E714AF900B11DBC /* PPNetworkHelper.m */; };
 		516220D31E25D14900F97076 /* ZFJSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 516220D21E25D14900F97076 /* ZFJSegmentedControl.m */; };
+		51633E4A1E78DA9500113256 /* MarketListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 51633E491E78DA9500113256 /* MarketListModel.m */; };
 		516928071E67ABE70059A8C6 /* IdentificationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 516928051E67ABE70059A8C6 /* IdentificationViewController.m */; };
 		516928081E67ABE70059A8C6 /* IdentificationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 516928061E67ABE70059A8C6 /* IdentificationViewController.xib */; };
 		5169280C1E680C230059A8C6 /* ProductsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5169280A1E680C230059A8C6 /* ProductsTableViewCell.m */; };
 		5169280D1E680C230059A8C6 /* ProductsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5169280B1E680C230059A8C6 /* ProductsTableViewCell.xib */; };
 		516928111E68186B0059A8C6 /* ShelveTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5169280F1E68186B0059A8C6 /* ShelveTableViewCell.m */; };
 		516928121E68186B0059A8C6 /* ShelveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 516928101E68186B0059A8C6 /* ShelveTableViewCell.xib */; };
+		5169480A1E7A363100C26F57 /* GoodsListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 516948091E7A363100C26F57 /* GoodsListModel.m */; };
+		516F30191E76A70F0031333B /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 516F30181E76A70F0031333B /* WebViewController.m */; };
 		517733811E63B7990009DAF9 /* MessageTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5177337F1E63B7990009DAF9 /* MessageTableViewController.m */; };
 		517733821E63B7990009DAF9 /* MessageTableViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 517733801E63B7990009DAF9 /* MessageTableViewController.xib */; };
 		517733861E63B7EF0009DAF9 /* MessageTableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 517733841E63B7EF0009DAF9 /* MessageTableTableViewCell.m */; };
@@ -135,6 +138,8 @@
 		51953A801E5EDD9A00F813A1 /* GoodListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51953A7E1E5EDD9A00F813A1 /* GoodListTableViewCell.m */; };
 		51953A811E5EDD9A00F813A1 /* GoodListTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51953A7F1E5EDD9A00F813A1 /* GoodListTableViewCell.xib */; };
 		519AF86E1E232A2C00A5C109 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 519AF86D1E232A2C00A5C109 /* AppDelegate.m */; };
+		51AEB5591E77D0E5009F8866 /* ContactViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51AEB5571E77D0E5009F8866 /* ContactViewController.m */; };
+		51AEB55A1E77D0E5009F8866 /* ContactViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51AEB5581E77D0E5009F8866 /* ContactViewController.xib */; };
 		51D58A761E1F2F9D00EE8FDD /* ASLocalized.strings in Resources */ = {isa = PBXBuildFile; fileRef = 51D58A781E1F2F9D00EE8FDD /* ASLocalized.strings */; };
 		51D58A7E1E1F304200EE8FDD /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51D58A7D1E1F304200EE8FDD /* RootViewController.m */; };
 		51D58A821E1F32A800EE8FDD /* UIColor+Help.m in Sources */ = {isa = PBXBuildFile; fileRef = 51D58A811E1F32A800EE8FDD /* UIColor+Help.m */; };
@@ -295,6 +300,8 @@
 		5161C18D1E714AF900B11DBC /* PPNetworkHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PPNetworkHelper.m; sourceTree = "<group>"; };
 		516220D11E25D14900F97076 /* ZFJSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZFJSegmentedControl.h; sourceTree = "<group>"; };
 		516220D21E25D14900F97076 /* ZFJSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZFJSegmentedControl.m; sourceTree = "<group>"; };
+		51633E481E78DA9500113256 /* MarketListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketListModel.h; sourceTree = "<group>"; };
+		51633E491E78DA9500113256 /* MarketListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketListModel.m; sourceTree = "<group>"; };
 		516928041E67ABE70059A8C6 /* IdentificationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IdentificationViewController.h; path = ../../PersonalSetting/Controllers/IdentificationViewController.h; sourceTree = "<group>"; };
 		516928051E67ABE70059A8C6 /* IdentificationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IdentificationViewController.m; path = ../../PersonalSetting/Controllers/IdentificationViewController.m; sourceTree = "<group>"; };
 		516928061E67ABE70059A8C6 /* IdentificationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = IdentificationViewController.xib; path = ../../PersonalSetting/Controllers/IdentificationViewController.xib; sourceTree = "<group>"; };
@@ -304,6 +311,10 @@
 		5169280E1E68186B0059A8C6 /* ShelveTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelveTableViewCell.h; sourceTree = "<group>"; };
 		5169280F1E68186B0059A8C6 /* ShelveTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelveTableViewCell.m; sourceTree = "<group>"; };
 		516928101E68186B0059A8C6 /* ShelveTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShelveTableViewCell.xib; sourceTree = "<group>"; };
+		516948081E7A363100C26F57 /* GoodsListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsListModel.h; sourceTree = "<group>"; };
+		516948091E7A363100C26F57 /* GoodsListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsListModel.m; sourceTree = "<group>"; };
+		516F30171E76A70F0031333B /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
+		516F30181E76A70F0031333B /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		5177337E1E63B7990009DAF9 /* MessageTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTableViewController.h; sourceTree = "<group>"; };
 		5177337F1E63B7990009DAF9 /* MessageTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTableViewController.m; sourceTree = "<group>"; };
 		517733801E63B7990009DAF9 /* MessageTableViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageTableViewController.xib; sourceTree = "<group>"; };
@@ -353,6 +364,9 @@
 		51953A7F1E5EDD9A00F813A1 /* GoodListTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GoodListTableViewCell.xib; sourceTree = "<group>"; };
 		519AF86C1E232A2C00A5C109 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		519AF86D1E232A2C00A5C109 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		51AEB5561E77D0E5009F8866 /* ContactViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactViewController.h; sourceTree = "<group>"; };
+		51AEB5571E77D0E5009F8866 /* ContactViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactViewController.m; sourceTree = "<group>"; };
+		51AEB5581E77D0E5009F8866 /* ContactViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ContactViewController.xib; sourceTree = "<group>"; };
 		51D58A6C1E1F2ADF00EE8FDD /* OpenShop.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = OpenShop.pch; sourceTree = "<group>"; };
 		51D58A771E1F2F9D00EE8FDD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/ASLocalized.strings; sourceTree = "<group>"; };
 		51D58A791E1F2F9E00EE8FDD /* th */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = th; path = th.lproj/ASLocalized.strings; sourceTree = "<group>"; };
@@ -629,6 +643,9 @@
 				51953A781E5EC90100F813A1 /* MarkerGoodListViewController.h */,
 				51953A791E5EC90100F813A1 /* MarkerGoodListViewController.m */,
 				51953A7A1E5EC90100F813A1 /* MarkerGoodListViewController.xib */,
+				51AEB5561E77D0E5009F8866 /* ContactViewController.h */,
+				51AEB5571E77D0E5009F8866 /* ContactViewController.m */,
+				51AEB5581E77D0E5009F8866 /* ContactViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -636,6 +653,10 @@
 		5187C33F1E2472D600EC797F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				51633E481E78DA9500113256 /* MarketListModel.h */,
+				51633E491E78DA9500113256 /* MarketListModel.m */,
+				516948081E7A363100C26F57 /* GoodsListModel.h */,
+				516948091E7A363100C26F57 /* GoodsListModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -760,6 +781,8 @@
 				517733881E6416090009DAF9 /* ChangeUserNameViewController.h */,
 				517733891E6416090009DAF9 /* ChangeUserNameViewController.m */,
 				5177338A1E6416090009DAF9 /* ChangeUserNameViewController.xib */,
+				516F30171E76A70F0031333B /* WebViewController.h */,
+				516F30181E76A70F0031333B /* WebViewController.m */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1114,6 +1137,7 @@
 				517733821E63B7990009DAF9 /* MessageTableViewController.xib in Resources */,
 				5161C15B1E71007D00B11DBC /* camera_flashlight_open@2x.png in Resources */,
 				5161C1551E71007D00B11DBC /* camera_close_highlighted@2x.png in Resources */,
+				51AEB55A1E77D0E5009F8866 /* ContactViewController.xib in Resources */,
 				5161C1791E71007D00B11DBC /* icon_shanchu@2x.png in Resources */,
 				5161C1521E71007D00B11DBC /* camera_camera_background@2x.png in Resources */,
 				5187C3541E2473BB00EC797F /* ShopMainViewController.xib in Resources */,
@@ -1216,16 +1240,19 @@
 				51953A721E5E7AC700F813A1 /* UIView+Help.m in Sources */,
 				5161C14A1E71007D00B11DBC /* HXPhotoView.m in Sources */,
 				517733861E63B7EF0009DAF9 /* MessageTableTableViewCell.m in Sources */,
+				516F30191E76A70F0031333B /* WebViewController.m in Sources */,
 				5161C1411E71007D00B11DBC /* HXCameraPreviewViewController.m in Sources */,
 				5161C1451E71007D00B11DBC /* HXPhotoModel.m in Sources */,
 				5187C34E1E2473A900EC797F /* PersonalMainViewController.m in Sources */,
 				5161C18E1E714AF900B11DBC /* PPNetworkCache.m in Sources */,
+				51AEB5591E77D0E5009F8866 /* ContactViewController.m in Sources */,
 				51E2BEF71E602424008EB69D /* PersonSettingTableViewCell.m in Sources */,
 				511FFD091E1BB4CD0069ADC3 /* main.m in Sources */,
 				51E2BEFC1E602A70008EB69D /* UserSettingViewController.m in Sources */,
 				51E2BF001E603201008EB69D /* UIBarButtonItem+Extension.m in Sources */,
 				5187C3441E24736500EC797F /* MarketMainViewController.m in Sources */,
 				517E32311E2CB1E100ABD652 /* PhoneNumberViewController.m in Sources */,
+				51633E4A1E78DA9500113256 /* MarketListModel.m in Sources */,
 				5187C3491E24739100EC797F /* CommodityMainViewController.m in Sources */,
 				5161C14D1E71007D00B11DBC /* HXPresentTransition.m in Sources */,
 				5154256F1E6E492200034535 /* PromoteViewController.m in Sources */,
@@ -1253,6 +1280,7 @@
 				5161C18F1E714AF900B11DBC /* PPNetworkHelper.m in Sources */,
 				5187C3571E24D16400EC797F /* UserInfo.m in Sources */,
 				5161C14B1E71007D00B11DBC /* HXPhotoViewCell.m in Sources */,
+				5169480A1E7A363100C26F57 /* GoodsListModel.m in Sources */,
 				515F80B41E6CFFCC002D79CD /* MainNavigationViewController.m in Sources */,
 				516928111E68186B0059A8C6 /* ShelveTableViewCell.m in Sources */,
 				5161C1481E71007D00B11DBC /* HXPhotoSubViewCell.m in Sources */,

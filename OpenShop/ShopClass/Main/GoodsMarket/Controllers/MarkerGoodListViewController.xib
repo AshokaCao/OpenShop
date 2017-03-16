@@ -3,12 +3,21 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MarkerGoodListViewController">
             <connections>
+                <outlet property="contactBtn" destination="2Se-Fu-cPr" id="7wu-Sc-dWa"/>
+                <outlet property="contactBtnW" destination="rSB-sP-Udn" id="5vq-rc-SNq"/>
+                <outlet property="goodIntroduce" destination="ceG-Nk-nLd" id="Hsr-wa-SXX"/>
+                <outlet property="goodTitle" destination="cDz-T4-EFZ" id="NaL-Jc-abH"/>
                 <outlet property="goodsListTableView" destination="o3a-NC-W03" id="8eB-sl-mHM"/>
+                <outlet property="onsaleBtn" destination="eSS-Be-BcA" id="CVb-uK-0i5"/>
+                <outlet property="priceLabel" destination="93I-mF-ade" id="y6q-mn-s3V"/>
+                <outlet property="profitLabel" destination="cWm-p7-D23" id="ICQ-So-jj9"/>
+                <outlet property="saleCountLabel" destination="wie-Hb-eqY" id="LPU-5C-k8t"/>
                 <outlet property="tabHeaderView" destination="cyg-r0-uHT" id="7ff-ub-yfW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -84,12 +93,21 @@
                             <color key="backgroundColor" red="1" green="0.12941176470588234" blue="0.23137254901960785" alpha="1" colorSpace="calibratedRGB"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <state key="normal" title="On sale"/>
+                            <connections>
+                                <action selector="onsaleAction:" destination="-1" eventType="touchUpInside" id="Ktg-d9-FoV"/>
+                            </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Se-Fu-cPr">
+                            <constraints>
+                                <constraint firstAttribute="width" constant="224" id="rSB-sP-Udn"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <state key="normal" title="contact">
                                 <color key="titleColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <connections>
+                                <action selector="shareAndOtherAction:" destination="-1" eventType="touchUpInside" id="EzV-eS-s0w"/>
+                            </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dKc-CH-Of5">
                             <color key="backgroundColor" red="0.92156862745098034" green="0.92156862745098034" blue="0.92156862745098034" alpha="1" colorSpace="calibratedRGB"/>
@@ -100,20 +118,18 @@
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="2Se-Fu-cPr" firstAttribute="top" secondItem="rjU-Kh-aur" secondAttribute="top" constant="1" id="00m-eJ-kUn"/>
                         <constraint firstAttribute="trailing" secondItem="dKc-CH-Of5" secondAttribute="trailing" id="0Md-Y8-IaF"/>
-                        <constraint firstItem="eSS-Be-BcA" firstAttribute="top" secondItem="rjU-Kh-aur" secondAttribute="top" constant="1" id="3xm-Ya-9iE"/>
-                        <constraint firstItem="eSS-Be-BcA" firstAttribute="leading" secondItem="2Se-Fu-cPr" secondAttribute="trailing" id="8yL-xj-fLI"/>
-                        <constraint firstAttribute="trailing" secondItem="eSS-Be-BcA" secondAttribute="trailing" id="Af0-VA-YW2"/>
-                        <constraint firstItem="eSS-Be-BcA" firstAttribute="leading" secondItem="2Se-Fu-cPr" secondAttribute="trailing" id="FiM-s4-hGA"/>
-                        <constraint firstAttribute="bottom" secondItem="eSS-Be-BcA" secondAttribute="bottom" id="FqS-DS-pnz"/>
-                        <constraint firstAttribute="bottom" secondItem="2Se-Fu-cPr" secondAttribute="bottom" id="H63-Nd-TVz"/>
-                        <constraint firstItem="2Se-Fu-cPr" firstAttribute="leading" secondItem="rjU-Kh-aur" secondAttribute="leading" id="HT0-3o-UYU"/>
-                        <constraint firstItem="eSS-Be-BcA" firstAttribute="height" secondItem="2Se-Fu-cPr" secondAttribute="height" id="Kyq-sK-R82"/>
+                        <constraint firstAttribute="width" secondItem="rjU-Kh-aur" secondAttribute="height" multiplier="125:14" id="6dk-gn-FmF"/>
+                        <constraint firstItem="2Se-Fu-cPr" firstAttribute="top" secondItem="dKc-CH-Of5" secondAttribute="bottom" id="J0H-yQ-J9X"/>
                         <constraint firstItem="dKc-CH-Of5" firstAttribute="top" secondItem="rjU-Kh-aur" secondAttribute="top" id="Ogn-Zv-vtA"/>
-                        <constraint firstItem="eSS-Be-BcA" firstAttribute="width" secondItem="2Se-Fu-cPr" secondAttribute="width" id="TL3-qD-Za9"/>
+                        <constraint firstAttribute="bottom" secondItem="2Se-Fu-cPr" secondAttribute="bottom" id="Pbz-nO-iod"/>
+                        <constraint firstItem="eSS-Be-BcA" firstAttribute="top" secondItem="dKc-CH-Of5" secondAttribute="bottom" id="RxF-ab-ZJo"/>
+                        <constraint firstItem="eSS-Be-BcA" firstAttribute="leading" secondItem="2Se-Fu-cPr" secondAttribute="trailing" id="XwQ-3L-BZ6"/>
                         <constraint firstItem="dKc-CH-Of5" firstAttribute="leading" secondItem="rjU-Kh-aur" secondAttribute="leading" id="deu-PN-hCT"/>
+                        <constraint firstAttribute="trailing" secondItem="eSS-Be-BcA" secondAttribute="trailing" id="eRP-GK-SOp"/>
                         <constraint firstAttribute="height" constant="42" id="exz-p8-AM9"/>
+                        <constraint firstAttribute="bottom" secondItem="eSS-Be-BcA" secondAttribute="bottom" id="fTJ-Es-lsB"/>
+                        <constraint firstItem="2Se-Fu-cPr" firstAttribute="leading" secondItem="rjU-Kh-aur" secondAttribute="leading" id="zR8-Pw-BQC"/>
                     </constraints>
                 </view>
             </subviews>
@@ -127,7 +143,7 @@
                 <constraint firstAttribute="trailing" secondItem="o3a-NC-W03" secondAttribute="trailing" id="eeb-9H-nuX"/>
                 <constraint firstItem="rjU-Kh-aur" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xf4-li-5Co"/>
             </constraints>
-            <point key="canvasLocation" x="-176.5" y="55.5"/>
+            <point key="canvasLocation" x="-1210" y="-44"/>
         </view>
     </objects>
 </document>

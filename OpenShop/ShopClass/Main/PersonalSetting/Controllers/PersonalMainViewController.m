@@ -10,6 +10,7 @@
 #import "PersonSettingTableViewCell.h"
 #import "UserSettingViewController.h"
 #import "MessageTableViewController.h"
+#import "WebViewController.h"
 
 @interface PersonalMainViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *userHeaderImage;
@@ -44,6 +45,7 @@
 
 - (void)leftItem
 {
+    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"nav_icon_xiaoxi"] style:UIBarButtonItemStylePlain target:self action:@selector(messageTable)];
 }
 
@@ -79,7 +81,10 @@
 {
     PersonSettingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"personCell"];
     NSArray *textArray = @[@"About us",@"Rate",@"Help&FAQ",@"Terms&Plicy",@"Feedback&Report&Problem",@"Invite Friends"];
-    cell.firstLable.text = textArray[indexPath.section + indexPath.row];
+    NSDictionary *diction = @{@"one":@[@"About us",@"Rate"],@"two":@[@"Help&FAQ",@"Terms&Plicy",@"Feedback&Report&Problem"],@"three":@[@"Invite Friends"]};
+//    cell.firstLable.text = textArray[indexPath.section + indexPath.row];
+    NSArray *arr = @[@"one",@"two",@"three"];
+    cell.firstLable.text = diction[arr[indexPath.section]][indexPath.row];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
@@ -96,11 +101,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    WebViewController *webVC = [[WebViewController alloc] init];
+    [self.navigationController pushViewController:webVC animated:YES];
+    NSLog(@"indexPath.section - %ld indexPath.row - %ld",indexPath.section,indexPath.row);
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            
+//            NSLog(@"indexPath.section - %ld indexPath.row - %ld",indexPath.section,indexPath.row);
         } else {
-            
+//            NSLog(@"indexPath.section - %ld indexPath.row - %ld",indexPath.section,indexPath.row);
         }
     } else if (indexPath.section == 1) {
         if (indexPath.row == 0) {

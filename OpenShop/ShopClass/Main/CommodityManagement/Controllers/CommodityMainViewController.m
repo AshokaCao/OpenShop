@@ -10,8 +10,9 @@
 #import "ProductsTableViewCell.h"
 #import "ShelveTableViewCell.h"
 #import "EditingGoodsViewController.h"
+#import "CQCustomActionSheet.h"
 
-@interface CommodityMainViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface CommodityMainViewController () <UITableViewDelegate, UITableViewDataSource, ProductsTableViewCellDelegate, CQCustomActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *saleBtn;
 @property (weak, nonatomic) IBOutlet UIButton *shelveBtn;
 @property (weak, nonatomic) IBOutlet UIView *saleLine;
@@ -56,6 +57,24 @@
     
 }
 
+- (void)shareAction
+{
+    CQCustomActionSheet *cusSheet = [[CQCustomActionSheet alloc] init];
+    cusSheet.delegate = self;
+    NSArray *contenArray = @[@{@"name" : @"Facebook" , @"icon" : @"facebook_icon"},
+                             @{@"name" : @"Messenger" , @"icon" : @"messenger_icon"},
+                             @{@"name" : @"Line" , @"icon" : @"line_icon"},
+                             @{@"name" : @"Instagram" , @"icon" : @"instagram_icon"},
+                             @{@"name" : @"Twitter" , @"icon" : @"twitter_icon"},
+                             @{@"name" : @"CopyLink" , @"icon" : @"copylink_icon"}];
+    [cusSheet showInView:[UIApplication sharedApplication].keyWindow contentArray:contenArray];
+}
+#pragma mark shareDelegate
+- (void)customActionSheetButtonClick:(CQActionSheetButton *)btn
+{
+    
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 3;
@@ -75,6 +94,7 @@
     if (indexPath.section == 0) {
         cell.discardView.hidden = YES;
     }
+    cell.delegate = self;
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
@@ -114,6 +134,13 @@
 - (IBAction)addGoodsAction:(UIButton *)sender {
     EditingGoodsViewController *editView = [[EditingGoodsViewController alloc] init];
     [self.navigationController pushViewController:editView animated:YES];
+}
+
+- (void)didselectCellWithButton:(UIButton *)btn
+{
+    ProductsTableViewCell *cell = (ProductsTableViewCell *)[[[btn superview] superview] superview];
+    NSIndexPath *pathCell = [self.productTableView indexPathForCell:cell];
+    [self shareAction];
 }
 
 - (void)didReceiveMemoryWarning {

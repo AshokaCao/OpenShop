@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol ProductsTableViewCellDelegate <NSObject>
+
+- (void)didselectCellWithButton:(UIButton *)btn;
+
+@end
+
 @interface ProductsTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UIImageView *goodsImageView;
 @property (weak, nonatomic) IBOutlet UILabel *goodsTitleLabel;
@@ -21,5 +27,6 @@
 @property (weak, nonatomic) IBOutlet UIView *discardView;
 @property (weak, nonatomic) IBOutlet UILabel *disLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distributeLabel;
+@property (nonatomic ,assign) id<ProductsTableViewCellDelegate> delegate;
 
 @end

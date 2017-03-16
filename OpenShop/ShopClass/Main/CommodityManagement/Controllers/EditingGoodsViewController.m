@@ -22,6 +22,7 @@
 @property (nonatomic ,assign) CGFloat priceViewH;
 @property (nonatomic ,assign) CGFloat profitViewH;
 @property (weak, nonatomic) IBOutlet UIView *profitView;
+@property (weak, nonatomic) IBOutlet UIButton *swichBtn;
 
 @end
 
@@ -31,6 +32,7 @@
 {
     if (!_manager) {
         _manager = [[HXPhotoManager alloc] initWithType:HXPhotoManagerSelectedTypePhotoAndVideo];
+        _manager.photoMaxNum = 9;
     }
     return _manager;
 }
@@ -55,19 +57,6 @@
 
 - (void)leftItem
 {
-//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [btn addTarget:self action:@selector(backToMain) forControlEvents:UIControlEventTouchUpInside];
-//    // 设置图片
-//    [btn setBackgroundImage:[UIImage imageNamed:@"nav_quxiao_icon"] forState:UIControlStateNormal];
-//    [btn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateHighlighted];
-//    
-//    // 设置尺寸
-//    btn.size = btn.currentBackgroundImage.size;
-//    
-//    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
-//    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-//    space.width = 14;//自己设定
-    
     UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [rightBtn addTarget:self action:@selector(backToMain) forControlEvents:UIControlEventTouchUpInside];
     // 设置
@@ -77,14 +66,22 @@
     rightBtn.size = CGSizeMake(70, 44);
     rightBtn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     
-//    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
-    
-//    [self.navigationItem setRightBarButtonItems:[NSArray arrayWithObjects:space,rightItem, nil]];
-//    [self.navigationItem setLeftBarButtonItems:[NSArray arrayWithObjects:space,leftItem, nil]];
-    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:rightBtn];
     
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(backToMain) image:@"nav_quxiao_icon" highImage:@""];
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn addTarget:self action:@selector(backToMain) forControlEvents:UIControlEventTouchUpInside];
+    // 设置图片
+    [btn setBackgroundImage:[UIImage imageNamed:@"nav_quxiao_icon"] forState:UIControlStateNormal];
+    [btn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateHighlighted];
+    
+    // 设置尺寸
+    btn.size = btn.currentBackgroundImage.size;
+    
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    space.width = -7;//自己设定
+    self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:space,leftItem, nil];
+//    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(backToMain) image:@"nav_quxiao_icon" highImage:@""];
 }
 
 - (void)backToMain
@@ -146,6 +143,9 @@
     CGRect rect = CGRectMake(0.0f, 64, self.view.sd_width, self.view.sd_height);
     self.view.frame = rect;
     [UIView commitAnimations];
+}
+- (IBAction)isSwichAction:(UIButton *)sender {
+    self.swichBtn.selected = !self.swichBtn.selected;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -27,7 +27,19 @@
 
 - (void)leftItem
 {
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(backToMain) image:@"nav_icon_back" highImage:@""];
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn addTarget:self action:@selector(backToMain) forControlEvents:UIControlEventTouchUpInside];
+    // 设置图片
+    [btn setBackgroundImage:[UIImage imageNamed:@"nav_icon_back"] forState:UIControlStateNormal];
+    [btn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateHighlighted];
+    
+    // 设置尺寸
+    btn.size = btn.currentBackgroundImage.size;
+    
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    space.width = -7;//自己设定
+    self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:space,leftItem, nil];
 }
 
 - (void)backToMain

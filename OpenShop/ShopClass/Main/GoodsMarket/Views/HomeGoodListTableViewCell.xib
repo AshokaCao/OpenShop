@@ -13,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <frame key="frameInset" width="375" height="119"/>
+                <frame key="frameInset" width="375" height="119.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shangping_img" translatesAutoresizingMaskIntoConstraints="NO" id="3qK-EG-Dvw">
@@ -61,6 +61,9 @@
                         </constraints>
                         <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
                         <state key="normal" title="Sell"/>
+                        <connections>
+                            <action selector="sellAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Th3-nN-zjI"/>
+                        </connections>
                     </button>
                 </subviews>
                 <constraints>
@@ -85,7 +88,14 @@
                     <constraint firstItem="L2d-l2-yOU" firstAttribute="height" secondItem="rUT-We-r4O" secondAttribute="height" id="xku-uA-OTs"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="-163.5" y="-35"/>
+            <connections>
+                <outlet property="goodsImageView" destination="3qK-EG-Dvw" id="f8u-Z3-bmG"/>
+                <outlet property="goodsTitleLabel" destination="14e-c4-x9m" id="3lE-kV-oyB"/>
+                <outlet property="priceLabel" destination="s8W-D8-nMJ" id="0DG-Zw-n0a"/>
+                <outlet property="profitLabel" destination="0rh-oS-wNc" id="BVC-tS-SPP"/>
+                <outlet property="sellerCountLabel" destination="rnj-Ue-1hT" id="FMF-iX-MD3"/>
+            </connections>
+            <point key="canvasLocation" x="-566" y="-33"/>
         </tableViewCell>
     </objects>
     <resources>

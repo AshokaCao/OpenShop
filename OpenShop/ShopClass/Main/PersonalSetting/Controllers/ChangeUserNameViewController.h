@@ -10,5 +10,6 @@
 
 @interface ChangeUserNameViewController : UIViewController
 @property (nonatomic ,strong) NSString *nameStr;
+@property (nonatomic ,strong) NSString *changeStr;
 
 @end

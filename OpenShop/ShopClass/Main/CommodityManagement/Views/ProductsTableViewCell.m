@@ -19,6 +19,7 @@
 - (IBAction)promotionAction:(UIButton *)sender {
 }
 - (IBAction)shareAction:(UIButton *)sender {
+    [self.delegate didselectCellWithButton:sender];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

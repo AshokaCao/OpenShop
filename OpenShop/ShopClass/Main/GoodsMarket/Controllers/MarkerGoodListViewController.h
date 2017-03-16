@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MarketListModel.h"
 
 @interface MarkerGoodListViewController : UIViewController
+@property (nonatomic ,strong) MarketListModel *marketModel;
 
 @end

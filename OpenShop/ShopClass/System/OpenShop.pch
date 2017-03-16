@@ -46,11 +46,12 @@
 //多语言
 #define ASLocalizedString(key)  [NSString stringWithFormat:@"%@", [[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"appLanguage"]] ofType:@"lproj"]] localizedStringForKey:(key) value:nil table:@"ASLocalized"]]
 
+#define publickUrl @"192.168.126.63:8101"
+
 #import "UIColor+Help.h"
 #import "UIView+SDExtension.h"
 #import "MJRefresh.h"
 #import "UIBarButtonItem+Extension.h"
-
 #import "PPNetworkHelper.h"
 
 #endif /* OpenShop_pch */

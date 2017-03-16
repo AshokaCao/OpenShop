@@ -16,6 +16,7 @@
                 <outlet property="productTitleTextField" destination="ryJ-uQ-bjN" id="ziQ-8p-neJ"/>
                 <outlet property="profitTextField" destination="OKb-um-j6W" id="AkI-bl-upJ"/>
                 <outlet property="profitView" destination="paW-Zm-X5N" id="H1R-Ix-hYN"/>
+                <outlet property="swichBtn" destination="fJk-az-mFd" id="5NW-6l-j5u"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -108,6 +109,9 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJk-az-mFd">
                             <state key="normal" backgroundImage="shifoudaixiao_btn_default"/>
                             <state key="selected" backgroundImage="shifoudaixiao_btn_selected"/>
+                            <connections>
+                                <action selector="isSwichAction:" destination="-1" eventType="touchUpInside" id="zNn-nx-Oyq"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -208,7 +212,7 @@
                 <constraint firstItem="8pj-Uh-f1y" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="qQO-9X-I5b"/>
                 <constraint firstAttribute="trailing" secondItem="waX-nT-cEF" secondAttribute="trailing" id="w8b-tB-EIi"/>
             </constraints>
-            <point key="canvasLocation" x="-1981" y="-284"/>
+            <point key="canvasLocation" x="-2042" y="-279"/>
         </view>
     </objects>
     <resources>
