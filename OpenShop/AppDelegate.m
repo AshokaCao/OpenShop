@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "RootViewController.h"
-#import "LoginMainViewController.h"
+#import "LoginHomeViewController.h"
 
 /* 语言切换 **/
 static NSString *appLanguage = @"appLanguage";
@@ -28,10 +28,10 @@ static NSString *appLanguage = @"appLanguage";
     self.window.frame = [UIScreen mainScreen].bounds;
     RootViewController *rootVC = [[RootViewController alloc] init];
     
-//    LoginMainViewController *logVC = [[LoginMainViewController alloc] init];
+    LoginHomeViewController *logVC = [[LoginHomeViewController alloc] init];
 //    UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:rootVC];
     
-    self.window.rootViewController = rootVC;
+    self.window.rootViewController = logVC;
     
     // 多语言切换
     if (![nNsuserdefaul objectForKey:appLanguage]) {

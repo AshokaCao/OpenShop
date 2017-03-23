@@ -30,7 +30,7 @@
         //        [viewController.navigationController.navigationBar setBarTintColor:[UIColor greenColor]];
         /* 设置导航栏上面的内容 */
         // 设置左边的返回按钮
-//        viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(back) image:@"返回icon" highImage:@"navigationbar_back_highlighted"];
+        viewController.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(back) image:@"nav_icon_back" highImage:@"navigationbar_back_highlighted"];
     } else {
 //        [viewController.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:231/255.0f green:75/255.0f blue:89/255.0f alpha:1]];
     }

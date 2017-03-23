@@ -22,19 +22,46 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.title = ASLocalizedString(@"Register Account");
+    self.navigationController.navigationBar.translucent = NO;
     self.phoneNumberTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     
     [self.phoneNumberTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    self.nextBtn.enabled = NO;
+//    [self setLiftItem];
+    
+    NSArray *viewcontrollers = self.navigationController.viewControllers;
+    if (viewcontrollers.count > 1) {
+        if ([viewcontrollers objectAtIndex:viewcontrollers.count - 1] == self) {
+            
+            [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+        }
+        [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    }
+    else{
+        //present方式
+        self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(dismissBack) image:@"nav_icon_back" highImage:@""];
+    }
 }
 
-- (void)leftItem
+//- (void)setLiftItem
+//{
+//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [btn addTarget:self action:@selector(backToMain) forControlEvents:UIControlEventTouchUpInside];
+//    // 设置图片
+//    [btn setBackgroundImage:[UIImage imageNamed:@"nav_icon_back"] forState:UIControlStateNormal];
+//    [btn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateHighlighted];
+//    
+//    // 设置尺寸
+//    btn.size = btn.currentBackgroundImage.size;
+//    
+//    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+//    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+//    space.width = 0;//自己设定
+//    self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:space,leftItem, nil];
+//}
+- (void)dismissBack
 {
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(backToMain) image:@"nav_quxiao_icon" highImage:@""];
-}
-
-- (void)backToMain
-{
-    [self.navigationController popViewControllerAnimated:YES];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)nextAction:(UIButton *)sender {
@@ -52,8 +79,10 @@
     if (textField == self.phoneNumberTextField) {
         if (textField.text.length >= 1) {
             [self.nextBtn setBackgroundImage:[UIImage imageNamed:@"btn_login_selected"] forState:UIControlStateNormal];
+            self.nextBtn.enabled = YES;
         } else {
             [self.nextBtn setBackgroundImage:[UIImage imageNamed:@"content_btn_login_default"] forState:UIControlStateNormal];
+            self.nextBtn.enabled = NO;
         }
     }
 }

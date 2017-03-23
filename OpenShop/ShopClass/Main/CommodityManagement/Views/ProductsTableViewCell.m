@@ -7,13 +7,36 @@
 //
 
 #import "ProductsTableViewCell.h"
+#import "UIImageView+AFNetworking.h"
 
 @implementation ProductsTableViewCell
 
 - (void)awakeFromNib {
     [super awakeFromNib];
     // Initialization code
+    self.imageViewWidth.constant = SCREEN_WIDTH * 0.213;
 }
+
+- (void)showProductListWith:(MarketListModel *)model
+{
+    self.productModel = model;
+    [self.goodsImageView setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.productModel.goodimgurl]] placeholderImage:[UIImage imageNamed:@""]];
+    self.goodsTitleLabel.text = [NSString stringWithFormat:@"%@",self.productModel.goodname];
+    self.priceLabel.text = [NSString stringWithFormat:ASLocalizedString(@"price: $%@"),self.productModel.price];
+    
+    NSMutableAttributedString *buyCount = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:ASLocalizedString(@"profit: $%@"),self.productModel.profit]];
+    NSString *len = [NSString stringWithFormat:ASLocalizedString(@"$%@"),self.productModel.profit];
+    NSString *allLen = [NSString stringWithFormat:ASLocalizedString(@"profit: $%@"),self.productModel.profit];
+    [buyCount addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"#ff213b"] range:NSMakeRange(allLen.length - len.length, len.length)];
+    self.profitLabel.attributedText = buyCount;
+//    NSLog(@"%@",self.productModel.isdistribution);
+    if (self.productModel.isdistribution) {
+        self.distributionLabel.hidden = self.distributionImageView.hidden = NO;
+    } else {
+        self.distributionLabel.hidden = self.distributionImageView.hidden = YES;
+    }
+}
+
 - (IBAction)previewAction:(UIButton *)sender {
 }
 - (IBAction)promotionAction:(UIButton *)sender {

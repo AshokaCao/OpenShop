@@ -9,8 +9,9 @@
 #import "LoginMainViewController.h"
 #import "PhoneNumberViewController.h"
 #import "PPNetworkHelper.h"
-
-#define TESTURL @"http://192.168.1.188:88/Page/setting/SendSMS.ashx?mobile=13800571505&verifytype=register"
+#import "AFNetworking.h"
+#import "RootViewController.h"
+#import "SetupShopViewController.h"
 
 @interface LoginMainViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumberTextField;
@@ -38,6 +39,8 @@
     self.passWordTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     
     [self.phoneNumberTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
+    [self setLiftItem];
+    self.logBtn.enabled = NO;
 }
 
 - (void)getCodeNumberWithPhoneNumber:(NSString *)number
@@ -52,20 +55,42 @@
 }
 
 - (IBAction)loginAction:(UIButton *)sender {
-    NSString *logUrl = [NSString stringWithFormat:@"http://192.168.1.154:8101/Account/Login.ashx"];
+    NSString *logUrl = [NSString stringWithFormat:@"http://%@/Account/Login.ashx",publickUrl];
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    dic[@"Mobile"] = [NSString stringWithFormat:@"%@",self.phoneNumberTextField.text];
-    dic[@"Password"] = [NSString stringWithFormat:@"%@",self.passWordTextField.text];
-    [PPNetworkHelper POST:logUrl parameters:dic success:^(id responseObject) {
-        NSLog(@"yes");
+    dic[@"mobile"] = [NSString stringWithFormat:@"%@",self.phoneNumberTextField.text];
+    dic[@"password"] = [NSString stringWithFormat:@"%@",self.passWordTextField.text];
+    __block NSURLSessionTask *task = [PPNetworkHelper POST:logUrl parameters:dic success:^(id responseObject) {
+        NSLog(@"responseObject  -  %@",responseObject);
+        
+        NSDictionary *logDic = responseObject;
+        NSString *returnCode = logDic[@"returncode"];
+        if ([returnCode isEqualToString:@"success"]) {
+            NSDictionary *userDic = logDic[@"memberinfo"];
+            NSString *userID = [NSString stringWithFormat:@"%@",userDic[@"userid"]];
+            NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
+            NSDictionary *allHeaders = response.allHeaderFields;
+            NSLog(@"task - %@",allHeaders);
+            [nNsuserdefaul setObject:userID forKey:@"userID"];
+            [nNsuserdefaul setObject:allHeaders[@"accesstoken"] forKey:@"accessToken"];
+            [nNsuserdefaul setObject:allHeaders[@"refreshtoken"] forKey:@"refreshToken"];
+            [nNsuserdefaul synchronize];
+            NSLog(@"userID - %@",userID);
+            
+            SetupShopViewController *shopUp = [[SetupShopViewController alloc] init];
+            [self.navigationController pushViewController:shopUp animated:YES];
+//            UIWindow *window = [UIApplication sharedApplication].keyWindow;
+//            window.rootViewController = [[RootViewController alloc] init];
+        } else if ([returnCode isEqualToString:@"error"]) {
+            
+        }
     } failure:^(NSError *error) {
          NSLog(@"no");
     }];
-    
 }
 
 - (IBAction)forgetPasswordAction:(UIButton *)sender {
-    
+    PhoneNumberViewController *phoneNum = [[PhoneNumberViewController alloc] init];
+    [self.navigationController pushViewController:phoneNum animated:YES];
 }
 
 - (void)textFieldDidChange:(UITextField *)textField
@@ -73,8 +98,10 @@
     if (textField == self.phoneNumberTextField) {
         if (textField.text.length >= 1) {
             [self.logBtn setBackgroundImage:[UIImage imageNamed:@"btn_login_selected"] forState:UIControlStateNormal];
+            self.logBtn.enabled = YES;
         } else {
             [self.logBtn setBackgroundImage:[UIImage imageNamed:@"content_btn_login_default"] forState:UIControlStateNormal];
+            self.logBtn.enabled = NO;
         }
     }
 }
@@ -85,9 +112,27 @@
     return YES;
 }
 
+- (void)setLiftItem
+{
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn addTarget:self action:@selector(backToMain) forControlEvents:UIControlEventTouchUpInside];
+    // 设置图片
+    [btn setBackgroundImage:[UIImage imageNamed:@"nav_icon_back"] forState:UIControlStateNormal];
+    [btn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateHighlighted];
+    
+    // 设置尺寸
+    btn.size = btn.currentBackgroundImage.size;
+    
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
+    space.width = 0;//自己设定
+    self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:space,leftItem, nil];
+}
 
-
-
+- (void)backToMain
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 
 

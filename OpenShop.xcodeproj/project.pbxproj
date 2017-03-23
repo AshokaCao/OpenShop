@@ -14,6 +14,8 @@
 		511FFD171E1BB4CD0069ADC3 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 511FFD151E1BB4CD0069ADC3 /* LaunchScreen.storyboard */; };
 		511FFD221E1BB4CD0069ADC3 /* OpenShopTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 511FFD211E1BB4CD0069ADC3 /* OpenShopTests.m */; };
 		511FFD2D1E1BB4CD0069ADC3 /* OpenShopUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 511FFD2C1E1BB4CD0069ADC3 /* OpenShopUITests.m */; };
+		51487B361E80BA1E005184ED /* LoginHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51487B341E80BA1E005184ED /* LoginHomeViewController.m */; };
+		51487B371E80BA1E005184ED /* LoginHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51487B351E80BA1E005184ED /* LoginHomeViewController.xib */; };
 		5154256F1E6E492200034535 /* PromoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5154256D1E6E492200034535 /* PromoteViewController.m */; };
 		515425701E6E492200034535 /* PromoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5154256E1E6E492200034535 /* PromoteViewController.xib */; };
 		515F80B41E6CFFCC002D79CD /* MainNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 515F80B21E6CFFCC002D79CD /* MainNavigationViewController.m */; };
@@ -188,6 +190,9 @@
 		511FFD281E1BB4CD0069ADC3 /* OpenShopUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OpenShopUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		511FFD2C1E1BB4CD0069ADC3 /* OpenShopUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = OpenShopUITests.m; sourceTree = "<group>"; };
 		511FFD2E1E1BB4CD0069ADC3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		51487B331E80BA1E005184ED /* LoginHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginHomeViewController.h; sourceTree = "<group>"; };
+		51487B341E80BA1E005184ED /* LoginHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginHomeViewController.m; sourceTree = "<group>"; };
+		51487B351E80BA1E005184ED /* LoginHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginHomeViewController.xib; sourceTree = "<group>"; };
 		5154256C1E6E492200034535 /* PromoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoteViewController.h; sourceTree = "<group>"; };
 		5154256D1E6E492200034535 /* PromoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoteViewController.m; sourceTree = "<group>"; };
 		5154256E1E6E492200034535 /* PromoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromoteViewController.xib; sourceTree = "<group>"; };
@@ -898,6 +903,9 @@
 		51D58A8E1E1F3CC000EE8FDD /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				51487B331E80BA1E005184ED /* LoginHomeViewController.h */,
+				51487B341E80BA1E005184ED /* LoginHomeViewController.m */,
+				51487B351E80BA1E005184ED /* LoginHomeViewController.xib */,
 				51D58A911E1F3D6E00EE8FDD /* LoginMainViewController.h */,
 				51D58A921E1F3D6E00EE8FDD /* LoginMainViewController.m */,
 				51D58A931E1F3D6E00EE8FDD /* LoginMainViewController.xib */,
@@ -1129,6 +1137,7 @@
 				5161C0DA1E70F03400B11DBC /* GoodsImageCollectionViewCell.xib in Resources */,
 				5161C16B1E71007D00B11DBC /* compose_photo_original_highlighted@2x.png in Resources */,
 				5161C1811E71007D00B11DBC /* video_next_button_disabled@2x.png in Resources */,
+				51487B371E80BA1E005184ED /* LoginHomeViewController.xib in Resources */,
 				517733871E63B7EF0009DAF9 /* MessageTableTableViewCell.xib in Resources */,
 				5187C3451E24736500EC797F /* MarketMainViewController.xib in Resources */,
 				51F007F71E6919E4008B4CA6 /* EditingGoodsViewController.xib in Resources */,
@@ -1273,6 +1282,7 @@
 				5161C1881E71007D00B11DBC /* UIView+HXExtension.m in Sources */,
 				5161C13E1E71007D00B11DBC /* HXAlbumListView.m in Sources */,
 				5161C1471E71007D00B11DBC /* HXPhotoPreviewViewController.m in Sources */,
+				51487B361E80BA1E005184ED /* LoginHomeViewController.m in Sources */,
 				5161C14C1E71007D00B11DBC /* HXPhotoViewController.m in Sources */,
 				5161C14F1E71007D00B11DBC /* HXVideoPresentTransition.m in Sources */,
 				5187C3531E2473BB00EC797F /* ShopMainViewController.m in Sources */,

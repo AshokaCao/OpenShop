@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MarketListModel.h"
 
 @protocol ProductsTableViewCellDelegate <NSObject>
 
@@ -28,5 +29,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *disLabel;
 @property (weak, nonatomic) IBOutlet UILabel *distributeLabel;
 @property (nonatomic ,assign) id<ProductsTableViewCellDelegate> delegate;
+@property (nonatomic ,strong) MarketListModel *productModel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViewWidth;
+
+- (void)showProductListWith:(MarketListModel *)model;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "RegisterViewController.h"
 #import "PPNetworkHelper.h"
+#import "LoginMainViewController.h"
 
 @interface RegisterViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *codeNumberTextField;
@@ -25,6 +26,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    self.navigationController.navigationBar.translucent = NO;
     
     self.title = ASLocalizedString(@"Reset Password");
     self.codeNumberTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
@@ -49,8 +51,7 @@
 
 
 - (IBAction)getCodeNumberAction:(UIButton *)sender {
-    [self getCodeNumberWithPhoneNumber:self
-     .phoneNum];
+    [self getCodeNumberWithPhoneNumber:self.phoneNum];
     __weak typeof(self) temp = self;
     __block int timeout=30; //倒计时时间
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
@@ -88,33 +89,60 @@
     self.passWordNum = self.passWordTextField.text;
     [self registerUserNum];
     NSLog(@"phoneNum - %@ codeStr - %@ passWordNum - %@",self.phoneNum,self.codeStr,self.passWordNum);
+//    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)getCodeNumberWithPhoneNumber:(NSString *)number
 {
-    NSString *urlCode = [NSString stringWithFormat:@"http://%@/Page/setting/SendSMS.ashx?mobile=%@&verifytype=register",tLocalUrl,number];
+    NSString *urlCode = [NSString stringWithFormat:@"http://%@/Account/PSWVerify.ashx",publickUrl];
     NSLog(@"%@",urlCode);
-    [PPNetworkHelper GET:urlCode parameters:nil success:^(id responseObject) {
-        NSLog(@"success: ----- %@",responseObject);
-        if (responseObject) {
-            self.codeStr = [NSString stringWithFormat:@"%@",responseObject[@"verifycode"]];
-            NSLog(@"success: ----- %@",self.codeStr);
-        } else {
+    NSMutableDictionary *diction = [NSMutableDictionary dictionary];
+    diction[@"mobile"] = number;
+    diction[@"verifytype"] = @"register";
+    [PPNetworkHelper POST:urlCode parameters:diction success:^(id responseObject) {
+        NSLog(@"responseObject   -   %@",responseObject);
+        NSDictionary *codeDic = responseObject;
+        NSString *returnCode = codeDic[@"returncode"];
+        if ([returnCode isEqualToString:@"success"]) {
+            
+        } else if ([returnCode isEqualToString:@"error"]) {
             
         }
     } failure:^(NSError *error) {
-        NSLog(@"cuwu");
+        NSLog(@"failure - %@",error);
     }];
 }
 
 - (void)registerUserNum
 {
-    NSString *regist = [NSString stringWithFormat:@"http://%@/Page/UCenter/register.ashx?mobile=%@&verifycode=%@&password=%@",tLocalUrl,self.phoneNum,self.codeStr,self.passWordNum];
-    [PPNetworkHelper GET:regist parameters:nil success:^(id responseObject) {
-        NSLog(@"注册 - %@",responseObject);
+    NSString *regist = [NSString stringWithFormat:@"http://%@/Account/Register.ashx",publickUrl];
+    NSMutableDictionary *diction = [NSMutableDictionary dictionary];
+    diction[@"mobile"] = self.phoneNum;
+    diction[@"password"] = self.passWordTextField.text;
+    diction[@"verifycode"] = self.codeNumberTextField.text;
+    
+    NSLog(@"diction - %@",diction);
+    
+    [PPNetworkHelper POST:regist parameters:diction success:^(id responseObject) {
+        NSLog(@"responseObject - %@",responseObject);
+        NSDictionary *dict = responseObject;
+        NSString *returnCode = dict[@"returncode"];
+        if ([returnCode isEqualToString:@"success"]) {
+            LoginMainViewController *main = [[LoginMainViewController alloc] init];
+            [self.navigationController pushViewController:main animated:YES];
+        } else if ([returnCode isEqualToString:@"error"]) {
+            
+        }
+        
     } failure:^(NSError *error) {
         NSLog(@"错误 - %@",error);
     }];
+    
+    
+//    [PPNetworkHelper GET:regist parameters:nil success:^(id responseObject) {
+//        NSLog(@"注册 - %@",responseObject);
+//    } failure:^(NSError *error) {
+//    }];
 }
 
 - (NSString *)jsonToString:(NSDictionary *)dic

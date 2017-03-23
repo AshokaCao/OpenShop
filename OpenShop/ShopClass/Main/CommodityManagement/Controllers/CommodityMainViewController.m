@@ -11,14 +11,17 @@
 #import "ShelveTableViewCell.h"
 #import "EditingGoodsViewController.h"
 #import "CQCustomActionSheet.h"
+#import "MarketListModel.h"
 
-@interface CommodityMainViewController () <UITableViewDelegate, UITableViewDataSource, ProductsTableViewCellDelegate, CQCustomActionSheetDelegate>
+@interface CommodityMainViewController () <UITableViewDelegate, UITableViewDataSource, ProductsTableViewCellDelegate, CQCustomActionSheetDelegate, ShelveTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *saleBtn;
 @property (weak, nonatomic) IBOutlet UIButton *shelveBtn;
 @property (weak, nonatomic) IBOutlet UIView *saleLine;
 @property (weak, nonatomic) IBOutlet UIView *shelveLine;
 @property (weak, nonatomic) IBOutlet UIButton *addGoodsBtn;
 @property (weak, nonatomic) IBOutlet UITableView *productTableView;
+@property (nonatomic ,strong) NSMutableArray *productArray;
+@property (nonatomic ,strong) NSString *stadeNum;
 
 @end
 
@@ -33,6 +36,8 @@
     self.shelveLine.hidden = YES;
     self.saleBtn.selected = !self.shelveBtn.isSelected;
     self.saleLine.hidden = !self.shelveLine.hidden;
+    self.stadeNum = @"1";
+    [self getShopGoodsTableWithID:@"1"];
     [self registTableView];
     [self mjRefalish];
 }
@@ -40,7 +45,7 @@
 - (void)registTableView
 {
     [self.productTableView registerNib:[UINib nibWithNibName:@"ProductsTableViewCell" bundle:nil] forCellReuseIdentifier:@"productCell"];
-    [self.productTableView registerNib:[UINib nibWithNibName:@"ShelveTableViewCell" bundle:nil] forCellReuseIdentifier:@"sheleveCell"];
+    [self.productTableView registerNib:[UINib nibWithNibName:@"ShelveTableViewCell" bundle:nil] forCellReuseIdentifier:@"shelveCell"];
 }
 
 - (void)mjRefalish
@@ -77,7 +82,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return self.productArray.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -87,16 +92,28 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    ProductsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"productCell"];
-    if (!cell) {
-        cell = [[ProductsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"productCell"];
+    if (self.saleBtn.isSelected) {
+        ProductsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"productCell"];
+        if (!cell) {
+            cell = [[ProductsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"productCell"];
+        }
+        MarketListModel *model = self.productArray[indexPath.section];
+        [cell showProductListWith:model];
+        cell.delegate = self;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    } else if (self.shelveBtn.isSelected) {
+        ShelveTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"shelveCell"];
+        if (!cell) {
+            cell = [[ShelveTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"shelveCell"];
+        }
+        MarketListModel *model = self.productArray[indexPath.section];
+        [cell showShelveListWith:model];
+        cell.delegate = self;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
     }
-    if (indexPath.section == 0) {
-        cell.discardView.hidden = YES;
-    }
-    cell.delegate = self;
-    cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    return cell;
+    return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -118,17 +135,23 @@
 }
 
 - (IBAction)saleBtnAction:(UIButton *)sender {
+    self.stadeNum = @"1";
     self.shelveBtn.selected = NO;
     self.shelveLine.hidden = YES;
     self.saleBtn.selected = !self.shelveBtn.isSelected;
     self.saleLine.hidden = !self.shelveLine.hidden;
+    [self getShopGoodsTableWithID:@"1"];
+    [self.productTableView reloadData];
 }
 
 - (IBAction)shelveAction:(UIButton *)sender {
+    self.stadeNum = @"2";
     self.shelveBtn.selected = YES;
     self.shelveLine.hidden = NO;
     self.saleBtn.selected = !self.shelveBtn.isSelected;
     self.saleLine.hidden = !self.shelveLine.hidden;
+    [self getShopGoodsTableWithID:@"1"];
+    [self.productTableView reloadData];
 }
 
 - (IBAction)addGoodsAction:(UIButton *)sender {
@@ -141,6 +164,41 @@
     ProductsTableViewCell *cell = (ProductsTableViewCell *)[[[btn superview] superview] superview];
     NSIndexPath *pathCell = [self.productTableView indexPathForCell:cell];
     [self shareAction];
+}
+
+- (void)getShopGoodsTableWithID:(NSString *)userID
+{
+    self.productArray = [NSMutableArray array];
+    NSString *goodTable = [NSString stringWithFormat:@"http://%@/Good/MyGoodListByState.ashx?userid=%@&pagesize=15&state=%@",publickUrl,userID,self.stadeNum];
+    [PPNetworkHelper GET:goodTable parameters:nil responseCache:^(id responseCache) {
+        
+    } success:^(id responseObject) {
+//        NSLog(@"responseObject - %@",responseObject);
+        [self getGoodTableWith:responseObject];
+    } failure:^(NSError *error) {
+        NSLog(@"failure");
+    }];
+}
+
+- (void)getGoodTableWith:(id)some
+{
+    NSMutableDictionary *marketDict = some;
+    NSMutableArray *array = [marketDict valueForKey:@"goodlist"];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"marketDict - %@",array);
+        if (array.count > 0) {
+            for (NSDictionary *dict in marketDict[@"goodlist"]) {
+                MarketListModel *mark = [[MarketListModel alloc] init];
+                [mark setValuesForKeysWithDictionary:dict];
+                [self.productArray addObject:mark];
+                NSLog(@"responseObject - %@",self.productArray);
+            }
+            [self.productTableView reloadData];
+        } else {
+            NSLog(@"666666666");
+        }
+        
+    });
 }
 
 - (void)didReceiveMemoryWarning {

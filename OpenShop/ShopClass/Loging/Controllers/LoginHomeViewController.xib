@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginHomeViewController">
+            <connections>
+                <outlet property="appName" destination="6Yd-xR-6D1" id="dkH-52-TDr"/>
+                <outlet property="backgrouImageView" destination="Fm8-99-iVq" id="wVR-XD-IfK"/>
+                <outlet property="introduction" destination="Bv1-Wv-IA4" id="KPD-ts-xbP"/>
+                <outlet property="loginBtn" destination="lLH-XP-9y0" id="kmD-Va-Fi1"/>
+                <outlet property="signupBtn" destination="Wqr-bK-1GY" id="fvk-kZ-UOT"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shouye_bg" translatesAutoresizingMaskIntoConstraints="NO" id="Fm8-99-iVq"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Yd-xR-6D1">
+                    <attributedString key="attributedText">
+                        <fragment content="Deep Shop">
+                            <attributes>
+                                <font key="NSFont" size="36" name="PingFangSC-Semibold"/>
+                            </attributes>
+                        </fragment>
+                    </attributedString>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="zui jian dan hao yong de shou ji kai dian app" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bv1-Wv-IA4">
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.34509803921568627" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wqr-bK-1GY">
+                    <state key="normal" title="Sign up" backgroundImage="signup_btn">
+                        <color key="titleColor" red="0.066666666666666666" green="0.066666666666666666" blue="0.066666666666666666" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="signupAction:" destination="-1" eventType="touchUpInside" id="e0y-Es-upc"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lLH-XP-9y0">
+                    <state key="normal" title="Login" backgroundImage="login_btn">
+                        <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="loginAction:" destination="-1" eventType="touchUpInside" id="fwp-1N-M39"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="lLH-XP-9y0" firstAttribute="leading" secondItem="Wqr-bK-1GY" secondAttribute="trailing" constant="14" id="2VB-dW-mFP"/>
+                <constraint firstItem="Fm8-99-iVq" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="7TR-0u-PWy"/>
+                <constraint firstAttribute="bottom" secondItem="Fm8-99-iVq" secondAttribute="bottom" id="9Ju-dg-ijN"/>
+                <constraint firstItem="6Yd-xR-6D1" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="AS1-nu-zMV"/>
+                <constraint firstItem="lLH-XP-9y0" firstAttribute="width" secondItem="Wqr-bK-1GY" secondAttribute="width" id="BgX-Cy-NC7"/>
+                <constraint firstAttribute="trailing" secondItem="Fm8-99-iVq" secondAttribute="trailing" id="DZK-Lj-Wc2"/>
+                <constraint firstItem="lLH-XP-9y0" firstAttribute="height" secondItem="Wqr-bK-1GY" secondAttribute="height" id="ODS-PN-XPZ"/>
+                <constraint firstAttribute="bottom" secondItem="Wqr-bK-1GY" secondAttribute="bottom" constant="28" id="WMk-Ys-xPv"/>
+                <constraint firstItem="Wqr-bK-1GY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="14" id="Xf1-jC-K3s"/>
+                <constraint firstItem="Fm8-99-iVq" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Xha-kO-u3A"/>
+                <constraint firstItem="6Yd-xR-6D1" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="104" id="aNf-yh-X8G"/>
+                <constraint firstItem="Bv1-Wv-IA4" firstAttribute="top" secondItem="6Yd-xR-6D1" secondAttribute="bottom" constant="11" id="iEZ-hg-eRq"/>
+                <constraint firstAttribute="bottom" secondItem="lLH-XP-9y0" secondAttribute="bottom" constant="28" id="ljb-DR-3hr"/>
+                <constraint firstItem="lLH-XP-9y0" firstAttribute="leading" secondItem="Wqr-bK-1GY" secondAttribute="trailing" constant="14" id="mEk-uf-y2Y"/>
+                <constraint firstItem="Bv1-Wv-IA4" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="njh-O3-OKm"/>
+                <constraint firstAttribute="trailing" secondItem="lLH-XP-9y0" secondAttribute="trailing" constant="14" id="oMo-tJ-hLS"/>
+            </constraints>
+            <point key="canvasLocation" x="24.5" y="52.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="login_btn" width="167" height="45"/>
+        <image name="shouye_bg" width="375" height="667"/>
+        <image name="signup_btn" width="167" height="45"/>
+    </resources>
+</document>
