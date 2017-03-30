@@ -8,6 +8,7 @@
 
 #import "HXPhotoManager.h"
 
+#define iOS9Later ([UIDevice currentDevice].systemVersion.floatValue >= 9.0f)
 @interface HXPhotoManager ()
 @property (strong, nonatomic) NSMutableArray *albums;
 @property (strong, nonatomic) NSMutableArray *allPhotos;
@@ -37,9 +38,13 @@
 
 - (void)setup
 {
+    self.outerCamera = NO;
+    self.openCamera = YES;
+    self.lookLivePhoto = YES;
+    self.lookGifPhoto = YES;
     self.selectTogether = YES;
     self.maxNum = 10;
-    self.photoMaxNum = 1;
+    self.photoMaxNum = 9;
     self.videoMaxNum = 1;
     self.rowCount = 4;
     self.albums = [NSMutableArray array];
@@ -110,7 +115,7 @@
     
     for (int i = 0; i<self.albums.count; i++) {
         HXAlbumModel *model = self.albums[i];
-        if ([model.albumName isEqualToString:ASLocalizedString(@"Camera")]) {
+        if ([model.albumName isEqualToString:@"相机胶卷"]) {
             [self.albums removeObject:model];
             [self.albums insertObject:model atIndex:0];
             break;
@@ -180,26 +185,33 @@
     NSMutableArray *videoAy = [NSMutableArray array];
     NSMutableArray *objAy = [NSMutableArray array];
     NSInteger photoIndex = 0, videoIndex = 0, albumIndex = 0;
+    NSInteger cameraIndex = self.openCamera ? 1 : 0;
     for (NSInteger i = result.count - 1 ; i >= 0 ; i--) {
         PHAsset *asset = result[i];
         HXPhotoModel *photoModel = [[HXPhotoModel alloc] init];
         photoModel.asset = asset;
-        photoModel.albumListIndex = albumIndex + 1;
+        photoModel.albumListIndex = albumIndex + cameraIndex;
         if (self.selectedList.count > 0) {
             for (HXPhotoModel *model in self.selectedList) {
                 if ([model.asset.localIdentifier isEqualToString:photoModel.asset.localIdentifier]) {
                     photoModel.selected = YES;
                 }
+                photoModel.isCloseLivePhoto = model.isCloseLivePhoto;
             }
         }
         if (asset.mediaType == PHAssetMediaTypeImage) {
             if ([[asset valueForKey:@"filename"] hasSuffix:@"GIF"]) {
-                photoModel.type = HXPhotoModelMediaTypePhotoGif;
+                photoModel.type = self.lookGifPhoto ? HXPhotoModelMediaTypePhotoGif : HXPhotoModelMediaTypePhoto;
             }else {
-                photoModel.type = HXPhotoModelMediaTypePhoto;
-            }
-            if (asset.mediaSubtypes == PHAssetMediaSubtypePhotoLive) {
-                NSLog(@"%lu",(unsigned long)asset.mediaSubtypes);
+                if (iOS9Later) {
+                    if (asset.mediaSubtypes == PHAssetMediaSubtypePhotoLive) {
+                        photoModel.type = self.lookLivePhoto ? HXPhotoModelMediaTypeLivePhoto : HXPhotoModelMediaTypePhoto;
+                    }else {
+                        photoModel.type = HXPhotoModelMediaTypePhoto;
+                    }
+                }else {
+                    photoModel.type = HXPhotoModelMediaTypePhoto;
+                }
             }
             photoModel.photoIndex = photoIndex;
             [photoAy addObject:photoModel];
@@ -222,23 +234,28 @@
         photoModel.currentAlbumIndex = index;
         [objAy addObject:photoModel];
     }
-    HXPhotoModel *model = [[HXPhotoModel alloc] init];
-    model.type = HXPhotoModelMediaTypeCamera;
-    if (photoAy.count == 0) {
-        model.thumbPhoto = [UIImage imageNamed:@"compose_photo_video@2x.png"];
-    }else if (videoAy.count == 0) {
-        model.thumbPhoto = [UIImage imageNamed:@"compose_photo_photograph@2x.png"];
-    }else {
-        model.thumbPhoto = [UIImage imageNamed:@"compose_photo_photograph@2x.png"];
+    if (self.openCamera) {
+        HXPhotoModel *model = [[HXPhotoModel alloc] init];
+        model.type = HXPhotoModelMediaTypeCamera;
+        if (photoAy.count == 0 && videoAy.count != 0) {
+            model.thumbPhoto = [UIImage imageNamed:@"compose_photo_video@2x.png"];
+        }else if (videoAy.count == 0) {
+            model.thumbPhoto = [UIImage imageNamed:@"compose_photo_photograph@2x.png"];
+        }else {
+            model.thumbPhoto = [UIImage imageNamed:@"compose_photo_photograph@2x.png"];
+        }
+        [objAy insertObject:model atIndex:0];
     }
-    [objAy insertObject:model atIndex:0];
     if (index == 0) {
         if (self.cameraList.count > 0) {
             NSInteger listCount = self.cameraList.count;
+            if (self.outerCamera) {
+                listCount = self.cameraList.count - 1;
+            }
             for (int i = 0; i < self.cameraList.count; i++) {
                 HXPhotoModel *phMD = self.cameraList[i];
                 phMD.albumListIndex = listCount--;
-                [objAy insertObject:phMD atIndex:1];
+                [objAy insertObject:phMD atIndex:cameraIndex];
             }
             NSInteger photoCount = self.cameraPhotos.count - 1;
             for (int i = 0; i < self.cameraPhotos.count; i++) {
@@ -277,7 +294,7 @@
         [self.endSelectedCameraList removeObject:model];
         [self.endSelectedVideos removeObject:model];
         
-    }else if (model.type == HXPhotoModelMediaTypePhoto || model.type == HXPhotoModelMediaTypePhotoGif) {
+    }else if (model.type == HXPhotoModelMediaTypePhoto || (model.type == HXPhotoModelMediaTypePhotoGif || model.type == HXPhotoModelMediaTypeLivePhoto)) {
         
         [self.endSelectedPhotos removeObject:model];
         
@@ -308,7 +325,7 @@
             [self.endSelectedCameraList addObject:model];
             [self.endSelectedVideos addObject:model];
             
-        }else if (model.type == HXPhotoModelMediaTypePhoto || model.type == HXPhotoModelMediaTypePhotoGif) {
+        }else if (model.type == HXPhotoModelMediaTypePhoto || (model.type == HXPhotoModelMediaTypePhotoGif || model.type == HXPhotoModelMediaTypeLivePhoto)) {
             
             [self.endSelectedPhotos addObject:model];
             

@@ -168,6 +168,16 @@
 {
     
 }
+- (IBAction)logoutAction:(UIButton *)sender {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+//    [userDefaults removeObjectForKey:@"userName"];
+//    [userDefaults removeObjectForKey:@"passWord"];
+    [userDefaults removeObjectForKey:@"userID"];
+    [userDefaults removeObjectForKey:@"accessToken"];
+    [userDefaults removeObjectForKey:@"refreshToken"];
+//    [userDefaults removeObjectForKey:@"faceID"];
+    [userDefaults synchronize];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

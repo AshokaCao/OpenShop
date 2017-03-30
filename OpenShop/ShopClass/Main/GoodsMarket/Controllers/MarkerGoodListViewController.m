@@ -25,7 +25,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *profitLabel;
 @property (weak, nonatomic) IBOutlet UILabel *saleCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *goodIntroduce;
-@property (nonatomic ,weak) SDCycleScrollView *cycleScrollView3;
+@property (nonatomic ,strong) SDCycleScrollView *cycleScrollView3;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleConst;
 
 @end
 
@@ -34,7 +35,7 @@
 - (SDCycleScrollView *)cycleScrollView3
 {
     if (!_cycleScrollView3) {
-        _cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH *1.04) delegate:self placeholderImage:[UIImage imageNamed:@"home_banner"]];
+        _cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH *1.04) delegate:self placeholderImage:[UIImage imageNamed:@"shangpingtu_img"]];
     }
     return _cycleScrollView3;
 }
@@ -44,6 +45,7 @@
     self.title = ASLocalizedString(@"Sourcing details");
     self.tabBarController.tabBar.translucent = NO;
     self.contactBtnW.constant = SCREEN_WIDTH * 0.597;
+    self.titleConst.constant = SCREEN_WIDTH * 1.082;
     [self leftItem];
     
     [self.goodsListTableView registerNib:[UINib nibWithNibName:@"GoodListTableViewCell" bundle:nil] forCellReuseIdentifier:@"goodsList"];
@@ -78,7 +80,7 @@
 - (void)mjRefalish
 {
     self.goodsListTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self setSDCycleScrollView];
+//        [self setSDCycleScrollView];
         [self.goodsListTableView.mj_header endRefreshing];
     }];
     
@@ -98,7 +100,7 @@
     _cycleScrollView3.currentPageDotImage = [UIImage imageNamed:@"banner_qiehuandian_selected"];
     _cycleScrollView3.pageDotImage = [UIImage imageNamed:@"banner_qiehuandian_default"];
     //    cycleScrollView3.imageURLStringsGroup = imageArray;
-    NSArray *array = @[@"shangpingtu_img",@"shangpingtu_img",@"shangpingtu_img"];
+//    NSArray *array = @[@"shangpingtu_img",@"shangpingtu_img",@"shangpingtu_img"];
     
     [self.tabHeaderView addSubview:_cycleScrollView3];
 }
@@ -208,7 +210,35 @@
 }
 
 - (IBAction)onsaleAction:(UIButton *)sender {
+    MarketListModel *model = [self.goodsListArray firstObject];
+    NSString *goodid = [NSString stringWithFormat:@"%@",model.goodid];
     
+    [self onsaleWithGoodID:goodid andUserID:[nNsuserdefaul objectForKey:@"userID"]];
+}
+
+- (void)onsaleWithGoodID:(NSString *)goodid andUserID:(NSString *)userid
+{
+    NSString *goodsUrl = [NSString stringWithFormat:@"http://%@/Good/GetGood.ashx?goodid=%@&userid=%@",publickUrl,goodid,userid];
+    NSLog(@"goodsUrl - %@",goodsUrl);
+    [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"accessToken"] forHTTPHeaderField:@"accesstoken"];
+    [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"refreshToken"] forHTTPHeaderField:@"refreshtoken"];
+    [PPNetworkHelper GET:goodsUrl parameters:nil success:^(id responseObject) {
+        NSLog(@"responseCache - %@",responseObject);
+        NSDictionary *diction = responseObject;
+        NSLog(@"nNsuserdefaul - %@",[nNsuserdefaul objectForKey:@"accessToken"]);
+        if ([diction[@"returncode"] isEqualToString:@"success"]) {
+            UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"上架成功" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alerV show];
+        } else {
+            NSString *mess = diction[@"msg"];
+            UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:mess delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alerV show];
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+        UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"上架失败" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alerV show];
+    }];
 }
 
 - (void)shopList

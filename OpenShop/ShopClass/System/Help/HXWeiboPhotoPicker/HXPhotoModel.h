@@ -11,7 +11,7 @@
 
 typedef enum : NSUInteger {
     HXPhotoModelMediaTypePhoto = 0, // 照片
-    HXPhotoModelMediaTypeLivePhoto, // 预留的为以后支持LivePhoto做准备
+    HXPhotoModelMediaTypeLivePhoto, // LivePhoto
     HXPhotoModelMediaTypePhotoGif,  // gif图
     HXPhotoModelMediaTypeVideo,     // 视频
     HXPhotoModelMediaTypeAudio,     // 预留
@@ -54,6 +54,11 @@ typedef enum : NSUInteger {
 @property (strong, nonatomic) UIImage *gifImage;
 
 /**
+ 照片数据
+ */
+@property (strong, nonatomic) NSData *imageData;
+
+/**
  视频时长
  */
 @property (copy, nonatomic) NSString *videoTime;
@@ -92,6 +97,16 @@ typedef enum : NSUInteger {
  缩小之后的图片宽高
  */
 @property (assign, nonatomic) CGSize endImageSize;
+
+/**
+ livePhoto
+ */
+@property (strong, nonatomic) PHLivePhoto *livePhoto;
+
+/**
+ 判断当前照片 是否关闭了livePhoto功能
+ */
+@property (assign, nonatomic) BOOL isCloseLivePhoto;
 
 /**
  拍照之后的唯一标示

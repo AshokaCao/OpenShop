@@ -14,6 +14,24 @@
  */
 
 @interface HXPhotoTools : NSObject
+
+/**
+ 根据已选照片数组返回原图数组
+
+ @param photos 选中照片数组
+ @return 原图数组
+ */
++ (NSArray<UIImage *> *)fetchOriginalForSelectedPhoto:(NSArray *)photos;
+
+/**
+ 根据已选照片数组返回imageData数组
+ 
+ @param photos 选中照片数组
+ @return imageData数组
+ */
++ (NSArray<NSData *> *)fetchImageDataForSelectedPhoto:(NSArray *)photos;
+
+
 /**
  获取视频的时长
  */
@@ -30,12 +48,17 @@
 + (void)FetchPhotoForPHAsset:(PHAsset *)asset Size:(CGSize)size resizeMode:(PHImageRequestOptionsResizeMode)resizeMode completion:(void(^)(UIImage *image,NSDictionary *info))completion;
 
 /**
+ 根据PHAsset对象获取LivePhoto
+ */
++ (void)FetchLivePhotoForPHAsset:(PHAsset *)asset Size:(CGSize)size Completion:(void(^)(PHLivePhoto *livePhoto, NSDictionary *info))completion;
+
+/**
  获取图片NSData
 
  @param asset 图片对象
  @param completion 返回结果
  */
-+ (void)FetchPhotoDataForPHAsset:(PHAsset *)asset completion:(void(^)(NSData *imageData, NSDictionary *info))completion;
++ (PHImageRequestID)FetchPhotoDataForPHAsset:(PHAsset *)asset completion:(void(^)(NSData *imageData, NSDictionary *info))completion;
 
 /**
  获取数组里面图片的大小
@@ -57,10 +80,10 @@
  
  @param asset 照片的PHAsset对象
  @param size 指定请求的大小
- @param resizeMode 请求模式
+ @param deliveryMode 请求模式
  @param completion 完成后的block
  @param error 失败后的block
  */
-+ (void)FetchPhotoForPHAsset:(PHAsset *)asset Size:(CGSize)size resizeMode:(PHImageRequestOptionsResizeMode)resizeMode completion:(void(^)(UIImage *image,NSDictionary *info))completion error:(void(^)(NSDictionary *info))error;
++ (void)FetchPhotoForPHAsset:(PHAsset *)asset Size:(CGSize)size deliveryMode:(PHImageRequestOptionsDeliveryMode)deliveryMode completion:(void(^)(UIImage *image,NSDictionary *info))completion error:(void(^)(NSDictionary *info))error;
 
 @end

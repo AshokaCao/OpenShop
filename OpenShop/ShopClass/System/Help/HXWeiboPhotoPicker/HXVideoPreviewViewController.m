@@ -44,14 +44,14 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:self.rightBtn];
     if (self.manager.selectedList.count > 0) {
         self.navigationItem.rightBarButtonItem.enabled = YES;
-        [self.rightBtn setTitle:[NSString stringWithFormat:ASLocalizedString(@"next(%ld)"),self.manager.selectedList.count] forState:UIControlStateNormal];
+        [self.rightBtn setTitle:[NSString stringWithFormat:@"下一步(%ld)",self.manager.selectedList.count] forState:UIControlStateNormal];
         [self.rightBtn setBackgroundColor:[UIColor colorWithRed:253/255.0 green:142/255.0 blue:36/255.0 alpha:1]];
         self.rightBtn.layer.borderWidth = 0;
         CGFloat rightBtnH = self.rightBtn.frame.size.height;
         CGFloat rightBtnW = [HXPhotoTools getTextWidth:self.rightBtn.currentTitle withHeight:rightBtnH fontSize:14];
         self.rightBtn.frame = CGRectMake(0, 0, rightBtnW + 20, rightBtnH);
     }else {
-        [self.rightBtn setTitle:ASLocalizedString(@"next") forState:UIControlStateNormal];
+        [self.rightBtn setTitle:@"下一步" forState:UIControlStateNormal];
         [self.rightBtn setBackgroundColor:[UIColor colorWithRed:253/255.0 green:142/255.0 blue:36/255.0 alpha:1]];
         self.rightBtn.frame = CGRectMake(0, 0, 60, 25);
         self.rightBtn.layer.borderWidth = 0;
@@ -110,7 +110,7 @@
         UINavigationItem *navItem = [[UINavigationItem alloc] init];
         [navBar pushNavigationItem:navItem animated:NO];
         
-        navItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:ASLocalizedString(@"cancel") style:UIBarButtonItemStylePlain target:self action:@selector(dismissClick)];
+        navItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(dismissClick)];
         navBar.tintColor = [UIColor blackColor];
     }
 }
@@ -261,14 +261,14 @@
     model.selected = button.selected;
     if (self.manager.selectedList.count > 0) {
         self.navigationItem.rightBarButtonItem.enabled = YES;
-        [self.rightBtn setTitle:[NSString stringWithFormat:ASLocalizedString(@"next(%ld)"),self.manager.selectedList.count] forState:UIControlStateNormal];
+        [self.rightBtn setTitle:[NSString stringWithFormat:@"下一步(%ld)",self.manager.selectedList.count] forState:UIControlStateNormal];
         [self.rightBtn setBackgroundColor:[UIColor colorWithRed:253/255.0 green:142/255.0 blue:36/255.0 alpha:1]];
         self.rightBtn.layer.borderWidth = 0;
         CGFloat rightBtnH = self.rightBtn.frame.size.height;
         CGFloat rightBtnW = [HXPhotoTools getTextWidth:self.rightBtn.currentTitle withHeight:rightBtnH fontSize:14];
         self.rightBtn.frame = CGRectMake(0, 0, rightBtnW + 20, rightBtnH);
     }else {
-        [self.rightBtn setTitle:ASLocalizedString(@"next") forState:UIControlStateNormal];
+        [self.rightBtn setTitle:@"下一步" forState:UIControlStateNormal];
         [self.rightBtn setBackgroundColor:[UIColor colorWithRed:253/255.0 green:142/255.0 blue:36/255.0 alpha:1]];
         self.rightBtn.frame = CGRectMake(0, 0, 60, 25);
         self.rightBtn.layer.borderWidth = 0;
@@ -283,7 +283,7 @@
 {
     if (!_rightBtn) {
         _rightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_rightBtn setTitle:ASLocalizedString(@"next") forState:UIControlStateNormal];
+        [_rightBtn setTitle:@"下一步" forState:UIControlStateNormal];
         [_rightBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_rightBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
         [_rightBtn setTitleColor:[[UIColor lightGrayColor] colorWithAlphaComponent:0.5] forState:UIControlStateHighlighted];
@@ -357,6 +357,7 @@
     }
     return _maskView;
 }
+
 
 - (id<UIViewControllerAnimatedTransitioning>)navigationController:(UINavigationController *)navigationController animationControllerForOperation:(UINavigationControllerOperation)operation fromViewController:(UIViewController *)fromVC toViewController:(UIViewController *)toVC{
     if (operation == UINavigationControllerOperationPush) {

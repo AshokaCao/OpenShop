@@ -26,12 +26,16 @@ static NSString *appLanguage = @"appLanguage";
     
     self.window = [[UIWindow alloc] init];
     self.window.frame = [UIScreen mainScreen].bounds;
-    RootViewController *rootVC = [[RootViewController alloc] init];
     
-    LoginHomeViewController *logVC = [[LoginHomeViewController alloc] init];
 //    UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:rootVC];
-    
-    self.window.rootViewController = logVC;
+    NSString *userID = [nNsuserdefaul objectForKey:@"userID"];
+    if (userID) {
+        RootViewController *rootVC = [[RootViewController alloc] init];
+        self.window.rootViewController = rootVC;
+    } else {
+        LoginHomeViewController *logVC = [[LoginHomeViewController alloc] init];
+        self.window.rootViewController = logVC;
+    }
     
     // 多语言切换
     if (![nNsuserdefaul objectForKey:appLanguage]) {

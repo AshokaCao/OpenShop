@@ -37,7 +37,8 @@
     self.saleBtn.selected = !self.shelveBtn.isSelected;
     self.saleLine.hidden = !self.shelveLine.hidden;
     self.stadeNum = @"1";
-    [self getShopGoodsTableWithID:@"1"];
+    [self getShopGoodsTableWithID:[nNsuserdefaul objectForKey:@"userID"]];
+    NSLog(@"[nNsuserdefaul objectForKey -%@",[nNsuserdefaul objectForKey:@"userID"]);
     [self registTableView];
     [self mjRefalish];
 }
@@ -119,9 +120,11 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     EditingGoodsViewController *editView = [[EditingGoodsViewController alloc] init];
-    self.hidesBottomBarWhenPushed = YES;
+//    self.hidesBottomBarWhenPushed = YES;
+    MarketListModel *model = self.productArray[indexPath.section];
+    editView.editModel = model;
     [self.navigationController pushViewController:editView animated:YES];
-    self.hidesBottomBarWhenPushed = NO;
+//    self.hidesBottomBarWhenPushed = NO;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -140,7 +143,7 @@
     self.shelveLine.hidden = YES;
     self.saleBtn.selected = !self.shelveBtn.isSelected;
     self.saleLine.hidden = !self.shelveLine.hidden;
-    [self getShopGoodsTableWithID:@"1"];
+    [self getShopGoodsTableWithID:[nNsuserdefaul objectForKey:@"userID"]];
     [self.productTableView reloadData];
 }
 
@@ -150,7 +153,7 @@
     self.shelveLine.hidden = NO;
     self.saleBtn.selected = !self.shelveBtn.isSelected;
     self.saleLine.hidden = !self.shelveLine.hidden;
-    [self getShopGoodsTableWithID:@"1"];
+    [self getShopGoodsTableWithID:[nNsuserdefaul objectForKey:@"userID"]];
     [self.productTableView reloadData];
 }
 
@@ -170,13 +173,19 @@
 {
     self.productArray = [NSMutableArray array];
     NSString *goodTable = [NSString stringWithFormat:@"http://%@/Good/MyGoodListByState.ashx?userid=%@&pagesize=15&state=%@",publickUrl,userID,self.stadeNum];
+    
+    [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"accessToken"] forHTTPHeaderField:@"accesstoken"];
+    [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"refreshToken"] forHTTPHeaderField:@"refreshtoken"];
+    
     [PPNetworkHelper GET:goodTable parameters:nil responseCache:^(id responseCache) {
         
     } success:^(id responseObject) {
-//        NSLog(@"responseObject - %@",responseObject);
+        NSLog(@"responseObject - %@",responseObject);
         [self getGoodTableWith:responseObject];
     } failure:^(NSError *error) {
         NSLog(@"failure");
+        UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"接口出错" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alerV show];
     }];
 }
 
@@ -195,6 +204,8 @@
             }
             [self.productTableView reloadData];
         } else {
+            UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"没有商品" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alerV show];
             NSLog(@"666666666");
         }
         

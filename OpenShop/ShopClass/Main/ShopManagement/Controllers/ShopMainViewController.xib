@@ -9,13 +9,21 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShopMainViewController">
             <connections>
+                <outlet property="authenticationLabel" destination="ge0-wX-Jr2" id="qo1-hH-gmV"/>
+                <outlet property="facebookLabel" destination="r2n-40-c1F" id="Uiq-RS-gaz"/>
                 <outlet property="facebookView" destination="9lH-xr-Y6G" id="Go7-0G-S5I"/>
+                <outlet property="lineLabel" destination="pew-R6-vVS" id="ZN7-gs-7iM"/>
                 <outlet property="lineView" destination="g5X-Ko-2Jk" id="UZ9-xI-SdE"/>
                 <outlet property="logoImage" destination="vLg-a5-s7N" id="EBr-Yw-vKq"/>
+                <outlet property="logoImageView" destination="adT-77-C1Q" id="lsN-sm-pzO"/>
+                <outlet property="logoImageWidth" destination="NXY-zI-thK" id="iPa-Vo-o7T"/>
                 <outlet property="odenttityView" destination="e3H-z1-pAX" id="oqI-Yr-OCh"/>
+                <outlet property="phoneNumLabel" destination="VVv-47-xjz" id="bQy-53-kKP"/>
                 <outlet property="phoneNumView" destination="WVM-8W-4aV" id="vtn-yi-JTL"/>
+                <outlet property="shopNameLabel" destination="UTa-Lr-Hr4" id="bVt-bl-rVx"/>
                 <outlet property="storeNameView" destination="QDO-l9-w8X" id="ogH-Cg-P9s"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="welcomeStrLabel" destination="pkg-XT-qy9" id="E23-MY-Is5"/>
                 <outlet property="welcomeView" destination="2M8-uT-gk7" id="N8X-db-8pS"/>
             </connections>
         </placeholder>
@@ -38,8 +46,9 @@
                                 <constraint firstAttribute="height" constant="1" id="k2P-gD-zpu"/>
                             </constraints>
                         </view>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yonghutouxiang_img" translatesAutoresizingMaskIntoConstraints="NO" id="vLg-a5-s7N">
+                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="yonghutouxiang_img" translatesAutoresizingMaskIntoConstraints="NO" id="vLg-a5-s7N">
                             <constraints>
+                                <constraint firstAttribute="width" constant="55" id="NXY-zI-thK"/>
                                 <constraint firstAttribute="width" secondItem="vLg-a5-s7N" secondAttribute="height" multiplier="1:1" id="x0U-0m-OVp"/>
                             </constraints>
                         </imageView>
@@ -283,7 +292,7 @@
                 <constraint firstItem="WVM-8W-4aV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pTv-4d-OB9"/>
                 <constraint firstItem="adT-77-C1Q" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="plp-j0-syC"/>
             </constraints>
-            <point key="canvasLocation" x="-348" y="41"/>
+            <point key="canvasLocation" x="-433" y="5"/>
         </view>
     </objects>
     <resources>

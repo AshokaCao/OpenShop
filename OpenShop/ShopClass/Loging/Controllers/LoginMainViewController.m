@@ -67,6 +67,7 @@
         if ([returnCode isEqualToString:@"success"]) {
             NSDictionary *userDic = logDic[@"memberinfo"];
             NSString *userID = [NSString stringWithFormat:@"%@",userDic[@"userid"]];
+            NSString *isShop = [NSString stringWithFormat:@"%@",userDic[@"shop"]];
             NSHTTPURLResponse *response = (NSHTTPURLResponse *)task.response;
             NSDictionary *allHeaders = response.allHeaderFields;
             NSLog(@"task - %@",allHeaders);
@@ -74,12 +75,14 @@
             [nNsuserdefaul setObject:allHeaders[@"accesstoken"] forKey:@"accessToken"];
             [nNsuserdefaul setObject:allHeaders[@"refreshtoken"] forKey:@"refreshToken"];
             [nNsuserdefaul synchronize];
-            NSLog(@"userID - %@",userID);
-            
-            SetupShopViewController *shopUp = [[SetupShopViewController alloc] init];
-            [self.navigationController pushViewController:shopUp animated:YES];
-//            UIWindow *window = [UIApplication sharedApplication].keyWindow;
-//            window.rootViewController = [[RootViewController alloc] init];
+//            NSLog(@"userID - %@",userID);
+            if ([isShop isEqualToString:@"true"]) {
+                UIWindow *window = [UIApplication sharedApplication].keyWindow;
+                window.rootViewController = [[RootViewController alloc] init];
+            } else {
+                SetupShopViewController *shopUp = [[SetupShopViewController alloc] init];
+                [self.navigationController pushViewController:shopUp animated:YES];
+            }
         } else if ([returnCode isEqualToString:@"error"]) {
             
         }

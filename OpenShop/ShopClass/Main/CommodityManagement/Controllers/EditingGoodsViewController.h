@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MarketListModel.h"
 
 @interface EditingGoodsViewController : UIViewController
+@property (nonatomic ,strong) MarketListModel *editModel;
 
 @end

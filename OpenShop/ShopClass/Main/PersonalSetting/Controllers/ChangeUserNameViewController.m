@@ -32,6 +32,7 @@
         self.title = ASLocalizedString(@"Edit Nickname");
     } else if ([self.changeStr isEqualToString:@"shopName"]) {
         self.title = ASLocalizedString(@"Edit Shopname");
+        [self changeShopName];
     } else if ([self.changeStr isEqualToString:@"welcome"]) {
         self.title = ASLocalizedString(@"Edit Welcomes");
     } else if ([self.changeStr isEqualToString:@"facebook"]) {
@@ -81,6 +82,20 @@
 - (void)completeClick
 {
     
+    if ([self.changeStr isEqualToString:@"userName"]) {
+        self.title = ASLocalizedString(@"Edit Nickname");
+    } else if ([self.changeStr isEqualToString:@"shopName"]) {
+        [self changeShopName];
+    } else if ([self.changeStr isEqualToString:@"welcome"]) {
+        [self changeWelcome];
+    } else if ([self.changeStr isEqualToString:@"facebook"]) {
+        [self changeFacebook];
+    } else if ([self.changeStr isEqualToString:@"line"]) {
+        self.title = ASLocalizedString(@"Edit Line");
+    } else if ([self.changeStr isEqualToString:@""]) {
+        
+    }
+    [self backToMain];
 }
 
 - (void)backToMain
@@ -98,6 +113,88 @@
         self.navigationItem.rightBarButtonItem.enabled = NO;
     }
 }
+
+- (void)changeShopName
+{
+    NSString *upload = [NSString stringWithFormat:@"http://%@/Shop/UpdateShop.ashx",publickUrl];
+    NSMutableDictionary *uploadShop = [NSMutableDictionary dictionary];
+    uploadShop[@"userid"] = [nNsuserdefaul objectForKey:@"userID"];
+    uploadShop[@"modify"] = @"Name";
+    uploadShop[@"content"] = self.userNameTextField.text;
+    
+    [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"accessToken"] forHTTPHeaderField:@"accesstoken"];
+    [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"refreshToken"] forHTTPHeaderField:@"refreshtoken"];
+    [PPNetworkHelper POST:upload parameters:uploadShop success:^(id responseObject) {
+        
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+        UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"failure" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alerV show];
+    }];
+}
+
+- (void)changeWelcome
+{
+    NSString *upload = [NSString stringWithFormat:@"http://%@/Shop/UpdateShop.ashx",publickUrl];
+    NSMutableDictionary *uploadShop = [NSMutableDictionary dictionary];
+    uploadShop[@"userid"] = [nNsuserdefaul objectForKey:@"userID"];
+    uploadShop[@"modify"] = @"Slogan";
+    uploadShop[@"content"] = self.userNameTextField.text;
+    
+    [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"accessToken"] forHTTPHeaderField:@"accesstoken"];
+    [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"refreshToken"] forHTTPHeaderField:@"refreshtoken"];
+    [PPNetworkHelper POST:upload parameters:uploadShop success:^(id responseObject) {
+        
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+        UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"failure" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alerV show];
+    }];
+}
+
+- (void)changeFacebook
+{
+    NSString *upload = [NSString stringWithFormat:@"http://%@/Shop/UpdateShop.ashx",publickUrl];
+    NSMutableDictionary *uploadShop = [NSMutableDictionary dictionary];
+    uploadShop[@"userid"] = [nNsuserdefaul objectForKey:@"userID"];
+    uploadShop[@"modify"] = @"Facebook";
+    uploadShop[@"content"] = self.userNameTextField.text;
+    
+    [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"accessToken"] forHTTPHeaderField:@"accesstoken"];
+    [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"refreshToken"] forHTTPHeaderField:@"refreshtoken"];
+    [PPNetworkHelper POST:upload parameters:uploadShop success:^(id responseObject) {
+        
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+        UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"failure" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alerV show];
+    }];
+}
+
+- (void)changeLine
+{
+    NSString *upload = [NSString stringWithFormat:@"http://%@/Shop/UpdateShop.ashx",publickUrl];
+    NSMutableDictionary *uploadShop = [NSMutableDictionary dictionary];
+    uploadShop[@"userid"] = [nNsuserdefaul objectForKey:@"userID"];
+    uploadShop[@"modify"] = @"Name";
+    uploadShop[@"content"] = self.userNameTextField.text;
+    
+    [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"accessToken"] forHTTPHeaderField:@"accesstoken"];
+    [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"refreshToken"] forHTTPHeaderField:@"refreshtoken"];
+    [PPNetworkHelper POST:upload parameters:uploadShop success:^(id responseObject) {
+        
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+        UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"failure" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alerV show];
+    }];
+}
+
+- (void)changePhone
+{
+    
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

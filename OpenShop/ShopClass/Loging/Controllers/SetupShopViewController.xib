@@ -67,7 +67,7 @@
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YhZ-Yk-dbq">
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_tianjiatouxiang" translatesAutoresizingMaskIntoConstraints="NO" id="eND-KT-jLg"/>
+                        <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_tianjiatouxiang" translatesAutoresizingMaskIntoConstraints="NO" id="eND-KT-jLg"/>
                     </subviews>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="eND-KT-jLg" secondAttribute="bottom" id="5mf-T1-uLa"/>

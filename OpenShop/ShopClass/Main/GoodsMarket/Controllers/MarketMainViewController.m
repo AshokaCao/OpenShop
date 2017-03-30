@@ -13,6 +13,7 @@
 #import "HomeGoodListTableViewCell.h"
 #import "MarkerGoodListViewController.h"
 #import "MarketListModel.h"
+#import "SearchViewController.h"
 
 @interface MarketMainViewController () <SDCycleScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIView *tabHeaderView;
@@ -68,7 +69,8 @@
 
 - (void)searchClick
 {
-    
+//    SearchViewController *search = [[SearchViewController alloc] init];
+//    [self.navigationController pushViewController:search animated:YES];
 }
 
 - (void)mjRefalish
@@ -193,10 +195,10 @@
     self.marketDataArray = [NSMutableArray array];
     NSString *marketUrl = [NSString stringWithFormat:@"http://%@/Good/GoodsList.ashx?pagesize=10&type=%ld",publickUrl,type];
     [PPNetworkHelper GET:marketUrl parameters:nil responseCache:^(id responseCache) {
-        [self getGoodTableWith:responseCache];
+//        [self getGoodTableWith:responseCache];
     } success:^(id responseObject) {
         [self getGoodTableWith:responseObject];
-//        NSLog(@"responseObject - %@",marketDict[@"goodlist"]);
+        NSLog(@"responseObject - %@",responseObject);
     } failure:^(NSError *error) {
         
         NSLog(@"fail");
@@ -208,13 +210,13 @@
     NSMutableDictionary *marketDict = some;
     NSMutableArray *array = [marketDict valueForKey:@"goodlist"];
     dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog(@"marketDict - %@",array);
+//        NSLog(@"marketDict - %@",array);
         if (array.count > 0) {
             for (NSDictionary *dict in marketDict[@"goodlist"]) {
                 MarketListModel *mark = [[MarketListModel alloc] init];
                 [mark setValuesForKeysWithDictionary:dict];
                 [self.marketDataArray addObject:mark];
-                NSLog(@"responseObject - %@",self.marketDataArray);
+//                NSLog(@"responseObject - %@",self.marketDataArray);
             }
             [self.homeTabelView reloadData];
         } else {

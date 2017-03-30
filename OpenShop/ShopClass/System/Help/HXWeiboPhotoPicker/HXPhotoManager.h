@@ -50,6 +50,27 @@ typedef enum : NSUInteger {
 @property (copy, nonatomic) NSString *photosTotalBtyes;
 @property (copy, nonatomic) NSString *endPhotosTotalBtyes;
 
+
+/**
+ 是否把相机功能放在外面 默认 NO   使用 HXPhotoView 时有用
+ */
+@property (assign, nonatomic) BOOL outerCamera;
+
+/**
+ 是否打开相机功能
+ */
+@property (assign, nonatomic) BOOL openCamera;
+
+/**
+ 是否开启查看GIF图片功能 - 默认开启
+ */
+@property (assign, nonatomic) BOOL lookGifPhoto;
+
+/**
+ 是否开启查看LivePhoto功能呢 - 默认开启
+ */
+@property (assign, nonatomic) BOOL lookLivePhoto;
+
 /**
  当选择类型为 HXPhotoManagerSelectedTypePhotoAndVideo 时 此属性为YES时 选择的视频会跟图片分开排  反之  视频和图片混合在一起排
  */
@@ -61,17 +82,17 @@ typedef enum : NSUInteger {
 @property (assign, nonatomic) BOOL goCamera;
 
 /**
- 最大选择数 默认10 - 建议必填
+ 最大选择数 默认10 - 必填
  */
 @property (assign, nonatomic) NSInteger maxNum;
 
 /**
- 图片最大选择数 默认9 - 建议必填
+ 图片最大选择数 默认9 - 必填
  */
 @property (assign, nonatomic) NSInteger photoMaxNum;
 
 /**
- 视频最大选择数 // 默认1
+ 视频最大选择数 // 默认1 - 必填
  */
 @property (assign, nonatomic) NSInteger videoMaxNum;
 
