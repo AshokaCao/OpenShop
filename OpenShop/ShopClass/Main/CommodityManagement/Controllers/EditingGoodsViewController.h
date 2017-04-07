@@ -11,5 +11,6 @@
 
 @interface EditingGoodsViewController : UIViewController
 @property (nonatomic ,strong) MarketListModel *editModel;
+@property (nonatomic ,strong) NSString *imageCount;
 
 @end

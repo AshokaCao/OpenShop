@@ -12,6 +12,7 @@
 #import "ChangeUserNameViewController.h"
 #import "ShopListModel.h"
 #import "UIImageView+AFNetworking.h"
+#import "WebViewController.h"
 
 @interface ShopMainViewController () <CQCustomActionSheetDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UIImageView *logoImage;
@@ -30,6 +31,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *phoneNumLabel;
 @property (weak, nonatomic) IBOutlet UILabel *facebookLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lineLabel;
+@property (nonatomic ,strong) ShopListModel *shopListModel;
 
 
 @end
@@ -59,6 +61,8 @@
     self.navigationController.navigationBar.translucent = NO;
     self.tabBarController.tabBar.translucent = NO;
 
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
     [self addTapGens];
     [self setNavigationItems];
 }
@@ -78,8 +82,10 @@
     UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
     UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
     space.width = -7;//自己设定
-    self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:space,leftItem, nil];
-//    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:ASLocalizedString(@"Preview") style:UIBarButtonItemStylePlain target:self action:@selector(shopShowAction)];
+//    self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:space,leftItem, nil];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:ASLocalizedString(@"Preview") style:UIBarButtonItemStylePlain target:self action:@selector(shopShowAction)];
+    [self.navigationItem.leftBarButtonItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:13], NSFontAttributeName, nil] forState:UIControlStateNormal];
+    
     self.navigationItem.rightBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(shareAction) image:@"tuiguang_icon" highImage:@""];
 }
 
@@ -91,32 +97,31 @@
     } success:^(id responseObject) {
         NSLog(@"shoplist - %@",responseObject);
         NSDictionary *diction = responseObject;
-        NSLog(@"nNsuserdefaul - %@",[nNsuserdefaul objectForKey:@"accessToken"]);
-//        [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"accessToken"] forHTTPHeaderField:@"accesstoken"];
-//        [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"refreshtToken"] forHTTPHeaderField:@"refreshtoken"];
         if ([diction[@"returncode"] isEqualToString:@"success"]) {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             NSMutableDictionary *listDic = diction[@"shopdetial"];
-            ShopListModel *model = [[ShopListModel alloc] init];
-            [model setValuesForKeysWithDictionary:listDic];
-            NSString *faceStr = [NSString stringWithFormat:@"%@",model.facebook];
-            NSString *linStr = [NSString stringWithFormat:@"%@",model.line];
+            self.shopListModel = [[ShopListModel alloc] init];
+            [self.shopListModel setValuesForKeysWithDictionary:listDic];
+            NSString *faceStr = self.shopListModel.facebook;
+            NSString *linStr = self.shopListModel.line;
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.logoImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",model.shoplogo]] placeholderImage:[UIImage imageNamed:@"gerenxinxi_touxiang_img"]];
-                self.shopNameLabel.text = [NSString stringWithFormat:@"%@",model.storename];
-                self.welcomeStrLabel.text = [NSString stringWithFormat:@"%@",model.introduction];
-                self.phoneNumLabel.text = [NSString stringWithFormat:@"%@",model.phone];
-                if (faceStr != nil) {
-                    self.facebookLabel.text = [NSString stringWithFormat:@"%@",model.facebook];
+                [self.logoImage setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@",self.shopListModel.shoplogo]] placeholderImage:[UIImage imageNamed:@"gerenxinxi_touxiang_img"]];
+                self.shopNameLabel.text = [NSString stringWithFormat:@"%@",self.shopListModel.storename];
+                self.welcomeStrLabel.text = self.shopListModel.introduction;
+                self.phoneNumLabel.text = [NSString stringWithFormat:@"%@",self.shopListModel.phone];
+                if (faceStr.length > 5) {
+                    self.facebookLabel.text = self.shopListModel.facebook;
                 } else {
                     self.facebookLabel.text = ASLocalizedString(@"add your facebook");
                 }
-                if (linStr != nil) {
-                    self.lineLabel.text = [NSString stringWithFormat:@"%@",model.line];
+                if (linStr.length > 5) {
+                    self.lineLabel.text = self.shopListModel.line;
                 } else {
                     self.lineLabel.text = ASLocalizedString(@"add your line");
                 }
             });
         } else {
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
             UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"无数据" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
             [alerV show];
         }
@@ -127,7 +132,8 @@
 
 - (void)shopShowAction
 {
-    
+    WebViewController *webView = [[WebViewController alloc] init];
+    [self.navigationController pushViewController:webView animated:YES];
 }
 
 - (void)shareAction
@@ -178,6 +184,7 @@
 {
     ChangeUserNameViewController *changeVc = [[ChangeUserNameViewController alloc] init];
     changeVc.changeStr = @"shopName";
+    changeVc.nameStr = [NSString stringWithFormat:@"%@",self.shopListModel.storename];
     [self.navigationController pushViewController:changeVc animated:YES];
 }
 
@@ -185,6 +192,7 @@
 {
     ChangeUserNameViewController *changeVc = [[ChangeUserNameViewController alloc] init];
     changeVc.changeStr = @"welcome";
+    changeVc.nameStr = [NSString stringWithFormat:@"%@",self.shopListModel.introduction];
     [self.navigationController pushViewController:changeVc animated:YES];
 }
 
@@ -203,6 +211,7 @@
 {
     ChangeUserNameViewController *changeVc = [[ChangeUserNameViewController alloc] init];
     changeVc.changeStr = @"facebook";
+    changeVc.nameStr = [NSString stringWithFormat:@"%@",self.shopListModel.facebook];
     [self.navigationController pushViewController:changeVc animated:YES];
 }
 
@@ -210,6 +219,7 @@
 {
     ChangeUserNameViewController *changeVc = [[ChangeUserNameViewController alloc] init];
     changeVc.changeStr = @"line";
+    changeVc.nameStr = [NSString stringWithFormat:@"%@",self.shopListModel.line];
     [self.navigationController pushViewController:changeVc animated:YES];
 }
 - (void)choosePhoto
@@ -250,8 +260,9 @@
     }];
     
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    self.logoImage.image = image;
-    [self uploadShopLogo:image];
+    
+    self.logoImage.image = [self OriginImage:image scaleToSize:CGSizeMake(image.size.width * 0.1, image.size.height * 0.1)];
+    [self uploadShopLogo:[self OriginImage:image scaleToSize:CGSizeMake(image.size.width * 0.1, image.size.height * 0.1)]];
 }
 
 - (void)uploadShopLogo:(UIImage *)logo
@@ -271,7 +282,10 @@
         NSDictionary *logDic = responseObject;
         NSString *returnCode = logDic[@"returncode"];
         if ([returnCode isEqualToString:@"success"]) {
-            
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = ASLocalizedString(@"成功");
+            [hud hide:YES afterDelay:2];
         } else {
             NSString *message = [NSString stringWithFormat:@"%@",logDic[@"msg"]];
             UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:message delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
@@ -284,6 +298,20 @@
         [alerV show];
     }];
 
+}
+
+-(UIImage*) OriginImage:(UIImage *)image scaleToSize:(CGSize)size
+{
+    // 下面方法，第一个参数表示区域大小。第二个参数表示是否是非透明的。如果需要显示半透明效果，需要传NO，否则传YES。第三个参数就是屏幕密度了
+    UIGraphicsBeginImageContextWithOptions(size, YES, [UIScreen mainScreen].scale);
+    
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return scaledImage;   //返回的就是已经改变的图片
 }
 
 - (void)didReceiveMemoryWarning {

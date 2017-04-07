@@ -19,6 +19,10 @@
 @property (weak, nonatomic) IBOutlet UIView *tabHeaderView;
 @property (weak, nonatomic) IBOutlet UITableView *homeTabelView;
 @property (nonatomic ,strong) NSMutableArray *marketDataArray;
+@property (nonatomic ,strong) NSMutableArray *urlImageArray;
+@property (nonatomic ,strong) SDCycleScrollView *cycleScrollView;
+@property (nonatomic ,strong) NSString *goodsTypeNum;
+@property (nonatomic ,assign) NSInteger goodsPage;
 
 @end
 
@@ -36,10 +40,16 @@
     [super viewDidLoad];
 //    NSLog(@"网络缓存大小cache = %fMB",[PPNetworkCache getAllHttpCacheSize]/1024/1024.f);
     // Do any additional setup after loading the view from its nib.
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
     self.navigationController.navigationBar.translucent = NO;
     self.tabBarController.tabBar.translucent = NO;
     self.tabHeaderView.sd_height = SCREEN_WIDTH * 0.4;
     self.title = ASLocalizedString(@"Market");
+    self.goodsPage = 10;
+    self.goodsTypeNum = @"1";
+    
     [self leftItem];
     [self.homeTabelView registerNib:[UINib nibWithNibName:@"HomeGoodListTableViewCell" bundle:nil] forCellReuseIdentifier:@"homeList"];
     [self setSegmentedController];
@@ -76,14 +86,14 @@
 - (void)mjRefalish
 {
     self.homeTabelView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        [self setSDCycleScrollView];
-        [self.homeTabelView.mj_header endRefreshing];
+        NSLog(@"self.goodsTypeNum - %@",self.goodsTypeNum);
+        [self getMarketDataListWithType:[self.goodsTypeNum intValue]];
     }];
     
     
     self.homeTabelView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        
-        [self.homeTabelView.mj_footer endRefreshing];
+        self.goodsPage += 10;
+        [self getMarketDataListWithType:[self.goodsTypeNum intValue]];
     }];
 
 }
@@ -91,17 +101,41 @@
 #pragma mark 轮播图
 - (void)setSDCycleScrollView
 {
+    [self getScrollViewImageArray];
     SDCycleScrollView *cycleScrollView3 = [SDCycleScrollView cycleScrollViewWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_WIDTH *0.4) delegate:self placeholderImage:[UIImage imageNamed:@"home_banner"]];
     cycleScrollView3.backgroundColor = [UIColor clearColor];
     cycleScrollView3.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     cycleScrollView3.currentPageDotImage = [UIImage imageNamed:@"banner_qiehuandian_selected"];
     cycleScrollView3.pageDotImage = [UIImage imageNamed:@"banner_qiehuandian_default"];
-    //    cycleScrollView3.imageURLStringsGroup = imageArray;
-    NSArray *array = @[@"banner_img",@"banner_img",@"banner_img"];
-    cycleScrollView3.localizationImageNamesGroup = array;
     
+    self.cycleScrollView = cycleScrollView3;
+//    NSArray *array = @[@"banner_img",@"banner_img",@"banner_img"];
+//    cycleScrollView3.localizationImageNamesGroup = array;
     [self.tabHeaderView addSubview:cycleScrollView3];
 }
+
+- (void)getScrollViewImageArray
+{
+    self.urlImageArray = [NSMutableArray array];
+    NSString *urlImge = [NSString stringWithFormat:@"http://%@/Handler/Banner.ashx",publickUrl];
+    [PPNetworkHelper GET:urlImge parameters:nil success:^(id responseObject) {
+        NSDictionary *dictionary = responseObject;
+        if ([dictionary[@"returncode"] isEqualToString:@"success"]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSArray *array = dictionary[@"bannerlist"];
+                for (NSDictionary *imageDic in array) {
+                    [self.urlImageArray addObject:imageDic[@"img"]];
+                    self.cycleScrollView.imageURLStringsGroup = self.urlImageArray;
+                    NSLog(@"urlImageArray - %@",imageDic[@"img"]);
+                }
+            });
+            [self.homeTabelView reloadData];
+        }
+    } failure:^(NSError *error) {
+        
+    }];
+}
+
 #pragma mark SDCycleScrollViewDelegate
 /** 点击图片回调 */
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
@@ -124,18 +158,37 @@
     segment.selectType = ^(NSInteger selectIndex,NSString *selectIndexTitle){
         NSLog(@"selectIndexTitle == %@",selectIndexTitle);
         if ([selectIndexTitle isEqualToString:ASLocalizedString(@"All")]) {
-            [self getMarketDataListWithType:1];
+            self.goodsTypeNum = @"1";
+            self.goodsPage = 10;
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeIndeterminate;
         } else if ([selectIndexTitle isEqualToString:ASLocalizedString(@"Women")]) {
-            [self getMarketDataListWithType:3];
+            self.goodsTypeNum = @"3";
+            self.goodsPage = 10;
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeIndeterminate;
         } else if ([selectIndexTitle isEqualToString:ASLocalizedString(@"Men")]) {
-            [self getMarketDataListWithType:2];
+            self.goodsTypeNum = @"2";
+            self.goodsPage = 10;
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeIndeterminate;
         } else if ([selectIndexTitle isEqualToString:ASLocalizedString(@"Makeup")]) {
-            [self getMarketDataListWithType:5];
+            self.goodsTypeNum = @"5";
+            self.goodsPage = 10;
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeIndeterminate;
         } else if ([selectIndexTitle isEqualToString:ASLocalizedString(@"Child")]) {
-            [self getMarketDataListWithType:4];
+            self.goodsTypeNum = @"4";
+            self.goodsPage = 10;
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeIndeterminate;
         } else if ([selectIndexTitle isEqualToString:ASLocalizedString(@"Other")]) {
-            [self getMarketDataListWithType:6];
+            self.goodsTypeNum = @"6";
+            self.goodsPage = 10;
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeIndeterminate;
         }
+        [self getMarketDataListWithType:[self.goodsTypeNum intValue]];
     };
     [self.view addSubview:segment];
 }
@@ -177,8 +230,10 @@
 {
     HomeGoodListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"homeList"];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    MarketListModel *mark = self.marketDataArray[indexPath.section];
-    [cell getMarkerListWithModel:mark];
+    if (self.marketDataArray.count > 0) {
+        MarketListModel *mark = self.marketDataArray[indexPath.section];
+        [cell getMarkerListWithModel:mark];
+    }
     return cell;
 }
 
@@ -193,14 +248,16 @@
 - (void)getMarketDataListWithType:(NSInteger )type
 {
     self.marketDataArray = [NSMutableArray array];
-    NSString *marketUrl = [NSString stringWithFormat:@"http://%@/Good/GoodsList.ashx?pagesize=10&type=%ld",publickUrl,type];
+    NSString *marketUrl = [NSString stringWithFormat:@"http://%@/Good/GoodsList.ashx?pagesize=%ld&type=%ld",publickUrl,self.goodsPage,type];
     [PPNetworkHelper GET:marketUrl parameters:nil responseCache:^(id responseCache) {
 //        [self getGoodTableWith:responseCache];
     } success:^(id responseObject) {
         [self getGoodTableWith:responseObject];
         NSLog(@"responseObject - %@",responseObject);
     } failure:^(NSError *error) {
-        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [self.homeTabelView.mj_footer endRefreshing];
+        [self.homeTabelView.mj_header endRefreshing];
         NSLog(@"fail");
     }];
 }
@@ -222,7 +279,9 @@
         } else {
             NSLog(@"666666666");
         }
-        
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [self.homeTabelView.mj_footer endRefreshing];
+        [self.homeTabelView.mj_header endRefreshing];
     });
 }
 

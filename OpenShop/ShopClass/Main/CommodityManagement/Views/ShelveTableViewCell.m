@@ -32,15 +32,19 @@
     [buyCount addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"#ff213b"] range:NSMakeRange(allLen.length - len.length, len.length)];
     self.profitLabel.attributedText = buyCount;
     NSLog(@"%@",self.productModel.state);
-    NSString *stateNum = [NSString stringWithFormat:@"%@",self.productModel.state];
+    NSString *stateNum = [NSString stringWithFormat:@"%@",self.productModel.offsale];
     if ([stateNum isEqualToString:@"2"]) {
         [self.productNameLabel setTextColor:[UIColor colorWithHexString:@"#111111"]];
         self.shadowView.hidden = self.shadowLabel.hidden = self.discardLabel.hidden = YES;
-        self.priceLabel.hidden = self.profitLabel.hidden = NO;
+        self.priceLabel.hidden = self.profitLabel.hidden = self.redLabel.hidden = self.redImageView.hidden = NO;
     } else if ([stateNum isEqualToString:@"3"]) {
         [self.productNameLabel setTextColor:[UIColor colorWithHexString:@"#b7b7b7"]];
-        self.shadowView.hidden = self.shadowLabel.hidden = self.discardLabel.hidden = NO;
+        self.shadowView.hidden = self.shadowLabel.hidden = self.discardLabel.hidden = self.redLabel.hidden = self.redImageView.hidden = NO;
         self.priceLabel.hidden = self.profitLabel.hidden = YES;
+    } else if ([stateNum isEqualToString:@"1"]) {
+        [self.productNameLabel setTextColor:[UIColor colorWithHexString:@"#111111"]];
+        self.shadowView.hidden = self.shadowLabel.hidden = self.discardLabel.hidden = self.redLabel.hidden = self.redImageView.hidden = YES;
+        self.priceLabel.hidden = self.profitLabel.hidden = NO;
     }
 }
 
@@ -48,6 +52,7 @@
     [self.delegate selectPreviewBtnWithCell:self];
 }
 - (IBAction)saleAction:(UIButton *)sender {
+    [self.delegate selectOnsaleWithCell:self];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

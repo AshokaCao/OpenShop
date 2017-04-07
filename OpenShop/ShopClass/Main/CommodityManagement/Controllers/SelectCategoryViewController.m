@@ -23,6 +23,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.title = ASLocalizedString(@"Select Category");
     [self.selectTableView registerNib:[UINib nibWithNibName:@"SelectTableViewCell" bundle:nil] forCellReuseIdentifier:@"selectCell"];
     self.selectTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     self.selectTableView.scrollEnabled = NO;
@@ -71,6 +72,7 @@
     CategoryModel *model = self.typeArray[indexPath.row];
     NSString *typeNum = [NSString stringWithFormat:@"%@",model.tyid];
     self.selectedBlock(typeNum);
+    [self.navigationController popViewControllerAnimated:YES];
 }
 - (void)returnRoomName:(SelectedBlock)block{
     self.selectedBlock = block;

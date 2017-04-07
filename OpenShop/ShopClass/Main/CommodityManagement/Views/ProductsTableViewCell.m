@@ -29,8 +29,9 @@
     NSString *allLen = [NSString stringWithFormat:ASLocalizedString(@"profit: $%@"),self.productModel.profit];
     [buyCount addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"#ff213b"] range:NSMakeRange(allLen.length - len.length, len.length)];
     self.profitLabel.attributedText = buyCount;
-//    NSLog(@"%@",self.productModel.isdistribution);
-    if (self.productModel.isdistribution) {
+    NSLog(@"%@",self.productModel.goodfrom);
+    NSString *from = [NSString stringWithFormat:@"%@",self.productModel.goodfrom];
+    if ([from isEqualToString:@"1"]) {
         self.distributionLabel.hidden = self.distributionImageView.hidden = NO;
     } else {
         self.distributionLabel.hidden = self.distributionImageView.hidden = YES;
@@ -38,8 +39,10 @@
 }
 
 - (IBAction)previewAction:(UIButton *)sender {
+    [self.delegate saleSelectPreviewBtnWithCell:self];
 }
 - (IBAction)promotionAction:(UIButton *)sender {
+    [self.delegate saleSelectpromotionBtnWithCell:self];
 }
 - (IBAction)shareAction:(UIButton *)sender {
     [self.delegate didselectCellWithButton:sender];

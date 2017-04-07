@@ -43,18 +43,20 @@
     self.logBtn.enabled = NO;
 }
 
-- (void)getCodeNumberWithPhoneNumber:(NSString *)number
-{
-    NSString *urlCode = [NSString stringWithFormat:@"http://%@/Page/setting/SendSMS.ashx?mobile=%@&verifytype=register",tLocalUrl,number];
-    [PPNetworkHelper GET:urlCode parameters:nil success:^(id responseObject) {
-        NSLog(@"success:  %@",[self jsonToString:responseObject]);
+//- (void)getCodeNumberWithPhoneNumber:(NSString *)number
+//{
+//    NSString *urlCode = [NSString stringWithFormat:@"http://%@/Page/setting/SendSMS.ashx?mobile=%@&verifytype=register",tLocalUrl,number];
+//    [PPNetworkHelper GET:urlCode parameters:nil success:^(id responseObject) {
+ //       NSLog(@"success:  %@",[self jsonToString:responseObject]);
         
-    } failure:^(NSError *error) {
-        NSLog(@"%@",error);
-    }];
-}
+ //   } failure:^(NSError *error) {
+  //      NSLog(@"%@",error);
+ //   }];
+//}//
 
 - (IBAction)loginAction:(UIButton *)sender {
+    [self.phoneNumberTextField resignFirstResponder];
+    [self.passWordTextField resignFirstResponder];
     NSString *logUrl = [NSString stringWithFormat:@"http://%@/Account/Login.ashx",publickUrl];
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"mobile"] = [NSString stringWithFormat:@"%@",self.phoneNumberTextField.text];
@@ -84,7 +86,11 @@
                 [self.navigationController pushViewController:shopUp animated:YES];
             }
         } else if ([returnCode isEqualToString:@"error"]) {
-            
+            NSString *returnCode = logDic[@"msg"];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = returnCode;
+            [hud hide:YES afterDelay:2];
         }
     } failure:^(NSError *error) {
          NSLog(@"no");
@@ -93,6 +99,7 @@
 
 - (IBAction)forgetPasswordAction:(UIButton *)sender {
     PhoneNumberViewController *phoneNum = [[PhoneNumberViewController alloc] init];
+    phoneNum.typeStr = @"ForgetPassword";
     [self.navigationController pushViewController:phoneNum animated:YES];
 }
 
@@ -111,8 +118,15 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    
+    [self.phoneNumberTextField resignFirstResponder];
+    [self.passWordTextField resignFirstResponder];
     return YES;
+}
+
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    [self.phoneNumberTextField resignFirstResponder];
+    [self.passWordTextField resignFirstResponder];
 }
 
 - (void)setLiftItem
@@ -141,6 +155,7 @@
 
 - (IBAction)registerAction:(UIButton *)sender {
     PhoneNumberViewController *registVC = [[PhoneNumberViewController alloc] init];
+    registVC.typeStr = @"Regist";
     [self.navigationController pushViewController:registVC animated:YES];
 }
 
@@ -151,6 +166,12 @@
     }
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic options:NSJSONWritingPrettyPrinted error:nil];
     return [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    [self.phoneNumberTextField resignFirstResponder];
+    [self.passWordTextField resignFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning {

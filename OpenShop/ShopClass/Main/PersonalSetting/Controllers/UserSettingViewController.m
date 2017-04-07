@@ -11,6 +11,7 @@
 #import "HXPhotoViewController.h"
 #import "AFNetworking.h"
 #import "MainNavigationViewController.h"
+#import "LoginHomeViewController.h"
 
 @interface UserSettingViewController () <HXPhotoViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *accountView;
@@ -177,6 +178,11 @@
     [userDefaults removeObjectForKey:@"refreshToken"];
 //    [userDefaults removeObjectForKey:@"faceID"];
     [userDefaults synchronize];
+    LoginHomeViewController *log = [[LoginHomeViewController alloc] init];
+    
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:log animated:YES completion:^{
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

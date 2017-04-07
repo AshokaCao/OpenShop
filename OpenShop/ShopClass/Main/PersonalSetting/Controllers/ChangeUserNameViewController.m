@@ -7,6 +7,7 @@
 //
 
 #import "ChangeUserNameViewController.h"
+#import "PhoneNumberViewController.h"
 
 @interface ChangeUserNameViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *userNameTextField;
@@ -20,7 +21,6 @@
     
 //    self.title = ASLocalizedString(@"Edit Nickname");
     [self chooseTitleStr];
-    self.userNameTextField.text = self.nameStr;
     self.userNameTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     [self.userNameTextField addTarget:self action:@selector(userNameDidChange:) forControlEvents:UIControlEventEditingChanged];
     [self leftItem];
@@ -28,19 +28,35 @@
 
 - (void)chooseTitleStr
 {
-    if ([self.changeStr isEqualToString:@"userName"]) {
-        self.title = ASLocalizedString(@"Edit Nickname");
-    } else if ([self.changeStr isEqualToString:@"shopName"]) {
-        self.title = ASLocalizedString(@"Edit Shopname");
-        [self changeShopName];
-    } else if ([self.changeStr isEqualToString:@"welcome"]) {
-        self.title = ASLocalizedString(@"Edit Welcomes");
-    } else if ([self.changeStr isEqualToString:@"facebook"]) {
-        self.title = ASLocalizedString(@"Edit Facebook");
-    } else if ([self.changeStr isEqualToString:@"line"]) {
-        self.title = ASLocalizedString(@"Edit Line");
-    } else if ([self.changeStr isEqualToString:@""]) {
-        
+    if (self.nameStr.length > 1) {
+        self.userNameTextField.text = self.nameStr;
+        if ([self.changeStr isEqualToString:@"userName"]) {
+            self.title = ASLocalizedString(@"Edit Nickname");
+        } else if ([self.changeStr isEqualToString:@"shopName"]) {
+            self.title = ASLocalizedString(@"Edit Shopname");
+        } else if ([self.changeStr isEqualToString:@"welcome"]) {
+            self.title = ASLocalizedString(@"Edit Welcomes");
+        } else if ([self.changeStr isEqualToString:@"facebook"]) {
+            self.title = ASLocalizedString(@"Edit Facebook");
+        } else if ([self.changeStr isEqualToString:@"line"]) {
+            self.title = ASLocalizedString(@"Edit Line");
+        } else if ([self.changeStr isEqualToString:@""]) {
+            
+        }
+    } else {
+        if ([self.changeStr isEqualToString:@"userName"]) {
+            self.userNameTextField.placeholder = ASLocalizedString(@"Please enter your name");
+        } else if ([self.changeStr isEqualToString:@"shopName"]) {
+            self.userNameTextField.placeholder = ASLocalizedString(@"Please enter your shop name");
+        } else if ([self.changeStr isEqualToString:@"welcome"]) {
+            self.userNameTextField.placeholder = ASLocalizedString(@"Please enter welcomes");
+        } else if ([self.changeStr isEqualToString:@"facebook"]) {
+            self.userNameTextField.placeholder = ASLocalizedString(@"Please enter your facebook");
+        } else if ([self.changeStr isEqualToString:@"line"]) {
+            self.userNameTextField.placeholder = ASLocalizedString(@"Please enter your line");
+        } else if ([self.changeStr isEqualToString:@""]) {
+            
+        }
     }
 }
 
@@ -91,11 +107,11 @@
     } else if ([self.changeStr isEqualToString:@"facebook"]) {
         [self changeFacebook];
     } else if ([self.changeStr isEqualToString:@"line"]) {
+        [self changeLine];
         self.title = ASLocalizedString(@"Edit Line");
     } else if ([self.changeStr isEqualToString:@""]) {
         
     }
-    [self backToMain];
 }
 
 - (void)backToMain
@@ -125,11 +141,27 @@
     [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"accessToken"] forHTTPHeaderField:@"accesstoken"];
     [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"refreshToken"] forHTTPHeaderField:@"refreshtoken"];
     [PPNetworkHelper POST:upload parameters:uploadShop success:^(id responseObject) {
+        NSDictionary *diction = responseObject;
+        NSString *code = diction[@"returncode"];
+        if ([code isEqualToString:@"success"]) {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = ASLocalizedString(@"成功");
+            [hud hide:YES afterDelay:2];
+            
+            [self backToMain];
+        } else {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = ASLocalizedString(@"失败");
+            [hud hide:YES afterDelay:2];
+        }
         
     } failure:^(NSError *error) {
-        NSLog(@"%@",error);
-        UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"failure" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alerV show];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = ASLocalizedString(@"网络故障");
+        [hud hide:YES afterDelay:2];
     }];
 }
 
@@ -144,11 +176,26 @@
     [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"accessToken"] forHTTPHeaderField:@"accesstoken"];
     [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"refreshToken"] forHTTPHeaderField:@"refreshtoken"];
     [PPNetworkHelper POST:upload parameters:uploadShop success:^(id responseObject) {
+        NSDictionary *diction = responseObject;
+        NSString *code = diction[@"returncode"];
+        if ([code isEqualToString:@"success"]) {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = ASLocalizedString(@"成功");
+            [hud hide:YES afterDelay:2];
+            [self backToMain];
+        } else {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = ASLocalizedString(@"失败");
+            [hud hide:YES afterDelay:2];
+        }
         
     } failure:^(NSError *error) {
-        NSLog(@"%@",error);
-        UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"failure" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alerV show];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = ASLocalizedString(@"网络故障");
+        [hud hide:YES afterDelay:2];
     }];
 }
 
@@ -163,11 +210,26 @@
     [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"accessToken"] forHTTPHeaderField:@"accesstoken"];
     [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"refreshToken"] forHTTPHeaderField:@"refreshtoken"];
     [PPNetworkHelper POST:upload parameters:uploadShop success:^(id responseObject) {
+        NSDictionary *diction = responseObject;
+        NSString *code = diction[@"returncode"];
+        if ([code isEqualToString:@"success"]) {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = ASLocalizedString(@"成功");
+            [hud hide:YES afterDelay:2];
+            [self backToMain];
+        } else {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = ASLocalizedString(@"失败");
+            [hud hide:YES afterDelay:2];
+        }
         
     } failure:^(NSError *error) {
-        NSLog(@"%@",error);
-        UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"failure" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alerV show];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = ASLocalizedString(@"网络故障");
+        [hud hide:YES afterDelay:2];
     }];
 }
 
@@ -176,23 +238,39 @@
     NSString *upload = [NSString stringWithFormat:@"http://%@/Shop/UpdateShop.ashx",publickUrl];
     NSMutableDictionary *uploadShop = [NSMutableDictionary dictionary];
     uploadShop[@"userid"] = [nNsuserdefaul objectForKey:@"userID"];
-    uploadShop[@"modify"] = @"Name";
+    uploadShop[@"modify"] = @"Line";
     uploadShop[@"content"] = self.userNameTextField.text;
     
     [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"accessToken"] forHTTPHeaderField:@"accesstoken"];
     [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"refreshToken"] forHTTPHeaderField:@"refreshtoken"];
     [PPNetworkHelper POST:upload parameters:uploadShop success:^(id responseObject) {
-        
+        NSLog(@"responseObject - -  - - %@",responseObject);
+        NSDictionary *diction = responseObject;
+        NSString *code = diction[@"returncode"];
+        if ([code isEqualToString:@"success"]) {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = ASLocalizedString(@"成功");
+            [hud hide:YES afterDelay:2];
+            [self backToMain];
+        } else {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = ASLocalizedString(@"失败");
+            [hud hide:YES afterDelay:2];
+        }
     } failure:^(NSError *error) {
-        NSLog(@"%@",error);
-        UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"failure" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alerV show];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = ASLocalizedString(@"网络故障");
+        [hud hide:YES afterDelay:2];
     }];
 }
 
 - (void)changePhone
 {
-    
+    PhoneNumberViewController *phone = [[PhoneNumberViewController alloc] init];
+    [self.navigationController pushViewController:phone animated:YES];
 }
 
 

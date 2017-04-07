@@ -35,7 +35,7 @@
 }
 
 
-
+//
 
 
 - (void)textFieldDidChange:(UITextField *)textField
@@ -87,8 +87,11 @@
 
 - (IBAction)finishAction:(UIButton *)sender {
     self.passWordNum = self.passWordTextField.text;
-    [self registerUserNum];
-    NSLog(@"phoneNum - %@ codeStr - %@ passWordNum - %@",self.phoneNum,self.codeStr,self.passWordNum);
+    if ([self.typeStr isEqualToString:@"password"]) {
+        [self forgetPassword];
+    } else {
+        [self registerUserNum];
+    }
 //    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
@@ -98,7 +101,8 @@
     NSLog(@"%@",urlCode);
     NSMutableDictionary *diction = [NSMutableDictionary dictionary];
     diction[@"mobile"] = number;
-    diction[@"verifytype"] = @"register";
+    diction[@"verifytype"] = self.typeStr;
+    NSLog(@"typeStr - %@",self.typeStr);
     [PPNetworkHelper POST:urlCode parameters:diction success:^(id responseObject) {
         NSLog(@"responseObject   -   %@",responseObject);
         NSDictionary *codeDic = responseObject;
@@ -143,6 +147,34 @@
 //        NSLog(@"注册 - %@",responseObject);
 //    } failure:^(NSError *error) {
 //    }];
+}
+
+- (void)forgetPassword
+{
+    NSString *passUrl = [NSString stringWithFormat:@"http://%@/Account/UpdatePassword.ashx",publickUrl];
+    NSMutableDictionary *diction = [NSMutableDictionary dictionary];
+    diction[@"mobile"] = self.phoneNum;
+    diction[@"password"] = self.passWordTextField.text;
+    diction[@"verifycode"] = self.codeNumberTextField.text;
+    NSLog(@"phoneNum - %@ codeStr - %@ passWordNum - %@",self.phoneNum,self.codeStr,self.passWordNum);
+    [PPNetworkHelper POST:passUrl parameters:diction success:^(id responseObject) {
+        NSLog(@"responseObject  -  %@",responseObject);
+        NSDictionary *diction = responseObject;
+        NSString *returnCode = diction[@"returncode"];
+        NSLog(@"returnCode - %@",returnCode);
+        if ([returnCode isEqualToString:@"success"]) {
+            LoginMainViewController *main = [[LoginMainViewController alloc] init];
+            [self.navigationController pushViewController:main animated:YES];
+            UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"success" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alerV show];
+        } else if ([returnCode isEqualToString:@"error"]) {
+            UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"erroe" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alerV show];
+        }
+    } failure:^(NSError *error) {
+        UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"网路故障" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alerV show];
+    }];
 }
 
 - (NSString *)jsonToString:(NSDictionary *)dic

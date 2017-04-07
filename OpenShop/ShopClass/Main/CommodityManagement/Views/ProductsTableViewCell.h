@@ -12,6 +12,8 @@
 @protocol ProductsTableViewCellDelegate <NSObject>
 
 - (void)didselectCellWithButton:(UIButton *)btn;
+- (void)saleSelectPreviewBtnWithCell:(UITableViewCell *)cell;
+- (void)saleSelectpromotionBtnWithCell:(UITableViewCell *)cell;
 
 @end
 

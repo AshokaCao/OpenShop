@@ -46,6 +46,7 @@
     uploadShop[@"userid"] = [nNsuserdefaul objectForKey:@"userID"];
     uploadShop[@"shopname"] = self.shopNameTextField.text;
     uploadShop[@"facebook"] = self.facebookTextField.text;
+    
     [PPNetworkHelper uploadImagesWithURL:upload parameters:uploadShop name:@"shopImage" images:@[self.heaserImageView.image] fileNames:@[@"shopimg.png"] imageScale:0.1f imageType:@"png" progress:^(NSProgress *progress) {
         
     } success:^(id responseObject) {
@@ -66,6 +67,8 @@
         UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"接口问题" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alerV show];
     }];
+    [self.shopNameTextField resignFirstResponder];
+    [self.facebookTextField resignFirstResponder];
 }
 
 - (void)addChosePhoto
@@ -112,7 +115,22 @@
     }];
     
     UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-    self.heaserImageView.image = image;
+    
+    self.heaserImageView.image = [self OriginImage:image scaleToSize:CGSizeMake(image.size.width * 0.1, image.size.height * 0.1)];
+}
+
+-(UIImage*) OriginImage:(UIImage *)image scaleToSize:(CGSize)size
+{
+    // 下面方法，第一个参数表示区域大小。第二个参数表示是否是非透明的。如果需要显示半透明效果，需要传NO，否则传YES。第三个参数就是屏幕密度了
+    UIGraphicsBeginImageContextWithOptions(size, YES, [UIScreen mainScreen].scale);
+    
+    [image drawInRect:CGRectMake(0, 0, size.width, size.height)];
+    
+    UIImage* scaledImage = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return scaledImage;   //返回的就是已经改变的图片
 }
 
 - (void)didReceiveMemoryWarning {

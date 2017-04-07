@@ -12,7 +12,7 @@
 @protocol ShelveTableViewCellDelegate <NSObject>
 
 - (void)selectPreviewBtnWithCell:(UITableViewCell *)cell;
-
+- (void)selectOnsaleWithCell:(UITableViewCell *)cell;
 
 @end
 
@@ -29,6 +29,8 @@
 @property (nonatomic ,strong) MarketListModel *productModel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViewWidth;
 @property (weak, nonatomic) IBOutlet UILabel *discardLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *redImageView;
+@property (weak, nonatomic) IBOutlet UILabel *redLabel;
 
 - (void)showShelveListWith:(MarketListModel *)model;
 

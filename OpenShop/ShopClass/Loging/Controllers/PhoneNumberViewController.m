@@ -66,6 +66,11 @@
 
 - (IBAction)nextAction:(UIButton *)sender {
     RegisterViewController *regist = [[RegisterViewController alloc] init];
+    if ([self.typeStr isEqualToString:@"ForgetPassword"]) {
+        regist.typeStr = @"password";
+    } else {
+        regist.typeStr = @"register";
+    }
     regist.phoneNum = self.phoneNumberTextField.text;
     [self.navigationController pushViewController:regist animated:YES];
 }

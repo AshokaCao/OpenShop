@@ -10,5 +10,6 @@
 
 @interface PersonSettingTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *firstLable;
+@property (weak, nonatomic) IBOutlet UIImageView *imagView;
 
 @end

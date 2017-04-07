@@ -11,6 +11,7 @@
 #import "UserSettingViewController.h"
 #import "MessageTableViewController.h"
 #import "WebViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface PersonalMainViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *userHeaderImage;
@@ -63,14 +64,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section == 0) {
-        return 2;
-    } else if (section == 1) {
         return 3;
     } else {
         return 1;
@@ -80,11 +79,33 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PersonSettingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"personCell"];
-    NSArray *textArray = @[@"About us",@"Rate",@"Help&FAQ",@"Terms&Plicy",@"Feedback&Report&Problem",@"Invite Friends"];
-    NSDictionary *diction = @{@"one":@[@"About us",@"Rate"],@"two":@[@"Help&FAQ",@"Terms&Plicy",@"Feedback&Report&Problem"],@"three":@[@"Invite Friends"]};
-//    cell.firstLable.text = textArray[indexPath.section + indexPath.row];
-    NSArray *arr = @[@"one",@"two",@"three"];
+    NSDictionary *diction = @{@"one":@[@"Help&FAQ",@"About us",@"Rate us"],@"two":@[@"Invite Friends"]};
+    NSArray *arr = @[@"one",@"two"];
     cell.firstLable.text = diction[arr[indexPath.section]][indexPath.row];
+    switch (indexPath.section) {
+        case 0:
+            switch (indexPath.row) {
+                case 0:
+                    cell.imagView.image = [UIImage imageNamed:@"help_icon"];
+                    break;
+                case 1:
+                    cell.imagView.image = [UIImage imageNamed:@"guanyu_icon"];
+                    break;
+                case 2:
+                    cell.imagView.image = [UIImage imageNamed:@"heart_icon"];
+                    break;
+                    
+                default:
+                    break;
+            }
+            break;
+        case 1:
+            cell.imagView.image = [UIImage imageNamed:@"yaoqing_icon"];
+            break;
+            
+        default:
+            break;
+    }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
@@ -105,20 +126,23 @@
     [self.navigationController pushViewController:webVC animated:YES];
     NSLog(@"indexPath.section - %ld indexPath.row - %ld",indexPath.section,indexPath.row);
     if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-//            NSLog(@"indexPath.section - %ld indexPath.row - %ld",indexPath.section,indexPath.row);
-        } else {
-//            NSLog(@"indexPath.section - %ld indexPath.row - %ld",indexPath.section,indexPath.row);
+        switch (indexPath.row) {
+            case 0:
+                
+                break;
+                
+            case 1:
+                
+                break;
+                
+            case 2:
+                
+                break;
+                
+            default:
+                break;
         }
-    } else if (indexPath.section == 1) {
-        if (indexPath.row == 0) {
-            
-        } else if (indexPath.row == 1) {
-            
-        } else if (indexPath.row == 2) {
-            
-        }
-    } else if (indexPath.section == 2) {
+    } else {
         
     }
 }

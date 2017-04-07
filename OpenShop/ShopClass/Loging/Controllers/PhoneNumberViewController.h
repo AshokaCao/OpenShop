@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface PhoneNumberViewController : UIViewController
+@property (nonatomic ,strong) NSString *typeStr;
 
 @end

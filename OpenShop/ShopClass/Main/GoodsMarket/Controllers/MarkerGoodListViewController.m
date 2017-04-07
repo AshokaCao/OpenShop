@@ -10,6 +10,7 @@
 #import "GoodListTableViewCell.h"
 #import "SDCycleScrollView.h"
 #import "ContactViewController.h"
+#import "WebViewController.h"
 
 @interface MarkerGoodListViewController () <SDCycleScrollViewDelegate, UITableViewDataSource, UITableViewDelegate, UIPopoverPresentationControllerDelegate, GoodListTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *goodsListTableView;
@@ -27,6 +28,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *goodIntroduce;
 @property (nonatomic ,strong) SDCycleScrollView *cycleScrollView3;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleConst;
+@property (nonatomic ,strong) NSString *goodID;
 
 @end
 
@@ -42,6 +44,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeIndeterminate;
     self.title = ASLocalizedString(@"Sourcing details");
     self.tabBarController.tabBar.translucent = NO;
     self.contactBtnW.constant = SCREEN_WIDTH * 0.597;
@@ -50,8 +55,9 @@
     
     [self.goodsListTableView registerNib:[UINib nibWithNibName:@"GoodListTableViewCell" bundle:nil] forCellReuseIdentifier:@"goodsList"];
     // 商品详情和列表共用 model
+    
     NSString *goodsID = self.marketModel.idGood;
-    [self getGoodsListWithGoodID:goodsID];
+    [self getGoodsListWithGoodID:goodsID andUserID:[nNsuserdefaul objectForKey:@"userID"]];
     
     [self setSDCycleScrollView];
     [self mjRefalish];
@@ -80,16 +86,11 @@
 - (void)mjRefalish
 {
     self.goodsListTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-//        [self setSDCycleScrollView];
-        [self.goodsListTableView.mj_header endRefreshing];
-    }];
-    
-    
-    self.goodsListTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        //        [self setSDCycleScrollView];
+        NSString *goodsID = self.marketModel.idGood;
+        [self getGoodsListWithGoodID:goodsID andUserID:[nNsuserdefaul objectForKey:@"userID"]];
         
-        [self.goodsListTableView.mj_footer endRefreshing];
     }];
-    
 }
 #pragma mark 轮播图
 - (void)setSDCycleScrollView
@@ -105,19 +106,17 @@
     [self.tabHeaderView addSubview:_cycleScrollView3];
 }
 
-- (void)getGoodsListWithGoodID:(NSString *)goodID
+- (void)getGoodsListWithGoodID:(NSString *)goodID andUserID:(NSString *)userID
 {
-    NSString *goodsUrl = [NSString stringWithFormat:@"http://%@/Good/GoodDetial.ashx?goodid=%@",publickUrl,goodID];
-    [PPNetworkHelper GET:goodsUrl parameters:nil responseCache:^(id responseCache) {
-        NSLog(@"responseCache - %@",responseCache);
-        if (responseCache != nil) {
-            [self getGoodMessageWith:responseCache];
-        }
-    } success:^(id responseObject) {
+    NSString *goodsUrl = [NSString stringWithFormat:@"http://%@/Good/GoodDetial.ashx?goodid=%@&userid=%@",publickUrl,goodID,userID];
+    
+    [PPNetworkHelper GET:goodsUrl parameters:nil success:^(id responseObject) {
+        NSLog(@"responseCache - %@",responseObject);
         [self getGoodMessageWith:responseObject];
-        [self.goodsListTableView reloadData];
     } failure:^(NSError *error) {
         NSLog(@"failure");
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [self.goodsListTableView.mj_header endRefreshing];
     }];
 }
 
@@ -127,6 +126,7 @@
     self.goodsListArray = [NSMutableArray array];
     self.goodImageArray = [NSMutableArray array];
     NSDictionary *goodDetial = goodsList[@"gooddetial"];
+//    NSLog(@"goodDetial - %@",goodDetial);
     if (goodDetial != nil) {
         dispatch_async(dispatch_get_main_queue(), ^{
             // 商品详情model
@@ -136,19 +136,41 @@
             for (NSDictionary *imageDic in goodDetial[@"goodimg"]) {
                 [self.goodImageArray addObject:imageDic[@"path"]];
             }
+            self.goodID = [NSString stringWithFormat:@"%@",goodsModel.goodid];
+            NSString *isOnsale = [NSString stringWithFormat:@"%@",goodsModel.exist];
+            if ([isOnsale isEqualToString:@"1"]) {
+                [self.onsaleBtn setTitle:ASLocalizedString(@"off shelve") forState:UIControlStateNormal];
+            } else {
+                [self.onsaleBtn setTitle:ASLocalizedString(@"On sale") forState:UIControlStateNormal];
+            }
             self.goodTitle.text = [NSString stringWithFormat:@"%@",goodsModel.goodname];
-            self.goodIntroduce.text = [NSString stringWithFormat:@"%@",goodsModel.introduction];
             
+            
+            NSString *strHtml = [NSString stringWithFormat:@"%@",goodsModel.introduction];
+            NSAttributedString * strAtt = [[NSAttributedString alloc] initWithData:[strHtml dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+            
+            CGSize titleSize = [strHtml boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 28, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
+            NSLog(@"goodIntroduce - %f",titleSize.height);
+            if (titleSize.height < 50) {
+                self.tabHeaderView.sd_height = SCREEN_WIDTH * 1.04 + titleSize.height + 90;
+            } else {
+                self.tabHeaderView.sd_height = SCREEN_WIDTH * 1.04 + titleSize.height + 120;
+            }
+            
+            self.goodIntroduce.attributedText = strAtt;
             self.priceLabel.text = [NSString stringWithFormat:ASLocalizedString(@"price: $%@"),self.marketModel.price];
             
             NSMutableAttributedString *buyCount = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:ASLocalizedString(@"profit: $%@"),self.marketModel.profit]];
             NSString *len = [NSString stringWithFormat:ASLocalizedString(@"$%@"),self.marketModel.profit];
             NSString *allLen = [NSString stringWithFormat:ASLocalizedString(@"profit: $%@"),self.marketModel.profit];
-            NSLog(@"%@",allLen);
+            
             [buyCount addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"#ff213b"] range:NSMakeRange(allLen.length - len.length, len.length)];
             self.profitLabel.attributedText = buyCount;
             self.saleCountLabel.text = [NSString stringWithFormat:ASLocalizedString(@"%@ distribution"),self.marketModel.discount];
             _cycleScrollView3.localizationImageNamesGroup = self.goodImageArray;
+            [self.goodsListTableView reloadData];
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.goodsListTableView.mj_header endRefreshing];
         });
     }
 }
@@ -169,6 +191,7 @@
     MarketListModel *model = [self.goodsListArray firstObject];
     [cell getMessageForModel:model];
 //    cell.shopImageView.sd_width = SCREEN_WIDTH * 0.141;
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     cell.delegate = self;
     return cell;
 }
@@ -212,8 +235,35 @@
 - (IBAction)onsaleAction:(UIButton *)sender {
     MarketListModel *model = [self.goodsListArray firstObject];
     NSString *goodid = [NSString stringWithFormat:@"%@",model.goodid];
-    
-    [self onsaleWithGoodID:goodid andUserID:[nNsuserdefaul objectForKey:@"userID"]];
+    if ([self.onsaleBtn.currentTitle isEqualToString:@"On sale"]) {
+        [self onsaleWithGoodID:goodid andUserID:[nNsuserdefaul objectForKey:@"userID"]];
+    } else {
+        NSString *shelvrUrl = [NSString stringWithFormat:@"http://%@/Good/ShelfGood.ashx",publickUrl];
+        NSMutableDictionary *diction = [NSMutableDictionary dictionary];
+        diction[@"goodid"] = self.goodID;
+        diction[@"userid"] = [nNsuserdefaul objectForKey:@"userID"];
+        
+        [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"accessToken"] forHTTPHeaderField:@"accesstoken"];
+        [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"refreshToken"] forHTTPHeaderField:@"refreshtoken"];
+        [PPNetworkHelper POST:shelvrUrl parameters:diction success:^(id responseObject) {
+            NSLog(@"xiajia   %@",responseObject);
+            NSDictionary *dic = responseObject;
+            if ([dic[@"returncode"] isEqualToString:@"success"]) {
+                UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"success" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alerV show];
+                [self.navigationController popViewControllerAnimated:YES];
+            } else {
+                NSString *mess = dic[@"msg"];
+                UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:mess delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+                [alerV show];
+            }
+        } failure:^(NSError *error) {
+            NSLog(@"goutongshib");
+            UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"链接失败" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+            [alerV show];
+        }];
+
+    }
 }
 
 - (void)onsaleWithGoodID:(NSString *)goodid andUserID:(NSString *)userid
@@ -244,6 +294,8 @@
 - (void)shopList
 {
     NSLog(@"noThing");
+    WebViewController *web = [[WebViewController alloc] init];
+    [self.navigationController pushViewController:web animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

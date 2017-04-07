@@ -15,11 +15,6 @@
                 <frame key="frameInset" width="320" height="43"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTj-xE-kZI">
-                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                        <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="liebiao_icon_jiantou" translatesAutoresizingMaskIntoConstraints="NO" id="yIU-sG-CcJ"/>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yW1-pk-dh6">
                         <color key="backgroundColor" red="0.98431372549019602" green="0.98431372549019602" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
@@ -27,13 +22,21 @@
                             <constraint firstAttribute="height" constant="1" id="sA4-XP-qeP"/>
                         </constraints>
                     </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="guanyu_icon" translatesAutoresizingMaskIntoConstraints="NO" id="nhT-wD-2tY"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="About us" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTj-xE-kZI">
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="bTj-xE-kZI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="9SV-yh-5mN"/>
+                    <constraint firstItem="bTj-xE-kZI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Brz-xW-PgS"/>
+                    <constraint firstItem="nhT-wD-2tY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="DlY-rD-VHl"/>
                     <constraint firstItem="yW1-pk-dh6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="14" id="HyG-vs-tE1"/>
                     <constraint firstItem="yIU-sG-CcJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="LR2-bp-aGB"/>
-                    <constraint firstItem="bTj-xE-kZI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ReF-x6-0Mo"/>
+                    <constraint firstItem="nhT-wD-2tY" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="PaT-G0-NiN"/>
+                    <constraint firstItem="bTj-xE-kZI" firstAttribute="leading" secondItem="nhT-wD-2tY" secondAttribute="trailing" constant="15" id="UuS-NC-vhF"/>
                     <constraint firstAttribute="bottom" secondItem="yW1-pk-dh6" secondAttribute="bottom" id="XHn-vB-HVs"/>
                     <constraint firstAttribute="trailing" secondItem="yW1-pk-dh6" secondAttribute="trailing" id="dvz-Xa-ACd"/>
                     <constraint firstAttribute="trailing" secondItem="yIU-sG-CcJ" secondAttribute="trailing" constant="14" id="oyG-nd-reJ"/>
@@ -41,11 +44,13 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="firstLable" destination="bTj-xE-kZI" id="Efj-il-Kvm"/>
+                <outlet property="imagView" destination="nhT-wD-2tY" id="oxH-me-2nw"/>
             </connections>
-            <point key="canvasLocation" x="-215" y="-39"/>
+            <point key="canvasLocation" x="-333" y="-60"/>
         </tableViewCell>
     </objects>
     <resources>
+        <image name="guanyu_icon" width="18" height="18"/>
         <image name="liebiao_icon_jiantou" width="9" height="14"/>
     </resources>
 </document>

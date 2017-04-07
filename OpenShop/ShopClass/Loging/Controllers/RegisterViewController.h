@@ -10,5 +10,6 @@
 
 @interface RegisterViewController : UIViewController
 @property (nonatomic ,strong) NSString *phoneNum;
+@property (nonatomic ,strong) NSString *typeStr;
 
 @end

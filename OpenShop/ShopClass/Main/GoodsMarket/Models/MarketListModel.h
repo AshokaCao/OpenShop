@@ -49,5 +49,15 @@
 @property (nonatomic ,strong) NSString *goodimgurl;
 /* 是否为代销 */
 @property (nonatomic ,assign) BOOL isdistribution;
+/* 已经上架*/
+@property (nonatomic ,strong) NSString *exist;
+/* 是否我添加的商品*/
+@property (nonatomic ,strong) NSString *goodfrom;
+/* 下架商品的状态*/
+@property (nonatomic ,strong) NSString *offsale;
+
+@property (nonatomic ,strong) NSString *line;
+
+@property (nonatomic ,strong) NSString *imgcount;
 
 @end
