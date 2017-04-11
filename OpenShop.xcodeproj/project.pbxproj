@@ -186,6 +186,9 @@
 		51DF94431E8CDB7A005CE87D /* TZVideoPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51DF94341E8CDB7A005CE87D /* TZVideoPlayerController.m */; };
 		51DF94441E8CDB7A005CE87D /* UIView+Layout.m in Sources */ = {isa = PBXBuildFile; fileRef = 51DF94361E8CDB7A005CE87D /* UIView+Layout.m */; };
 		51DF94471E8CDB86005CE87D /* TZTestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51DF94461E8CDB86005CE87D /* TZTestCell.m */; };
+		51E10E301E9B1ABA00CAC8E4 /* UserModelData.m in Sources */ = {isa = PBXBuildFile; fileRef = 51E10E2F1E9B1ABA00CAC8E4 /* UserModelData.m */; };
+		51E10E341E9B2A9B00CAC8E4 /* PlaceWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51E10E321E9B2A9B00CAC8E4 /* PlaceWebViewController.m */; };
+		51E10E351E9B2A9B00CAC8E4 /* PlaceWebViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51E10E331E9B2A9B00CAC8E4 /* PlaceWebViewController.xib */; };
 		51E2BEF71E602424008EB69D /* PersonSettingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 51E2BEF51E602424008EB69D /* PersonSettingTableViewCell.m */; };
 		51E2BEF81E602424008EB69D /* PersonSettingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51E2BEF61E602424008EB69D /* PersonSettingTableViewCell.xib */; };
 		51E2BEFC1E602A70008EB69D /* UserSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51E2BEFA1E602A70008EB69D /* UserSettingViewController.m */; };
@@ -485,6 +488,11 @@
 		51DF94361E8CDB7A005CE87D /* UIView+Layout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Layout.m"; sourceTree = "<group>"; };
 		51DF94451E8CDB86005CE87D /* TZTestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TZTestCell.h; sourceTree = "<group>"; };
 		51DF94461E8CDB86005CE87D /* TZTestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TZTestCell.m; sourceTree = "<group>"; };
+		51E10E2E1E9B1ABA00CAC8E4 /* UserModelData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserModelData.h; sourceTree = "<group>"; };
+		51E10E2F1E9B1ABA00CAC8E4 /* UserModelData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserModelData.m; sourceTree = "<group>"; };
+		51E10E311E9B2A9B00CAC8E4 /* PlaceWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlaceWebViewController.h; sourceTree = "<group>"; };
+		51E10E321E9B2A9B00CAC8E4 /* PlaceWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlaceWebViewController.m; sourceTree = "<group>"; };
+		51E10E331E9B2A9B00CAC8E4 /* PlaceWebViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlaceWebViewController.xib; sourceTree = "<group>"; };
 		51E2BEF41E602424008EB69D /* PersonSettingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonSettingTableViewCell.h; sourceTree = "<group>"; };
 		51E2BEF51E602424008EB69D /* PersonSettingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonSettingTableViewCell.m; sourceTree = "<group>"; };
 		51E2BEF61E602424008EB69D /* PersonSettingTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PersonSettingTableViewCell.xib; sourceTree = "<group>"; };
@@ -856,6 +864,9 @@
 				511E95131E84EC33004F66A4 /* SelectCategoryViewController.h */,
 				511E95141E84EC33004F66A4 /* SelectCategoryViewController.m */,
 				511E95151E84EC33004F66A4 /* SelectCategoryViewController.xib */,
+				51E10E311E9B2A9B00CAC8E4 /* PlaceWebViewController.h */,
+				51E10E321E9B2A9B00CAC8E4 /* PlaceWebViewController.m */,
+				51E10E331E9B2A9B00CAC8E4 /* PlaceWebViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -927,6 +938,8 @@
 		518C7EE21E1C9F2100BE076B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				51E10E2E1E9B1ABA00CAC8E4 /* UserModelData.h */,
+				51E10E2F1E9B1ABA00CAC8E4 /* UserModelData.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1327,6 +1340,7 @@
 				511E950F1E84E520004F66A4 /* 椭圆-1@2x.png in Resources */,
 				511E95041E84E520004F66A4 /* multimedia_videocard_play@2x.png in Resources */,
 				511E94D71E84E520004F66A4 /* camera_close_highlighted@2x.png in Resources */,
+				51E10E351E9B2A9B00CAC8E4 /* PlaceWebViewController.xib in Resources */,
 				511E94DD1E84E520004F66A4 /* camera_flashlight_open@2x.png in Resources */,
 				511E94F51E84E520004F66A4 /* compose_photo_original_highlighted@2x.png in Resources */,
 				515425701E6E492200034535 /* PromoteViewController.xib in Resources */,
@@ -1450,6 +1464,7 @@
 				511E94CD1E84E520004F66A4 /* HXPhotoViewController.m in Sources */,
 				511E94CF1E84E520004F66A4 /* HXTransition.m in Sources */,
 				5169AE7C1E8C9913008536AF /* PictureShowCollectionViewCell.m in Sources */,
+				51E10E341E9B2A9B00CAC8E4 /* PlaceWebViewController.m in Sources */,
 				517733861E63B7EF0009DAF9 /* MessageTableTableViewCell.m in Sources */,
 				516F30191E76A70F0031333B /* WebViewController.m in Sources */,
 				5187C34E1E2473A900EC797F /* PersonalMainViewController.m in Sources */,
@@ -1485,6 +1500,7 @@
 				511E94C41E84E520004F66A4 /* HXPhotoConst.m in Sources */,
 				51F351781E963E1000AC72C7 /* CWActionSheetTableViewCell.m in Sources */,
 				51F007F61E6919E4008B4CA6 /* EditingGoodsViewController.m in Sources */,
+				51E10E301E9B1ABA00CAC8E4 /* UserModelData.m in Sources */,
 				511E95121E84E520004F66A4 /* UIView+HXExtension.m in Sources */,
 				51D58A941E1F3D6E00EE8FDD /* LoginMainViewController.m in Sources */,
 				51DF94401E8CDB7A005CE87D /* TZPhotoPreviewCell.m in Sources */,

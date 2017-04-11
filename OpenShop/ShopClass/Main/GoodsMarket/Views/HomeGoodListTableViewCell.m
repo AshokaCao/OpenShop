@@ -32,7 +32,7 @@
     self.sellerCountLabel.text = [NSString stringWithFormat:ASLocalizedString(@"%@ distribution"),self.marketModel.discount];
 }
 - (IBAction)sellAction:(UIButton *)sender {
-    
+    [self.delegate selectSellWith:self];
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

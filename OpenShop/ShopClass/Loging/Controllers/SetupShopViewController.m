@@ -90,19 +90,29 @@
         NSUInteger sourceType = UIImagePickerControllerSourceTypeCamera;
         if (buttonIndex == 0) {
             sourceType = UIImagePickerControllerSourceTypeCamera;
+            //跳转到相机或相册页面
+            UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+            imagePickerController.delegate = self;
+            imagePickerController.navigationBar.translucent = NO;
+            imagePickerController.allowsEditing = YES;
+            imagePickerController.sourceType = sourceType;
+            
+            [self presentViewController:imagePickerController animated:YES completion:^{
+                
+            }];
         } else if (buttonIndex == 1) {
             sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+            //跳转到相机或相册页面
+            UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+            imagePickerController.delegate = self;
+            imagePickerController.navigationBar.translucent = NO;
+            imagePickerController.allowsEditing = YES;
+            imagePickerController.sourceType = sourceType;
+            
+            [self presentViewController:imagePickerController animated:YES completion:^{
+                
+            }];
         }
-        //跳转到相机或相册页面
-        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-        imagePickerController.delegate = self;
-        imagePickerController.navigationBar.translucent = NO;
-        imagePickerController.allowsEditing = YES;
-        imagePickerController.sourceType = sourceType;
-
-        [self presentViewController:imagePickerController animated:YES completion:^{
-
-        }];
     } else {
         
     }
@@ -114,7 +124,7 @@
         
     }];
     
-    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     
     self.heaserImageView.image = [self OriginImage:image scaleToSize:CGSizeMake(image.size.width * 0.1, image.size.height * 0.1)];
 }

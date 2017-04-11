@@ -165,11 +165,16 @@
         if ([returnCode isEqualToString:@"success"]) {
             LoginMainViewController *main = [[LoginMainViewController alloc] init];
             [self.navigationController pushViewController:main animated:YES];
-            UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"success" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alerV show];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = @"Success";
+            [hud hide:YES afterDelay:2];
         } else if ([returnCode isEqualToString:@"error"]) {
-            UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"erroe" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alerV show];
+            NSString *errorCode = diction[@"msg"];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = errorCode;
+            [hud hide:YES afterDelay:2];
         }
     } failure:^(NSError *error) {
         UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"网路故障" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];

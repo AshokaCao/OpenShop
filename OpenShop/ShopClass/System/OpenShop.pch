@@ -48,8 +48,8 @@
 
 // 115.29.247.29:8088
 // 192.168.126.63:8101
-//#define publickUrl @"192.168.126.63:8101"
-#define publickUrl @"115.29.247.29:8088"
+#define publickUrl @"192.168.126.63:8101"
+//#define publickUrl @"115.29.247.29:8088"
 
 #import "UIColor+Help.h"
 #import "UIView+SDExtension.h"

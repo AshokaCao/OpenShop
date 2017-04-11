@@ -56,7 +56,8 @@
     [self.goodsListTableView registerNib:[UINib nibWithNibName:@"GoodListTableViewCell" bundle:nil] forCellReuseIdentifier:@"goodsList"];
     // 商品详情和列表共用 model
     
-    NSString *goodsID = self.marketModel.idGood;
+    NSString *goodsID = self.marketModel.goodid;
+    NSLog(@"goodid - %@",self.marketModel);
     [self getGoodsListWithGoodID:goodsID andUserID:[nNsuserdefaul objectForKey:@"userID"]];
     
     [self setSDCycleScrollView];
@@ -114,7 +115,7 @@
         NSLog(@"responseCache - %@",responseObject);
         [self getGoodMessageWith:responseObject];
     } failure:^(NSError *error) {
-        NSLog(@"failure");
+        NSLog(@"failure - %@",goodsUrl);
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self.goodsListTableView.mj_header endRefreshing];
     }];
@@ -294,7 +295,9 @@
 - (void)shopList
 {
     NSLog(@"noThing");
+    NSString *shopInfo = [NSString stringWithFormat:@"http://%@/Good/app/shopdetails.aspx?shopid=%@",publickUrl,self.marketModel.shopid];
     WebViewController *web = [[WebViewController alloc] init];
+    web.showUrl = shopInfo;
     [self.navigationController pushViewController:web animated:YES];
 }
 

@@ -15,7 +15,7 @@
 #import "MarketListModel.h"
 #import "SearchViewController.h"
 
-@interface MarketMainViewController () <SDCycleScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface MarketMainViewController () <SDCycleScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, HomeGoodListTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet UIView *tabHeaderView;
 @property (weak, nonatomic) IBOutlet UITableView *homeTabelView;
 @property (nonatomic ,strong) NSMutableArray *marketDataArray;
@@ -234,12 +234,22 @@
         MarketListModel *mark = self.marketDataArray[indexPath.section];
         [cell getMarkerListWithModel:mark];
     }
+    cell.delegate = self;
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     MarketListModel *model = self.marketDataArray[indexPath.section];
+    MarkerGoodListViewController *markerList = [[MarkerGoodListViewController alloc] init];
+    markerList.marketModel = model;
+    [self.navigationController pushViewController:markerList animated:YES];
+}
+
+- (void)selectSellWith:(UITableViewCell *)cell
+{
+    NSIndexPath *path = [self.homeTabelView indexPathForCell:cell];
+    MarketListModel *model = self.marketDataArray[path.section];
     MarkerGoodListViewController *markerList = [[MarkerGoodListViewController alloc] init];
     markerList.marketModel = model;
     [self.navigationController pushViewController:markerList animated:YES];

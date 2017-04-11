@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlaceWebViewController">
+            <connections>
+                <outlet property="shelveBtn" destination="FkD-Nn-L7l" id="PnI-Bu-ana"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="webListView" destination="jTj-bU-Bad" id="dC3-a7-j7G"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jTj-bU-Bad">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="619"/>
+                    <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </webView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9An-Bu-Pbs">
+                    <rect key="frame" x="0.0" y="619" width="375" height="48"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FkD-Nn-L7l">
+                            <rect key="frame" x="255" y="0.0" width="120" height="48"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="120" id="o90-ZU-84Q"/>
+                            </constraints>
+                            <state key="normal" title="下架">
+                                <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="shelveAction:" destination="-1" eventType="touchUpInside" id="hIR-KO-Zgm"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="FkD-Nn-L7l" firstAttribute="top" secondItem="9An-Bu-Pbs" secondAttribute="top" id="4UA-Tj-dUI"/>
+                        <constraint firstAttribute="height" constant="48" id="AF1-IX-4NM"/>
+                        <constraint firstAttribute="bottom" secondItem="FkD-Nn-L7l" secondAttribute="bottom" id="BSL-QY-AGB"/>
+                        <constraint firstAttribute="trailing" secondItem="FkD-Nn-L7l" secondAttribute="trailing" id="tXs-yY-XIZ"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="jTj-bU-Bad" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1oi-ya-dtP"/>
+                <constraint firstAttribute="bottom" secondItem="9An-Bu-Pbs" secondAttribute="bottom" id="A5W-PQ-2g5"/>
+                <constraint firstAttribute="trailing" secondItem="9An-Bu-Pbs" secondAttribute="trailing" id="Fj8-9q-U9t"/>
+                <constraint firstItem="9An-Bu-Pbs" firstAttribute="top" secondItem="jTj-bU-Bad" secondAttribute="bottom" id="QR5-0x-Aqt"/>
+                <constraint firstItem="9An-Bu-Pbs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ShU-ot-c9g"/>
+                <constraint firstItem="jTj-bU-Bad" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="dMS-zl-7I5"/>
+                <constraint firstAttribute="trailing" secondItem="jTj-bU-Bad" secondAttribute="trailing" id="mc3-HM-3Ez"/>
+            </constraints>
+            <point key="canvasLocation" x="-43" y="27"/>
+        </view>
+    </objects>
+</document>

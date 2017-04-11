@@ -9,7 +9,7 @@
 #import "WebViewController.h"
 #import <WebKit/WebKit.h>
 
-@interface WebViewController ()
+@interface WebViewController () <UIWebViewDelegate>
 
 @end
 
@@ -21,10 +21,21 @@
     
     UIWebView *webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
     
-    
-    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"https://www.baidu.com"]]];
+    webView.delegate = self;
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:self.showUrl]]];
     
     [self.view addSubview:webView];
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView
+{
+    NSLog(@"------------");
+}
+
+
+- (void)webViewDidStartLoad:(UIWebView *)webView
+{
+    NSLog(@"start");
 }
 
 - (void)didReceiveMemoryWarning {

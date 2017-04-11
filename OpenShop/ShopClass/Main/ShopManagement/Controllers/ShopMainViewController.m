@@ -33,6 +33,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lineLabel;
 @property (nonatomic ,strong) ShopListModel *shopListModel;
 
+@property (nonatomic ,strong) NSString *shopID;
 
 @end
 
@@ -109,6 +110,7 @@
                 self.shopNameLabel.text = [NSString stringWithFormat:@"%@",self.shopListModel.storename];
                 self.welcomeStrLabel.text = self.shopListModel.introduction;
                 self.phoneNumLabel.text = [NSString stringWithFormat:@"%@",self.shopListModel.phone];
+                self.shopID = self.shopListModel.shopid;
                 if (faceStr.length > 5) {
                     self.facebookLabel.text = self.shopListModel.facebook;
                 } else {
@@ -199,6 +201,7 @@
 - (void)odentityAction
 {
     IdentificationViewController *ident = [[IdentificationViewController alloc] init];
+    ident.shopID = self.shopID;
     [self.navigationController pushViewController:ident animated:YES];
 }
 
@@ -235,19 +238,29 @@
         NSUInteger sourceType = UIImagePickerControllerSourceTypeCamera;
         if (buttonIndex == 0) {
             sourceType = UIImagePickerControllerSourceTypeCamera;
+            //跳转到相机或相册页面
+            UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+            imagePickerController.delegate = self;
+            imagePickerController.navigationBar.translucent = NO;
+            imagePickerController.allowsEditing = YES;
+            imagePickerController.sourceType = sourceType;
+            
+            [self presentViewController:imagePickerController animated:YES completion:^{
+                
+            }];
         } else if (buttonIndex == 1) {
             sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-        }
-        //跳转到相机或相册页面
-        UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
-        imagePickerController.delegate = self;
-        imagePickerController.navigationBar.translucent = NO;
-        imagePickerController.allowsEditing = YES;
-        imagePickerController.sourceType = sourceType;
-        
-        [self presentViewController:imagePickerController animated:YES completion:^{
+            //跳转到相机或相册页面
+            UIImagePickerController *imagePickerController = [[UIImagePickerController alloc] init];
+            imagePickerController.delegate = self;
+            imagePickerController.navigationBar.translucent = NO;
+            imagePickerController.allowsEditing = YES;
+            imagePickerController.sourceType = sourceType;
             
-        }];
+            [self presentViewController:imagePickerController animated:YES completion:^{
+                
+            }];
+        }
     } else {
         
     }

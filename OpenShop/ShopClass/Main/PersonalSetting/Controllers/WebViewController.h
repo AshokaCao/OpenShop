@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface WebViewController : UIViewController
+@property (nonatomic ,strong) NSString *showUrl;
 
 @end

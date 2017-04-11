@@ -12,7 +12,7 @@
 @property (nonatomic ,strong) NSString *facebook;
 @property (nonatomic ,strong) NSString *shoplogo;
 @property (nonatomic ,strong) NSString *storename;
-@property (nonatomic ,strong) NSString *shopID;
+@property (nonatomic ,strong) NSString *shopid;
 @property (nonatomic ,strong) NSString *introduction;
 @property (nonatomic ,strong) NSString *authentication;
 @property (nonatomic ,strong) NSString *phone;

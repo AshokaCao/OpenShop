@@ -14,6 +14,7 @@
 #import "MarketListModel.h"
 #import "WebViewController.h"
 #import "CWActionSheet.h"
+#import "MarkerGoodListViewController.h"
 
 @interface CommodityMainViewController () <UITableViewDelegate, UITableViewDataSource, ProductsTableViewCellDelegate, CQCustomActionSheetDelegate, ShelveTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *saleBtn;
@@ -41,6 +42,8 @@
     
     self.navigationController.navigationBar.translucent = NO;
     self.tabBarController.tabBar.translucent = NO;
+    
+    [self registTableView];
     self.shelveBtn.selected = NO;
     self.shelveLine.hidden = YES;
     self.saleBtn.selected = !self.shelveBtn.isSelected;
@@ -50,8 +53,8 @@
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;
     NSLog(@"[nNsuserdefaul objectForKey -%@",[nNsuserdefaul objectForKey:@"userID"]);
-//    [self registTableView];
     [self mjRefalish];
+    self.productTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 - (void)registTableView
@@ -104,32 +107,34 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (self.productArray.count > 0) {
-        if (self.saleBtn.isSelected) {
-            [self.productTableView registerNib:[UINib nibWithNibName:@"ProductsTableViewCell" bundle:nil] forCellReuseIdentifier:@"productCell"];
-            ProductsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"productCell" forIndexPath:indexPath];
-            if (!cell) {
-                cell = [[ProductsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"productCell"];
-            }
+    if (self.saleBtn.isSelected) {
+//            [self.productTableView registerNib:[UINib nibWithNibName:@"ProductsTableViewCell" bundle:nil] forCellReuseIdentifier:@"productCell"];
+        ProductsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"productCell" forIndexPath:indexPath];
+        if (!cell) {
+            cell = [[ProductsTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"productCell"];
+        }
+        
+        if (self.productArray.count > 0) {
             MarketListModel *model = self.productArray[indexPath.section];
             [cell showProductListWith:model];
-            cell.delegate = self;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return cell;
-        } else if (self.shelveBtn.isSelected) {
-            [self.productTableView registerNib:[UINib nibWithNibName:@"ShelveTableViewCell" bundle:nil] forCellReuseIdentifier:@"shelveCell"];
-            ShelveTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"shelveCell" forIndexPath:indexPath];
-            if (!cell) {
-                cell = [[ShelveTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"shelveCell"];
-            }
+        }
+        cell.delegate = self;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
+    } else {
+//            [self.productTableView registerNib:[UINib nibWithNibName:@"ShelveTableViewCell" bundle:nil] forCellReuseIdentifier:@"shelveCell"];
+        ShelveTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"shelveCell" forIndexPath:indexPath];
+        if (!cell) {
+            cell = [[ShelveTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"shelveCell"];
+        }
+        if (self.productArray.count > 0) {
             MarketListModel *model = self.productArray[indexPath.section];
             [cell showShelveListWith:model];
-            cell.delegate = self;
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            return cell;
         }
+        cell.delegate = self;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return cell;
     }
-    return nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -143,7 +148,10 @@
         editView.imageCount = model.imgcount;
         [self.navigationController pushViewController:editView animated:YES];
     } else {
-        
+        MarkerGoodListViewController *place = [[MarkerGoodListViewController alloc] init];
+        place.marketModel = model;
+        NSLog(@"----   %@",model);
+        [self.navigationController pushViewController:place animated:YES];
     }
 }
 
@@ -197,19 +205,26 @@
 
 - (void)getShopGoodsTableWithID:(NSString *)userID
 {
-    self.productArray = [NSMutableArray array];
     NSString *goodTable = [NSString stringWithFormat:@"http://%@/Good/MyGoodListByState.ashx?userid=%@&pagesize=15&state=%@",publickUrl,userID,self.stadeNum];
     
     [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"accessToken"] forHTTPHeaderField:@"accesstoken"];
     [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"refreshToken"] forHTTPHeaderField:@"refreshtoken"];
     
+//    [PPNetworkHelper GET:goodTable parameters:nil responseCache:^(id responseCache) {
+//        
+//    } success:^(id responseObject) {
+//        NSLog(@"responseObject - %@",responseObject);
+//        [self getGoodTableWith:responseObject];
+//    } failure:^(NSError *error) {
+//        NSLog(@"failure");
+//    }];
     [PPNetworkHelper GET:goodTable parameters:nil responseCache:^(id responseCache) {
-        
+        NSLog(@"responseObject - %@",responseCache);
+        [self getGoodTableWith:responseCache];
     } success:^(id responseObject) {
         NSLog(@"responseObject - %@",responseObject);
         [self getGoodTableWith:responseObject];
     } failure:^(NSError *error) {
-        NSLog(@"failure");
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self.productTableView.mj_header endRefreshing];
         [self.productTableView.mj_footer endRefreshing];
@@ -218,6 +233,7 @@
 
 - (void)getGoodTableWith:(id)some
 {
+    self.productArray = [NSMutableArray array];
     NSMutableDictionary *marketDict = some;
     NSMutableArray *array = [marketDict valueForKey:@"goodlist"];
     dispatch_async(dispatch_get_main_queue(), ^{
@@ -231,9 +247,7 @@
             }
             [self.productTableView reloadData];
         } else {
-            UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"没有商品" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alerV show];
-            NSLog(@"666666666");
+            
         }
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self.productTableView.mj_header endRefreshing];
@@ -243,15 +257,20 @@
 
 - (void)selectPreviewBtnWithCell:(UITableViewCell *)cell
 {
+    NSIndexPath *prePath = [self.productTableView indexPathForCell:cell];
+    MarketListModel *marke = self.productArray[prePath.section];
+    NSString *goodUrl = [NSString stringWithFormat:@"http://%@/Good/app/gooddetails.aspx?goodid=%@",publickUrl,marke.goodid];
+    NSLog(@"%@",goodUrl);
     WebViewController *webView = [[WebViewController alloc] init];
+    webView.showUrl = goodUrl;
     [self.navigationController pushViewController:webView animated:YES];
 }
 
 - (void)saleSelectpromotionBtnWithCell:(UITableViewCell *)cell
 {
     NSIndexPath *selectPath =  [self.productTableView indexPathForCell:cell];
-    NSLog(@"---------%@",selectPath);
     MarketListModel *mark = self.productArray[selectPath.section];
+    NSLog(@"---------%@,%@",mark.goodimgs,mark.line);
     
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
     NSArray *title = @[@"Save the picture", @"copy the name & line" , @"copy the name",@"copy the link"];
@@ -259,14 +278,25 @@
         NSLog(@"点击了%ldd",(long) indexPath.row);
         switch (indexPath.row) {
             case 0:
-                
+            {
+                NSArray *urlArray = mark.goodimgs;
+                if (urlArray.count > 0) {
+                    for (NSDictionary *urlDic in urlArray) {
+                        NSString *urlString = urlDic[@"path"];
+                        NSData *data = [NSData dataWithContentsOfURL:[NSURL  URLWithString:urlString]];
+                        UIImage *image = [UIImage imageWithData:data]; // 取得图片
+                        NSLog(@"image  =  %@",image);
+                        UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
+                    }
+                }
+            }
                 break;
             case 1:
-                pasteboard.string = [NSString stringWithFormat:@"%@,%@",mark.shopname,mark.line];
+                pasteboard.string = [NSString stringWithFormat:@"%@,%@",mark.goodname,mark.line];
                 break;
                 
             case 2:
-                pasteboard.string = [NSString stringWithFormat:@"%@,",mark.shopname];
+                pasteboard.string = [NSString stringWithFormat:@"%@,",mark.goodname];
                 break;
             case 3:
                 pasteboard.string = [NSString stringWithFormat:@"%@,",mark.line];
@@ -279,9 +309,29 @@
     [sheet show];
 }
 
+- (void)image: (UIImage *) image didFinishSavingWithError: (NSError *) error contextInfo: (void *) contextInfo
+
+{
+    NSString *msg = nil ;
+    if(error != NULL){
+        msg = ASLocalizedString(@"保存图片失败");
+    }else{
+        msg = ASLocalizedString(@"保存图片成功");
+    }
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    hud.mode = MBProgressHUDModeText;
+    hud.labelText = msg;
+    [hud hide:YES afterDelay:2];
+}
+
 - (void)saleSelectPreviewBtnWithCell:(UITableViewCell *)cell
 {
+    NSIndexPath *prePath = [self.productTableView indexPathForCell:cell];
+    MarketListModel *marke = self.productArray[prePath.section];
+    NSString *goodUrl = [NSString stringWithFormat:@"http://%@/Good/app/gooddetails.aspx?goodid=%@",publickUrl,marke.goodid];
+    NSLog(@"%@",goodUrl);
     WebViewController *webView = [[WebViewController alloc] init];
+    webView.showUrl = goodUrl;
     [self.navigationController pushViewController:webView animated:YES];
 }
 

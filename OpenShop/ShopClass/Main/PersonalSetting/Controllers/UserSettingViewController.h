@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserModelData.h"
 
 @interface UserSettingViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *accountIDLabel;
@@ -15,5 +16,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *nickNameLa;
 @property (weak, nonatomic) IBOutlet UILabel *changePasswordLa;
 @property (weak, nonatomic) IBOutlet UIButton *outBtn;
+@property (nonatomic ,strong) UserModelData *userData;
 
 @end

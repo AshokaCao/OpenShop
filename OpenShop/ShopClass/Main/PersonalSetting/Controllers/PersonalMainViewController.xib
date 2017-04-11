@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PersonalMainViewController">
             <connections>
+                <outlet property="imageWidth" destination="iJn-ot-ADd" id="1sR-xa-zHB"/>
                 <outlet property="personalTableView" destination="3yo-Ma-7wt" id="klu-ns-iNF"/>
                 <outlet property="userHeaderImage" destination="B3j-QY-oSD" id="2bX-j4-f31"/>
                 <outlet property="userImageView" destination="Fj4-NV-Ird" id="Hbt-ao-fZO"/>
@@ -22,18 +26,24 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fj4-NV-Ird">
+                    <rect key="frame" x="0.0" y="10" width="375" height="109"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="setting_img_touxiang" translatesAutoresizingMaskIntoConstraints="NO" id="B3j-QY-oSD">
+                            <rect key="frame" x="14" y="22" width="65" height="65"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="B3j-QY-oSD" secondAttribute="height" multiplier="1:1" id="hLT-0q-Inl"/>
+                                <constraint firstAttribute="width" constant="65" id="iJn-ot-ADd"/>
                             </constraints>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Suchada" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PkZ-xk-xkj">
+                            <rect key="frame" x="94" y="44.5" width="67" height="20.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="liebiao_icon_jiantou" translatesAutoresizingMaskIntoConstraints="NO" id="khw-by-RrF"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="liebiao_icon_jiantou" translatesAutoresizingMaskIntoConstraints="NO" id="khw-by-RrF">
+                            <rect key="frame" x="352" y="47.5" width="9" height="14"/>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -48,6 +58,7 @@
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="3yo-Ma-7wt">
+                    <rect key="frame" x="0.0" y="119" width="375" height="210"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="210" id="fwM-1j-tce"/>
@@ -68,7 +79,7 @@
                 <constraint firstItem="Fj4-NV-Ird" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="oZT-Dg-nVa"/>
                 <constraint firstAttribute="trailing" secondItem="Fj4-NV-Ird" secondAttribute="trailing" id="v2n-in-QDL"/>
             </constraints>
-            <point key="canvasLocation" x="-598" y="-142"/>
+            <point key="canvasLocation" x="-1030" y="-127"/>
         </view>
     </objects>
     <resources>

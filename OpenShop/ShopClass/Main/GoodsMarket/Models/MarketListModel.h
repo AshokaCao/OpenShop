@@ -60,4 +60,6 @@
 
 @property (nonatomic ,strong) NSString *imgcount;
 
+@property (nonatomic ,strong) NSArray *goodimgs;
+
 @end

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface IdentificationViewController : UIViewController
+@property (nonatomic ,strong) NSString *shopID;
 
 @end

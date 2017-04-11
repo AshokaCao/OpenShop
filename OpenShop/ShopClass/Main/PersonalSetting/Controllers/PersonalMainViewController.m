@@ -12,12 +12,15 @@
 #import "MessageTableViewController.h"
 #import "WebViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "UserModelData.h"
 
 @interface PersonalMainViewController () <UITableViewDelegate, UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIImageView *userHeaderImage;
 @property (weak, nonatomic) IBOutlet UILabel *userNameLabel;
 @property (weak, nonatomic) IBOutlet UIView *userImageView;
 @property (weak, nonatomic) IBOutlet UITableView *personalTableView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageWidth;
+@property (nonatomic ,strong) UserModelData *setUserData;
 
 @end
 
@@ -26,7 +29,17 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    [self getUserData];
+}
+
+- (void)viewWillLayoutSubviews
+{
+    [super viewWillLayoutSubviews];
+    self.imageWidth.constant = SCREEN_WIDTH * 0.173;
+    [self.userHeaderImage.layer setCornerRadius:(self.userHeaderImage.sd_height/2)];
+    [self.userHeaderImage.layer setMasksToBounds:YES];
+    [self.userHeaderImage setContentMode:UIViewContentModeScaleAspectFill];
+    [self.userHeaderImage setClipsToBounds:YES];
 }
 
 - (void)viewDidLoad {
@@ -34,7 +47,6 @@
     // Do any additional setup after loading the view from its nib.
     
     self.navigationController.navigationBar.translucent = NO;
-    
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(nextPage:)];
     [self.userImageView addGestureRecognizer:tap];
@@ -59,6 +71,7 @@
 - (void)nextPage:(UITapGestureRecognizer *)tap
 {
     UserSettingViewController *setting = [[UserSettingViewController alloc] init];
+    setting.userData = self.setUserData;
     [self.navigationController pushViewController:setting animated:YES];
 }
 
@@ -147,6 +160,27 @@
     }
 }
 
+- (void)getUserData
+{
+    NSString *userUrl = [NSString stringWithFormat:@"http://%@/Account/UserDetial.ashx?userid=%@",publickUrl,[nNsuserdefaul objectForKey:@"userID"]];
+    [PPNetworkHelper GET:userUrl parameters:nil success:^(id responseObject) {
+        NSLog(@"userData - %@",responseObject);
+        NSDictionary *userDic = responseObject;
+        NSString *returnCode = userDic[@"returncode"];
+        if ([returnCode isEqualToString:@"success"]) {
+            NSDictionary *listDic = userDic[@"userinfo"];
+            UserModelData *model = [[UserModelData alloc] init];
+            [model setValuesForKeysWithDictionary:listDic];
+            self.setUserData = model;
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.userHeaderImage setImageWithURL:[NSURL URLWithString:model.headimgurl] placeholderImage:[UIImage imageNamed:@""]];
+                self.userNameLabel.text = model.nickname;
+            });
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"------failure");
+    }];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

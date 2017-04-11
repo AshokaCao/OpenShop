@@ -132,7 +132,7 @@
         [self configCollectionView];
         self.bottomBtnView.hidden = YES;
     }
-    self.isdis = @"1";
+    self.isdis = @"0";
     _selectedPhotos = [NSMutableArray array];
     _selectedAssets = [NSMutableArray array];
     self.deleteImageID = [NSMutableArray array];
@@ -574,7 +574,7 @@
     if (self.swichBtn.isSelected) {
         self.isdis = @"1";
     } else {
-        self.isdis = @"2";
+        self.isdis = @"0";
     }
 }
 - (IBAction)selectCategoryAction:(UIButton *)sender {

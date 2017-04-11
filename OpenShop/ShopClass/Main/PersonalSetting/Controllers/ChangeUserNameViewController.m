@@ -28,7 +28,7 @@
 
 - (void)chooseTitleStr
 {
-    if (self.nameStr.length > 1) {
+    if (self.nameStr.length > 6) {
         self.userNameTextField.text = self.nameStr;
         if ([self.changeStr isEqualToString:@"userName"]) {
             self.title = ASLocalizedString(@"Edit Nickname");
@@ -100,6 +100,7 @@
     
     if ([self.changeStr isEqualToString:@"userName"]) {
         self.title = ASLocalizedString(@"Edit Nickname");
+        [self changeUserName];
     } else if ([self.changeStr isEqualToString:@"shopName"]) {
         [self changeShopName];
     } else if ([self.changeStr isEqualToString:@"welcome"]) {
@@ -128,6 +129,42 @@
     } else {
         self.navigationItem.rightBarButtonItem.enabled = NO;
     }
+}
+
+- (void)changeUserName
+{
+    NSString *upload = [NSString stringWithFormat:@"http://%@/Account/UserModify.ashx",publickUrl];
+    NSMutableDictionary *uploadShop = [NSMutableDictionary dictionary];
+    uploadShop[@"userid"] = [nNsuserdefaul objectForKey:@"userID"];
+    uploadShop[@"modify"] = @"Name";
+    uploadShop[@"content"] = self.userNameTextField.text;
+    
+    [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"accessToken"] forHTTPHeaderField:@"accesstoken"];
+    [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"refreshToken"] forHTTPHeaderField:@"refreshtoken"];
+    [PPNetworkHelper POST:upload parameters:uploadShop success:^(id responseObject) {
+        NSDictionary *diction = responseObject;
+        NSString *code = diction[@"returncode"];
+        if ([code isEqualToString:@"success"]) {
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = ASLocalizedString(@"成功");
+            [hud hide:YES afterDelay:2];
+            
+            [self backToMain];
+        } else {
+            NSLog(@"error - - %@",responseObject);
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = ASLocalizedString(@"失败");
+            [hud hide:YES afterDelay:2];
+        }
+        
+    } failure:^(NSError *error) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = ASLocalizedString(@"网络故障");
+        [hud hide:YES afterDelay:2];
+    }];
 }
 
 - (void)changeShopName
