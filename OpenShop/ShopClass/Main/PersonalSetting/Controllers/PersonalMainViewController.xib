@@ -28,7 +28,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fj4-NV-Ird">
                     <rect key="frame" x="0.0" y="10" width="375" height="109"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="setting_img_touxiang" translatesAutoresizingMaskIntoConstraints="NO" id="B3j-QY-oSD">
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="touxiang_img_default" translatesAutoresizingMaskIntoConstraints="NO" id="B3j-QY-oSD">
                             <rect key="frame" x="14" y="22" width="65" height="65"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="B3j-QY-oSD" secondAttribute="height" multiplier="1:1" id="hLT-0q-Inl"/>
@@ -79,11 +79,11 @@
                 <constraint firstItem="Fj4-NV-Ird" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="oZT-Dg-nVa"/>
                 <constraint firstAttribute="trailing" secondItem="Fj4-NV-Ird" secondAttribute="trailing" id="v2n-in-QDL"/>
             </constraints>
-            <point key="canvasLocation" x="-1030" y="-127"/>
+            <point key="canvasLocation" x="-1486" y="-142"/>
         </view>
     </objects>
     <resources>
         <image name="liebiao_icon_jiantou" width="9" height="14"/>
-        <image name="setting_img_touxiang" width="65" height="65"/>
+        <image name="touxiang_img_default" width="65" height="65"/>
     </resources>
 </document>

@@ -75,6 +75,9 @@
 @property (nonatomic ,strong) NSMutableArray *deleteImageID;
 @property (weak, nonatomic) IBOutlet UIView *backContView;
 @property (weak, nonatomic) IBOutlet UIScrollView *backScrollView;
+@property (weak, nonatomic) IBOutlet UIView *distriView;
+@property (weak, nonatomic) IBOutlet UIView *categoryView;
+@property (nonatomic ,strong) UILabel *placeHolder;
 
 @end
 
@@ -120,10 +123,19 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = ASLocalizedString(@"Edit Item Detail");
+    self.categoryLabelText.text = ASLocalizedString(@"Category");
+    self.distributionLabelText.text = ASLocalizedString(@"Distribution");
+    self.priceLabelText.text = ASLocalizedString(@"Price(฿)");
+    self.profitLabelText.text = ASLocalizedString(@"Profit");
+    [self.offShelveBtn setTitle:ASLocalizedString(@"off shelve") forState:UIControlStateNormal];
+    [self.deleteBtn setTitle:ASLocalizedString(@"delete") forState:UIControlStateNormal];
+    
     [self leftItem];
+    [self setupPlaceHolder];
     self.photoCount = 1;
     if (self.editModel != nil) {
         self.bottomBtnView.hidden = NO;
+        self.placeHolder.alpha = 0;
         self.goodID = [NSString stringWithFormat:@"%@",self.editModel.goodid];
         [self oldGoodList];
         [self getGoodsListWithGoodID:self.goodID andUserID:[nNsuserdefaul objectForKey:@"userID"]];
@@ -136,7 +148,11 @@
     _selectedPhotos = [NSMutableArray array];
     _selectedAssets = [NSMutableArray array];
     self.deleteImageID = [NSMutableArray array];
-    
+    [self setKeyboardHidden];
+    [self addDisHidden];
+    [self addCategoryHidden];
+    [self addProfitViewHidden];
+    self.productListTextView.delegate = self;
 }
 
 #pragma mark  原始商品数据
@@ -152,6 +168,26 @@
 
 - (BOOL)prefersStatusBarHidden {
     return NO;
+}
+#pragma mark placeholder
+- (void)setupPlaceHolder
+{
+    UILabel *placeHolder = [[UILabel alloc] initWithFrame:CGRectMake(0, 4, self.productListTextView.sd_width, 20)];
+    self.placeHolder = placeHolder;
+    
+    placeHolder.text = ASLocalizedString(@"Description");
+    placeHolder.textColor = [UIColor lightGrayColor];
+    placeHolder.numberOfLines = 0;
+    placeHolder.contentMode = UIViewContentModeTop;
+    [self.productListTextView addSubview:placeHolder];
+}
+- (void)textViewDidChange:(UITextView *)textView
+{
+    if (!textView.text.length) {
+        self.placeHolder.alpha = 1;
+    } else {
+        self.placeHolder.alpha = 0;
+    }
 }
 #pragma mark 布局
 - (void)configCollectionView {
@@ -278,12 +314,23 @@
     if (indexPath.row == _selectedPhotos.count + self.goodsImageArray.count) {
         BOOL showSheet = NO;
         if (showSheet) {
-            UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"拍照",@"去相册选择", nil];
+            UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:nil delegate:self cancelButtonTitle:ASLocalizedString(@"cancel") destructiveButtonTitle:nil otherButtonTitles:ASLocalizedString(@"take photo"),ASLocalizedString(@"去相册"), nil];
             [sheet showInView:self.view];
         } else {
             [self pushImagePickerController];
         }
-    } /*else { // preview photos or video / 预览照片或者视频
+    } else {
+        [self.priceTextField resignFirstResponder];
+        [self.profitTextField resignFirstResponder];
+        [self.productListTextView resignFirstResponder];
+        NSTimeInterval animationDuration = 0.30f;
+        [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
+        [UIView setAnimationDuration:animationDuration];
+        CGRect rect = CGRectMake(0.0f, 64, self.view.sd_width, self.view.sd_height);
+        self.view.frame = rect;
+        [UIView commitAnimations];
+    }
+    /*else { // preview photos or video / 预览照片或者视频
         id asset = _selectedAssets[indexPath.row - self.urlImageCount];
         BOOL isVideo = NO;
         if ([asset isKindOfClass:[PHAsset class]]) {
@@ -586,19 +633,19 @@
                 [self.categoryBtn setTitle:ASLocalizedString(@"未分类") forState:UIControlStateNormal];
                 break;
             case 2:
-                [self.categoryBtn setTitle:ASLocalizedString(@"男人") forState:UIControlStateNormal];
+                [self.categoryBtn setTitle:ASLocalizedString(@"Men") forState:UIControlStateNormal];
                 break;
             case 3:
-                [self.categoryBtn setTitle:ASLocalizedString(@"女人") forState:UIControlStateNormal];
+                [self.categoryBtn setTitle:ASLocalizedString(@"Women") forState:UIControlStateNormal];
                 break;
             case 4:
-                [self.categoryBtn setTitle:ASLocalizedString(@"儿童") forState:UIControlStateNormal];
+                [self.categoryBtn setTitle:ASLocalizedString(@"Child") forState:UIControlStateNormal];
                 break;
             case 5:
-                [self.categoryBtn setTitle:ASLocalizedString(@"化妆品") forState:UIControlStateNormal];
+                [self.categoryBtn setTitle:ASLocalizedString(@"Makeup") forState:UIControlStateNormal];
                 break;
             case 6:
-                [self.categoryBtn setTitle:ASLocalizedString(@"其他") forState:UIControlStateNormal];
+                [self.categoryBtn setTitle:ASLocalizedString(@"Other") forState:UIControlStateNormal];
                 break;
                 
             default:
@@ -635,8 +682,10 @@
         NSLog(@"上传 - %@",responseObject);
         NSDictionary *diction = responseObject;
         if ([diction[@"returncode"] isEqualToString:@"success"]) {
-            UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"上传成功" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alerV show];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = ASLocalizedString(@"Success");
+            [hud hide:YES afterDelay:2];
             [self.navigationController popViewControllerAnimated:YES];
         } else {
             NSString *mess = diction[@"msg"];
@@ -653,7 +702,7 @@
 - (void)channgeGoodList
 {
     NSString *uploadUrl = [NSString stringWithFormat:@"http://%@/Good/UpdateGoodByGoodID.ashx",publickUrl];
-    
+    self.placeHolder.hidden = YES;
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
     dic[@"goodname"] = [NSString stringWithFormat:@"%@",self.productTitleTextField.text];
     dic[@"price"] = [NSString stringWithFormat:@"%@",self.priceTextField.text];
@@ -678,12 +727,17 @@
         NSLog(@"上传 - %@",responseObject);
         NSDictionary *diction = responseObject;
         if ([diction[@"returncode"] isEqualToString:@"success"]) {
-            UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"上传成功" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alerV show];
+            
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = ASLocalizedString(@"Success");
+            [hud hide:YES afterDelay:2];
             [self.navigationController popViewControllerAnimated:YES];
         } else {
-            UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"上传失败" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alerV show];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = ASLocalizedString(@"Failure");
+            [hud hide:YES afterDelay:2];
         }
         
     } failure:^(NSError *error) {
@@ -704,18 +758,26 @@
         NSLog(@"xiajia   %@",responseObject);
         NSDictionary *dic = responseObject;
         if ([dic[@"returncode"] isEqualToString:@"success"]) {
-            UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"success" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alerV show];
+            
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = ASLocalizedString(@"Success");
+            [hud hide:YES afterDelay:2];
             [self.navigationController popViewControllerAnimated:YES];
         } else {
             NSString *mess = dic[@"msg"];
-            UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:mess delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alerV show];
+            
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = mess;
+            [hud hide:YES afterDelay:2];
         }
     } failure:^(NSError *error) {
         NSLog(@"goutongshib");
-        UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"链接失败" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alerV show];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = ASLocalizedString(@"网络错误");
+        [hud hide:YES afterDelay:2];
     }];
 }
 #pragma mark  删除
@@ -734,20 +796,63 @@
         NSLog(@"shanchu   %@",responseObject);
         NSDictionary *dic = responseObject;
         if ([dic[@"returncode"] isEqualToString:@"success"]) {
-            UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"success" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alerV show];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = ASLocalizedString(@"Success");
+            [hud hide:YES afterDelay:2];
             [self.navigationController popViewControllerAnimated:YES];
         } else {
             NSString *mess = dic[@"msg"];
-            UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:mess delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alerV show];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = mess;
+            [hud hide:YES afterDelay:2];
         }
 
     } failure:^(NSError *error) {
         NSLog(@"goutongshib  -  %@",error);
-        UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"链接失败" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alerV show];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = ASLocalizedString(@"网络错误");
+        [hud hide:YES afterDelay:2];
     }];
+}
+
+- (void)setKeyboardHidden
+{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget: self action:@selector(dismissKeyboardAction)];
+    [self.priceView addGestureRecognizer:tap];
+}
+
+- (void)addDisHidden
+{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget: self action:@selector(dismissKeyboardAction)];
+    [self.distriView addGestureRecognizer:tap];
+}
+
+- (void)addProfitViewHidden
+{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget: self action:@selector(dismissKeyboardAction)];
+    [self.profitView addGestureRecognizer:tap];
+}
+
+- (void)addCategoryHidden
+{
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget: self action:@selector(dismissKeyboardAction)];
+    [self.categoryView addGestureRecognizer:tap];
+}
+
+- (void)dismissKeyboardAction
+{
+    [self.priceTextField resignFirstResponder];
+    [self.profitTextField resignFirstResponder];
+    [self.productListTextView resignFirstResponder];
+    NSTimeInterval animationDuration = 0.30f;
+    [UIView beginAnimations:@"ResizeForKeyboard" context:nil];
+    [UIView setAnimationDuration:animationDuration];
+    CGRect rect = CGRectMake(0.0f, 64, self.view.sd_width, self.view.sd_height);
+    self.view.frame = rect;
+    [UIView commitAnimations];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -7,8 +7,15 @@
 //
 
 #import "SearchViewController.h"
+#import "HomeGoodListTableViewCell.h"
+#import "MarketListModel.h"
+#import "MarkerGoodListViewController.h"
 
-@interface SearchViewController ()
+@interface SearchViewController () <UITableViewDelegate, UITableViewDataSource, HomeGoodListTableViewCellDelegate>
+@property (nonatomic ,strong) NSMutableArray *marketDataArray;
+@property (nonatomic ,strong) NSString *goodsTypeNum;
+@property (nonatomic ,assign) NSInteger goodsPage;
+@property (weak, nonatomic) IBOutlet UITableView *searchShowTableView;
 
 @end
 
@@ -17,27 +24,119 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    [self addSearchView];
-//    self.navigationItem.leftBarButtonItem.;
+    //    [self addSearchView];
+    self.title = self.searchStr;
+    [self.searchShowTableView registerNib:[UINib nibWithNibName:@"HomeGoodListTableViewCell" bundle:nil] forCellReuseIdentifier:@"homeList"];
+    [self getMarketDataListWithStr:self.searchStr];
+    self.searchShowTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
-- (void)addSearchView
+#pragma mark - 一次性网络状态判断
+- (void)currentNetworkStatus
 {
-    UIView *bootmView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 44)];
-//    bootmView.backgroundColor = [UIColor blackColor];
-    UIImageView *searchImageView = [[UIImageView alloc] init];
-    searchImageView.contentMode = UIViewContentModeScaleAspectFill;
-    searchImageView.image = [UIImage imageNamed:@"nav_icon_sousuo"];
-    searchImageView.size = searchImageView.image.size;
-    searchImageView.centerY = bootmView.centerY;
-    searchImageView.centerX = searchImageView.sd_width / 2 + 10;
-    [bootmView addSubview:searchImageView];
-    UITextField *searchTextField = [[UITextField alloc] initWithFrame:CGRectMake(44, 0, SCREEN_WIDTH - 44 - 85, 44)];
+    if (kIsNetwork) {
+        NSLog(@"有网络");
+        if (kIsWWANNetwork) {
+            NSLog(@"手机网络");
+        }else if (kIsWiFiNetwork){
+            NSLog(@"WiFi网络");
+        }
+    }
     
-    [bootmView addSubview:searchTextField];
-    
-    [self.navigationController.navigationBar addSubview:bootmView];
 }
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return self.marketDataArray.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return SCREEN_WIDTH * 0.32;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 10;
+}
+
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    HomeGoodListTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"homeList"];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    if (self.marketDataArray.count > 0) {
+        MarketListModel *mark = self.marketDataArray[indexPath.section];
+        [cell getMarkerListWithModel:mark];
+    }
+    cell.delegate = self;
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    MarketListModel *model = self.marketDataArray[indexPath.section];
+    MarkerGoodListViewController *markerList = [[MarkerGoodListViewController alloc] init];
+    markerList.marketModel = model;
+    [self.navigationController pushViewController:markerList animated:YES];
+}
+
+- (void)selectSellWith:(UITableViewCell *)cell
+{
+    NSIndexPath *path = [self.searchShowTableView indexPathForCell:cell];
+    MarketListModel *model = self.marketDataArray[path.section];
+    MarkerGoodListViewController *markerList = [[MarkerGoodListViewController alloc] init];
+    markerList.marketModel = model;
+    [self.navigationController pushViewController:markerList animated:YES];
+}
+
+- (void)getMarketDataListWithStr:(NSString *)string
+{
+    self.marketDataArray = [NSMutableArray array];
+    NSString *marketUrl = [NSString stringWithFormat:@"http://%@/Good/GoodsSearch.ashx?str=%@",publickUrl,string];
+    [PPNetworkHelper GET:marketUrl parameters:nil responseCache:^(id responseCache) {
+        //        [self getGoodTableWith:responseCache];
+    } success:^(id responseObject) {
+        [self getGoodTableWith:responseObject];
+        NSLog(@"responseObject - %@",responseObject);
+    } failure:^(NSError *error) {
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [self.searchShowTableView.mj_footer endRefreshing];
+        [self.searchShowTableView.mj_header endRefreshing];
+        NSLog(@"fail");
+    }];
+}
+
+- (void)getGoodTableWith:(id)some
+{
+    NSMutableDictionary *marketDict = some;
+    NSMutableArray *array = [marketDict valueForKey:@"goodlist"];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        //        NSLog(@"marketDict - %@",array);
+        if (array.count > 0) {
+            for (NSDictionary *dict in marketDict[@"goodlist"]) {
+                MarketListModel *mark = [[MarketListModel alloc] init];
+                [mark setValuesForKeysWithDictionary:dict];
+                [self.marketDataArray addObject:mark];
+                //                NSLog(@"responseObject - %@",self.marketDataArray);
+            }
+            [self.searchShowTableView reloadData];
+        } else {
+            NSLog(@"666666666");
+        }
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [self.searchShowTableView.mj_footer endRefreshing];
+        [self.searchShowTableView.mj_header endRefreshing];
+    });
+}
+
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

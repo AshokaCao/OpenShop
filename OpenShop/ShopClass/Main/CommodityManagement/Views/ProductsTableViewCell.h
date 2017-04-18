@@ -11,7 +11,7 @@
 
 @protocol ProductsTableViewCellDelegate <NSObject>
 
-- (void)didselectCellWithButton:(UIButton *)btn;
+- (void)didselectCellWithButton:(UITableViewCell *)cell;
 - (void)saleSelectPreviewBtnWithCell:(UITableViewCell *)cell;
 - (void)saleSelectpromotionBtnWithCell:(UITableViewCell *)cell;
 
@@ -27,9 +27,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *shareBtn;
 @property (weak, nonatomic) IBOutlet UIImageView *distributionImageView;
 @property (weak, nonatomic) IBOutlet UILabel *distributionLabel;
-@property (weak, nonatomic) IBOutlet UIView *discardView;
-@property (weak, nonatomic) IBOutlet UILabel *disLabel;
-@property (weak, nonatomic) IBOutlet UILabel *distributeLabel;
+//@property (weak, nonatomic) IBOutlet UIView *discardView;
+//@property (weak, nonatomic) IBOutlet UILabel *disLabel;
+//@property (weak, nonatomic) IBOutlet UILabel *distributeLabel;
 @property (nonatomic ,assign) id<ProductsTableViewCellDelegate> delegate;
 @property (nonatomic ,strong) MarketListModel *productModel;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageViewWidth;

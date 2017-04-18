@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,7 +16,6 @@
                 <outlet property="accountLa" destination="kfj-Od-LQM" id="nfb-Lm-MvE"/>
                 <outlet property="accountView" destination="LFo-Ix-8ux" id="BKX-V0-Jdq"/>
                 <outlet property="changePasswordLa" destination="Xng-Qp-JiE" id="Nxh-yh-Agl"/>
-                <outlet property="headerNameLabel" destination="kDn-Pm-FKV" id="6VS-ZO-Gkc"/>
                 <outlet property="nameView" destination="b6g-mD-r4T" id="cuh-Ti-4M6"/>
                 <outlet property="nickNameLa" destination="pks-kb-e8I" id="BH1-lA-l6q"/>
                 <outlet property="outBtn" destination="ZpT-hV-0qY" id="LYh-pU-k1H"/>
@@ -30,51 +32,43 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K1D-UK-8ku">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="138"/>
                     <subviews>
                         <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gerenxinxi_touxiang_img" translatesAutoresizingMaskIntoConstraints="NO" id="6Ws-G7-2JV">
+                            <rect key="frame" x="150" y="14" width="75" height="75"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="75" id="LNK-eb-r6g"/>
                                 <constraint firstAttribute="width" secondItem="6Ws-G7-2JV" secondAttribute="height" multiplier="1:1" id="MnP-ye-wHh"/>
                                 <constraint firstAttribute="height" constant="75" id="Y1Z-Rw-oW1"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kDn-Pm-FKV">
-                            <attributedString key="attributedText">
-                                <fragment content="Suchada">
-                                    <attributes>
-                                        <color key="NSColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
-                                        <font key="NSFont" size="16" name="Helvetica-Bold"/>
-                                        <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                    </attributes>
-                                </fragment>
-                            </attributedString>
-                            <nil key="highlightedColor"/>
-                        </label>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="6Ws-G7-2JV" firstAttribute="centerX" secondItem="K1D-UK-8ku" secondAttribute="centerX" id="70b-FX-Cam"/>
-                        <constraint firstItem="kDn-Pm-FKV" firstAttribute="top" secondItem="6Ws-G7-2JV" secondAttribute="bottom" constant="12" id="Dqh-90-1z0"/>
                         <constraint firstItem="6Ws-G7-2JV" firstAttribute="top" secondItem="K1D-UK-8ku" secondAttribute="top" constant="14" id="Uid-TC-T7E"/>
                         <constraint firstAttribute="height" constant="138" id="eq5-DD-qTX"/>
-                        <constraint firstItem="kDn-Pm-FKV" firstAttribute="centerX" secondItem="K1D-UK-8ku" secondAttribute="centerX" id="gb0-vL-y6R"/>
                         <constraint firstAttribute="width" secondItem="K1D-UK-8ku" secondAttribute="height" multiplier="125:46" id="thN-EI-feS"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LFo-Ix-8ux">
+                    <rect key="frame" x="0.0" y="153" width="375" height="48"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v5M-5V-GkH">
+                            <rect key="frame" x="14" y="47" width="361" height="1"/>
                             <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="Ir2-My-DK5"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kfj-Od-LQM">
+                            <rect key="frame" x="14" y="14.5" width="60" height="19.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="98883200" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CSr-do-h96">
+                            <rect key="frame" x="300" y="17" width="61" height="14.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" red="0.69019607839999997" green="0.69019607839999997" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -93,20 +87,26 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b6g-mD-r4T">
+                    <rect key="frame" x="0.0" y="201" width="375" height="48"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fzg-Gw-Fb8">
+                            <rect key="frame" x="14" y="47" width="361" height="1"/>
                             <color key="backgroundColor" red="0.92156862750000001" green="0.92156862750000001" blue="0.92156862750000001" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="Oxz-7S-I0i"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NickName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pks-kb-e8I">
+                            <rect key="frame" x="14" y="14.5" width="75" height="19.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="liebiao_icon_jiantou" translatesAutoresizingMaskIntoConstraints="NO" id="FO4-Dk-mSy"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="liebiao_icon_jiantou" translatesAutoresizingMaskIntoConstraints="NO" id="FO4-Dk-mSy">
+                            <rect key="frame" x="352" y="17" width="9" height="14"/>
+                        </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Suchada" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qeQ-A8-kSG">
+                            <rect key="frame" x="295.5" y="17" width="49.5" height="14.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                             <color key="textColor" red="0.69019607839999997" green="0.69019607839999997" blue="0.69019607839999997" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -127,13 +127,17 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bEu-SU-W1n">
+                    <rect key="frame" x="0.0" y="249" width="375" height="48"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change Password" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xng-Qp-JiE">
+                            <rect key="frame" x="14" y="14.5" width="130.5" height="19.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <color key="textColor" red="0.066666666669999999" green="0.066666666669999999" blue="0.066666666669999999" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="liebiao_icon_jiantou" translatesAutoresizingMaskIntoConstraints="NO" id="1uO-Iz-mrd"/>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="liebiao_icon_jiantou" translatesAutoresizingMaskIntoConstraints="NO" id="1uO-Iz-mrd">
+                            <rect key="frame" x="352" y="17" width="9" height="14"/>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
@@ -145,8 +149,10 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dmx-qU-6x1">
+                    <rect key="frame" x="0.0" y="312" width="375" height="48"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZpT-hV-0qY">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="48"/>
                             <state key="normal">
                                 <attributedString key="attributedTitle">
                                     <fragment content="Logout">
@@ -190,7 +196,7 @@
                 <constraint firstItem="bEu-SU-W1n" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="snq-ps-f8I"/>
                 <constraint firstItem="bEu-SU-W1n" firstAttribute="top" secondItem="b6g-mD-r4T" secondAttribute="bottom" id="wwt-es-um5"/>
             </constraints>
-            <point key="canvasLocation" x="-562" y="-112"/>
+            <point key="canvasLocation" x="-720" y="-115"/>
         </view>
     </objects>
     <resources>

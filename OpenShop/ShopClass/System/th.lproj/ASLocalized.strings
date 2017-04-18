@@ -4,5 +4,67 @@
 
   Created by yuemin3 on 2017/1/6.
   Copyright © 2017年 hangzhou.cao. All rights reserved.
-*/
-"好货市场"="Markets";
+ */
+"Market"="ตลาดสินค้า";
+"Products"="ตลาด";
+"Shop"="ร้านค้า";
+"Settings"="ตั้งค่า";
+"All"="ทั้งหมด";
+"Women"="หญิง";
+"Men"="ชาย";
+"Makeup"="เครื่องสำอางค์";
+"Child"="เด็ก";
+"Other"="อื่นๆ";
+//
+"Sourcing details"="รายละเอียดแหล่งสินค้า";
+"off shelve"="ลงแผง";
+"On sale"="ตั้งแผง";
+"price: ฿%@"="ราคา: ฿%@";
+"profit: ฿%@"="กำไร: ฿%@";
+"%@ distribution"="%@ คน กำลังแบ่งขาย";
+"Distributors"="คน กำลังแบ่งขาย";
+"Item"="สินค้า";
+"contact"="ติดต่อ";
+"Sale"="ตั้งแผง";
+"Preview"="พรีวิว";
+"Promotion"="โฆษณาภาพ";
+"share"="share";
+"Add good"="เพิ่มสินค้า";
+"distribution"="ตัวแทนขาย";
+"discard"="ไม่มีผล";
+"The supplier has crased to distribute the goods"="ซัพพลายเออร์ได้หยุดแบ่งขายสินค้าดังกล่าวแล้ว";
+"Save the picture"="บันทึกรูปสินค้าไปยังมือถือ";
+"copy the name & link"="คัดลอกชื่อสินค้า&ลิ้งค์";
+"copy the name"="คัดลอกชื่อสินค้า";
+"copy the link"="คัดลอกลิงค์สินค้า";
+"cancel"="ยกเลิก";
+"Description"="แนะนำสินค้า";
+"Category"="แบ่งประเภท";
+"Distribution"="แบ่งขายหรือไม่";
+"Price(฿)"="ค่าจ้างแบ่งขาย(฿)";
+"Profit"="กำไรแบ่งขาย";
+"Done"="เสร็จสิ้น";
+"delete"="ลบ";
+"Shop Logo"="Logo ร้านค้า";
+"Store Name"="ชื่อร้านค้า";
+"Wolcomes"="คำต้อนรับ";
+"odentity"="ยืนยันตัวตน";
+"Contact infotmation"="ช่องทางติดต่อ";
+"Phone"="โทรศัพท์";
+"Help&FAQ"="ช่วยเหลือ";
+"About us"="เกี่ยวกับเรา";
+"Rate us"="คะแนนประเมิน";
+"Invite Friends"="เชิญเพื่อน";
+
+"Account"="บัญชี";
+"Change Password"="แก้ไขรหัส";
+"NickName"="ชื่อ";
+"Logout"="ออกล็อคอิน";
+"Login"="ล็อคอิน";
+"Sign up"="ลงทะเบียน";
+"input goods/shop"="โปรดใส่คีย์เวิร์ด";
+"History"="ประวัติค้นหา";
+
+
+
+

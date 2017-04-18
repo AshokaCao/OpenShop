@@ -62,4 +62,8 @@
 
 @property (nonatomic ,strong) NSArray *goodimgs;
 
+@property (nonatomic ,strong) NSString *shopphone;
+
+@property (nonatomic ,strong) NSString *facebook;
+
 @end

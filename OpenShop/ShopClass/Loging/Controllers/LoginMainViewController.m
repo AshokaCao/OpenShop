@@ -28,6 +28,7 @@
     // Do any additional setup after loading the view from its nib.
     self.navigationController.navigationBar.translucent = NO;
     self.title = ASLocalizedString(@"Login");
+    [self.logBtn setTitle:ASLocalizedString(@"Login") forState:UIControlStateNormal];
     self.view.backgroundColor = [UIColor colorWithHexString:@"#f6f6f6"];
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc] initWithString:ASLocalizedString(@"Forget Password")];
     NSRange strRange = {0,[str length]};
@@ -99,7 +100,7 @@
 
 - (IBAction)forgetPasswordAction:(UIButton *)sender {
     PhoneNumberViewController *phoneNum = [[PhoneNumberViewController alloc] init];
-    phoneNum.typeStr = @"ForgetPassword";
+    phoneNum.typeStr = ASLocalizedString(@"ForgetPassword");
     [self.navigationController pushViewController:phoneNum animated:YES];
 }
 

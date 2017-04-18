@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HotSearchCollectionViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="162" height="34"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="162" height="34"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TXK-hB-oE3">
+                        <frame key="frameInset" width="162" height="30"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1RK-HB-0q8">
+                                <frame key="frameInset" minX="15" minY="8" width="132" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.30196078431372547" green="0.30196078431372547" blue="0.30196078431372547" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="1RK-HB-0q8" firstAttribute="top" secondItem="TXK-hB-oE3" secondAttribute="top" constant="8" id="7kF-Ol-JQX"/>
+                            <constraint firstAttribute="trailing" secondItem="1RK-HB-0q8" secondAttribute="trailing" constant="15" id="DIc-D8-HzT"/>
+                            <constraint firstAttribute="bottom" secondItem="1RK-HB-0q8" secondAttribute="bottom" constant="7" id="ffy-aT-tfq"/>
+                            <constraint firstItem="1RK-HB-0q8" firstAttribute="leading" secondItem="TXK-hB-oE3" secondAttribute="leading" constant="15" id="z6f-sJ-o9O"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="TXK-hB-oE3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Ui0-Js-QmM"/>
+                <constraint firstAttribute="bottom" secondItem="TXK-hB-oE3" secondAttribute="bottom" id="cb0-Mx-4FW"/>
+                <constraint firstAttribute="trailing" secondItem="TXK-hB-oE3" secondAttribute="trailing" id="pS3-fT-ZWW"/>
+                <constraint firstItem="TXK-hB-oE3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="pnz-0B-dLG"/>
+            </constraints>
+            <size key="customSize" width="162" height="54"/>
+            <connections>
+                <outlet property="backView" destination="TXK-hB-oE3" id="v7q-6F-BtU"/>
+                <outlet property="labeltitle" destination="1RK-HB-0q8" id="vek-eS-tM9"/>
+            </connections>
+            <point key="canvasLocation" x="472" y="294"/>
+        </collectionViewCell>
+    </objects>
+</document>

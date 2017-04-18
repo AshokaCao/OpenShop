@@ -42,12 +42,26 @@
     return _cycleScrollView3;
 }
 
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    NSLog(@"goodIntroduce 2 - %f",self.goodIntroduce.sd_height);
+    if (self.goodIntroduce.sd_height < 45) {
+        self.tabHeaderView.sd_height = SCREEN_WIDTH * 1.04 + 62 + 90;
+    } else {
+        self.tabHeaderView.sd_height = SCREEN_WIDTH * 1.04 + self.goodIntroduce.sd_height + 120;
+    }
+    [self.goodsListTableView reloadData];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;
     self.title = ASLocalizedString(@"Sourcing details");
+    [self.contactBtn setTitle:ASLocalizedString(@"contact") forState:UIControlStateNormal];
     self.tabBarController.tabBar.translucent = NO;
     self.contactBtnW.constant = SCREEN_WIDTH * 0.597;
     self.titleConst.constant = SCREEN_WIDTH * 1.082;
@@ -100,6 +114,7 @@
     self.cycleScrollView3.backgroundColor = [UIColor clearColor];
     _cycleScrollView3.pageControlAliment = SDCycleScrollViewPageContolAlimentCenter;
     _cycleScrollView3.currentPageDotImage = [UIImage imageNamed:@"banner_qiehuandian_selected"];
+    _cycleScrollView3.placeholderImage = [UIImage imageNamed:@"shangpintuneiye_img_default"];
     _cycleScrollView3.pageDotImage = [UIImage imageNamed:@"banner_qiehuandian_default"];
     //    cycleScrollView3.imageURLStringsGroup = imageArray;
 //    NSArray *array = @[@"shangpingtu_img",@"shangpingtu_img",@"shangpingtu_img"];
@@ -115,7 +130,7 @@
         NSLog(@"responseCache - %@",responseObject);
         [self getGoodMessageWith:responseObject];
     } failure:^(NSError *error) {
-        NSLog(@"failure - %@",goodsUrl);
+        NSLog(@"failure - %@",error);
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self.goodsListTableView.mj_header endRefreshing];
     }];
@@ -151,19 +166,19 @@
             NSAttributedString * strAtt = [[NSAttributedString alloc] initWithData:[strHtml dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
             
             CGSize titleSize = [strHtml boundingRectWithSize:CGSizeMake(SCREEN_WIDTH - 28, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:14]} context:nil].size;
-            NSLog(@"goodIntroduce - %f",titleSize.height);
-            if (titleSize.height < 50) {
-                self.tabHeaderView.sd_height = SCREEN_WIDTH * 1.04 + titleSize.height + 90;
-            } else {
-                self.tabHeaderView.sd_height = SCREEN_WIDTH * 1.04 + titleSize.height + 120;
-            }
+//            if (titleSize.height > 130) {
+//                self.tabHeaderView.sd_height = SCREEN_WIDTH * 1.04 + titleSize.height + 90;
+//            } else {
+//                self.tabHeaderView.sd_height = SCREEN_WIDTH * 1.04 + titleSize.height + 120;
+//            }
             
             self.goodIntroduce.attributedText = strAtt;
-            self.priceLabel.text = [NSString stringWithFormat:ASLocalizedString(@"price: $%@"),self.marketModel.price];
+            NSLog(@"goodIntroduce - %f",self.goodIntroduce.sd_height);
+            self.priceLabel.text = [NSString stringWithFormat:ASLocalizedString(@"price: ฿%@"),self.marketModel.price];
             
-            NSMutableAttributedString *buyCount = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:ASLocalizedString(@"profit: $%@"),self.marketModel.profit]];
-            NSString *len = [NSString stringWithFormat:ASLocalizedString(@"$%@"),self.marketModel.profit];
-            NSString *allLen = [NSString stringWithFormat:ASLocalizedString(@"profit: $%@"),self.marketModel.profit];
+            NSMutableAttributedString *buyCount = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:ASLocalizedString(@"profit: ฿%@"),self.marketModel.profit]];
+            NSString *len = [NSString stringWithFormat:ASLocalizedString(@"฿%@"),self.marketModel.profit];
+            NSString *allLen = [NSString stringWithFormat:ASLocalizedString(@"profit: ฿%@"),self.marketModel.profit];
             
             [buyCount addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"#ff213b"] range:NSMakeRange(allLen.length - len.length, len.length)];
             self.profitLabel.attributedText = buyCount;
@@ -212,9 +227,14 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 - (IBAction)shareAndOtherAction:(UIButton *)sender {
+    
+    MarketListModel *model = [self.goodsListArray firstObject];
     self.contactView = [[ContactViewController alloc] init];
     //设置控制器为弹出类型
     self.contactView.modalPresentationStyle = UIModalPresentationPopover;
+    self.contactView.phoneNum = model.shopphone;
+    self.contactView.facebookNum = model.facebook;
+    self.contactView.lineNum = model.line;
     //获得弹出控制器属性
     UIPopoverPresentationController *pover = self.contactView.popoverPresentationController;
     //设置弹出控制器视图的大小
@@ -236,7 +256,7 @@
 - (IBAction)onsaleAction:(UIButton *)sender {
     MarketListModel *model = [self.goodsListArray firstObject];
     NSString *goodid = [NSString stringWithFormat:@"%@",model.goodid];
-    if ([self.onsaleBtn.currentTitle isEqualToString:@"On sale"]) {
+    if ([self.onsaleBtn.currentTitle isEqualToString:ASLocalizedString(@"On sale")]) {
         [self onsaleWithGoodID:goodid andUserID:[nNsuserdefaul objectForKey:@"userID"]];
     } else {
         NSString *shelvrUrl = [NSString stringWithFormat:@"http://%@/Good/ShelfGood.ashx",publickUrl];
@@ -250,18 +270,24 @@
             NSLog(@"xiajia   %@",responseObject);
             NSDictionary *dic = responseObject;
             if ([dic[@"returncode"] isEqualToString:@"success"]) {
-                UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"success" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                [alerV show];
-                [self.navigationController popViewControllerAnimated:YES];
+                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+                hud.mode = MBProgressHUDModeText;
+                hud.labelText = ASLocalizedString(@"success");
+                [hud hide:YES afterDelay:2];
+//                [self.navigationController popViewControllerAnimated:YES];
             } else {
                 NSString *mess = dic[@"msg"];
-                UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:mess delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-                [alerV show];
+                MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+                hud.mode = MBProgressHUDModeText;
+                hud.labelText = mess;
+                [hud hide:YES afterDelay:2];
             }
         } failure:^(NSError *error) {
             NSLog(@"goutongshib");
-            UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"链接失败" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alerV show];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = ASLocalizedString(@"failure");
+            [hud hide:YES afterDelay:2];
         }];
 
     }
@@ -278,24 +304,31 @@
         NSDictionary *diction = responseObject;
         NSLog(@"nNsuserdefaul - %@",[nNsuserdefaul objectForKey:@"accessToken"]);
         if ([diction[@"returncode"] isEqualToString:@"success"]) {
-            UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"上架成功" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alerV show];
+            
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = ASLocalizedString(@"Success");
+            [hud hide:YES afterDelay:2];
         } else {
             NSString *mess = diction[@"msg"];
-            UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:mess delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alerV show];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = mess;
+            [hud hide:YES afterDelay:2];
         }
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
-        UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"上架失败" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alerV show];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = ASLocalizedString(@"网络错误");
+        [hud hide:YES afterDelay:2];
     }];
 }
 
 - (void)shopList
 {
     NSLog(@"noThing");
-    NSString *shopInfo = [NSString stringWithFormat:@"http://%@/Good/app/shopdetails.aspx?shopid=%@",publickUrl,self.marketModel.shopid];
+    NSString *shopInfo = [NSString stringWithFormat:@"http://%@/GoodHander/shop_preview.aspx?shopid=%@",publickUrl,self.marketModel.shopid];
     WebViewController *web = [[WebViewController alloc] init];
     web.showUrl = shopInfo;
     [self.navigationController pushViewController:web animated:YES];

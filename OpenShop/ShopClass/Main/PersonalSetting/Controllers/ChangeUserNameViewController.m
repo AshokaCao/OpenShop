@@ -28,7 +28,7 @@
 
 - (void)chooseTitleStr
 {
-    if (self.nameStr.length > 6) {
+    if (self.nameStr.length > 1) {
         self.userNameTextField.text = self.nameStr;
         if ([self.changeStr isEqualToString:@"userName"]) {
             self.title = ASLocalizedString(@"Edit Nickname");

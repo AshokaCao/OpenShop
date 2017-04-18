@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CommodityMainViewController">
             <connections>
                 <outlet property="addGoodsBtn" destination="qA7-fC-jhs" id="cSQ-IT-ZeC"/>
+                <outlet property="nothingView" destination="3Jz-cU-ybe" id="OBl-Kf-LDa"/>
                 <outlet property="productTableView" destination="Uth-K8-wpf" id="2uZ-mh-BUs"/>
                 <outlet property="saleBtn" destination="MRz-Sh-yCp" id="Zyj-tH-duA"/>
                 <outlet property="saleLine" destination="riD-LN-HyI" id="va9-RB-ekL"/>
@@ -90,14 +91,6 @@
                         <constraint firstItem="3Xa-CO-BNS" firstAttribute="height" secondItem="MRz-Sh-yCp" secondAttribute="height" id="rnF-5W-0AE"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qA7-fC-jhs">
-                    <rect key="frame" x="10" y="606" width="355" height="44"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <state key="normal" title="Add good" backgroundImage="tianjiashangping_btn"/>
-                    <connections>
-                        <action selector="addGoodsAction:" destination="-1" eventType="touchUpInside" id="Pic-9r-ZY8"/>
-                    </connections>
-                </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Uth-K8-wpf">
                     <rect key="frame" x="0.0" y="40" width="375" height="551"/>
                     <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -106,6 +99,35 @@
                         <outlet property="delegate" destination="-1" id="Dze-H1-XjS"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Jz-cU-ybe">
+                    <rect key="frame" x="0.0" y="40" width="375" height="627"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wushangpin_img" translatesAutoresizingMaskIntoConstraints="NO" id="VGm-AY-B7q">
+                            <rect key="frame" x="95" y="167" width="184" height="173"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nothing in this" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Qr-kr-hqI">
+                            <rect key="frame" x="133.5" y="350" width="108" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="8Qr-kr-hqI" firstAttribute="top" secondItem="VGm-AY-B7q" secondAttribute="bottom" constant="10" id="JOO-Dp-bUB"/>
+                        <constraint firstItem="VGm-AY-B7q" firstAttribute="centerX" secondItem="3Jz-cU-ybe" secondAttribute="centerX" id="eCL-4o-YaU"/>
+                        <constraint firstItem="8Qr-kr-hqI" firstAttribute="centerX" secondItem="3Jz-cU-ybe" secondAttribute="centerX" id="eMy-4o-f0A"/>
+                        <constraint firstItem="VGm-AY-B7q" firstAttribute="centerY" secondItem="3Jz-cU-ybe" secondAttribute="centerY" constant="-60" id="ukH-9n-CQy"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qA7-fC-jhs">
+                    <rect key="frame" x="10" y="606" width="355" height="44"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="Add good" backgroundImage="tianjiashangping_btn"/>
+                    <connections>
+                        <action selector="addGoodsAction:" destination="-1" eventType="touchUpInside" id="Pic-9r-ZY8"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
@@ -113,18 +135,23 @@
                 <constraint firstAttribute="trailing" secondItem="c6a-5g-UHb" secondAttribute="trailing" id="6cn-3d-1Rv"/>
                 <constraint firstItem="qA7-fC-jhs" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="BTb-gr-l8U"/>
                 <constraint firstAttribute="bottom" secondItem="qA7-fC-jhs" secondAttribute="bottom" constant="17" id="CqR-Ht-ZQb"/>
+                <constraint firstItem="3Jz-cU-ybe" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="HgH-Wa-Ce1"/>
+                <constraint firstAttribute="bottom" secondItem="3Jz-cU-ybe" secondAttribute="bottom" id="QBO-NM-AcH"/>
                 <constraint firstItem="c6a-5g-UHb" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="To8-0X-OL8"/>
                 <constraint firstItem="qA7-fC-jhs" firstAttribute="top" secondItem="Uth-K8-wpf" secondAttribute="bottom" constant="15" id="Tun-O3-xfT"/>
+                <constraint firstAttribute="trailing" secondItem="3Jz-cU-ybe" secondAttribute="trailing" id="UtV-Xq-IMq"/>
                 <constraint firstAttribute="trailing" secondItem="qA7-fC-jhs" secondAttribute="trailing" constant="10" id="WDy-kn-wOt"/>
+                <constraint firstItem="3Jz-cU-ybe" firstAttribute="top" secondItem="c6a-5g-UHb" secondAttribute="bottom" id="iSw-N8-Eqg"/>
                 <constraint firstItem="c6a-5g-UHb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="n0h-6p-Xtr"/>
                 <constraint firstItem="Uth-K8-wpf" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="ntC-tp-K6L"/>
                 <constraint firstItem="Uth-K8-wpf" firstAttribute="top" secondItem="c6a-5g-UHb" secondAttribute="bottom" id="tm3-AC-5ps"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
-            <point key="canvasLocation" x="15" y="-46"/>
+            <point key="canvasLocation" x="-206" y="-35"/>
         </view>
     </objects>
     <resources>
         <image name="tianjiashangping_btn" width="355" height="44"/>
+        <image name="wushangpin_img" width="184" height="173"/>
     </resources>
 </document>

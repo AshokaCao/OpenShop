@@ -5,4 +5,70 @@
   Created by yuemin3 on 2017/1/6.
   Copyright © 2017年 hangzhou.cao. All rights reserved.
 */
-"好货市场"="Markets";
+"Market"="Market";
+"Products"="Products";
+"Shop"="Shop";
+"Settings"="Settings";
+"All"="All";
+"Women"="Women";
+"Men"="Men";
+"Makeup"="Makeup";
+"Child"="Child";
+"Other"="Other";
+//
+"Sourcing details"="Sourcing details";
+"off shelve"="off shelve";
+"On sale"="On sale";
+"price: ฿%@"="price: ฿%@";
+"profit: ฿%@"="profit: ฿%@";
+"%@ distribution"="%@ distribution";
+"Distributors"="Distributors";
+"Item"="Item";
+"contact"="contact";
+"Sale"="Sale";
+"Preview"="Preview";
+"Promotion"="Promotion";
+"share"="share";
+"Add good"="Add good";
+"distribution"="distribution";
+"discard"="discard";
+"The supplier has crased to distribute the goods"="The supplier has crased to distribute the goods";
+"Save the picture"="Save the picture";
+"copy the name & line"="copy the name & link";
+"copy the name"="copy the name";
+"copy the link"="copy the link";
+"cancel"="cancel";
+"Description"="Description";
+"Category"="Category";
+"Distribution"="Distribution";
+"Price(฿)"="Price(฿)";
+"Profit"="Profit";
+"Done"="Done";
+"delete"="delete";
+"Shop Logo"="Shop Logo";
+"Store Name"="Store Name";
+"Wolcomes"="Wolcomes";
+"odentity"="odentity";
+"Contact infotmation"="Contact infotmation";
+"Phone"="Phone";
+"Help&FAQ"="Help&FAQ";
+"About us"="About us";
+"Rate us"="Rate us";
+"Invite Friends"="Invite Friends";
+
+"Account"="Account";
+"Change Password"="Change Password";
+"NickName"="NickName";
+"Logout"="Logout";
+"Login"="Login";
+"Sign up"="Sign up";
+"input goods/shop"="input goods/shop";
+"History"="History";
+
+
+
+
+
+
+
+

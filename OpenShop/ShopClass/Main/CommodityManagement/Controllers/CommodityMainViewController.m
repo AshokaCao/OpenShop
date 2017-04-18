@@ -16,6 +16,16 @@
 #import "CWActionSheet.h"
 #import "MarkerGoodListViewController.h"
 
+#import <ShareSDK/ShareSDK.h>
+#import <ShareSDKExtension/SSEShareHelper.h>
+#import <ShareSDK/ShareSDK+Base.h>
+
+#import <ShareSDKExtension/ShareSDK+Extension.h>
+#import <MOBFoundation/MOBFoundation.h>
+#import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <FBSDKShareKit/FBSDKShareKit.h>
+#import <FBSDKCoreKit/FBSDKCoreKit.h>
+
 @interface CommodityMainViewController () <UITableViewDelegate, UITableViewDataSource, ProductsTableViewCellDelegate, CQCustomActionSheetDelegate, ShelveTableViewCellDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *saleBtn;
 @property (weak, nonatomic) IBOutlet UIButton *shelveBtn;
@@ -26,6 +36,11 @@
 @property (nonatomic ,strong) NSMutableArray *productArray;
 @property (nonatomic ,strong) NSString *stadeNum;
 @property (nonatomic ,assign) NSInteger goodsPage;
+
+@property (nonatomic ,strong) NSString *shareUrl;
+@property (nonatomic ,strong) NSString *shareTitle;
+@property (nonatomic ,strong) NSArray *shareImage;
+@property (weak, nonatomic) IBOutlet UIView *nothingView;
 
 @end
 
@@ -42,7 +57,9 @@
     
     self.navigationController.navigationBar.translucent = NO;
     self.tabBarController.tabBar.translucent = NO;
-    
+    [self.saleBtn setTitle:ASLocalizedString(@"Sale") forState:UIControlStateNormal];
+    [self.shelveBtn setTitle:ASLocalizedString(@"off shelve") forState:UIControlStateNormal];
+    [self.addGoodsBtn setTitle:ASLocalizedString(@"Add good") forState:UIControlStateNormal];
     [self registTableView];
     self.shelveBtn.selected = NO;
     self.shelveLine.hidden = YES;
@@ -52,7 +69,7 @@
     self.goodsPage = 1000;
     MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;
-    NSLog(@"[nNsuserdefaul objectForKey -%@",[nNsuserdefaul objectForKey:@"userID"]);
+//    NSLog(@"[nNsuserdefaul objectForKey -%@",[nNsuserdefaul objectForKey:@"userID"]);
     [self mjRefalish];
     self.productTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
@@ -68,15 +85,8 @@
     self.productTableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
         [self getShopGoodsTableWithID:[nNsuserdefaul objectForKey:@"userID"]];
     }];
-    
-    
-//    self.productTableView.mj_footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-//        self.goodsPage += 10;
-//        [self getShopGoodsTableWithID:[nNsuserdefaul objectForKey:@"userID"]];
-//    }];
-    
 }
-
+#pragma mark  shareAction
 - (void)shareAction
 {
     CQCustomActionSheet *cusSheet = [[CQCustomActionSheet alloc] init];
@@ -92,7 +102,202 @@
 #pragma mark shareDelegate
 - (void)customActionSheetButtonClick:(CQActionSheetButton *)btn
 {
-    
+//    NSLog(@"===========  %ld",btn.tag);
+    switch (btn.tag) {
+        case 0:
+        {
+            //创建分享参数
+            NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+            
+            NSMutableArray* imageArray = [NSMutableArray array];
+            for (NSDictionary *diction in self.shareImage) {
+                [imageArray addObject:diction[@"path"]];
+                NSLog(@"- - - - - - - - - - - %@",diction[@"path"]);
+            }
+            if (imageArray) {
+                UIImage *image = imageArray[0];
+                [shareParams SSDKSetupFacebookParamsByText:[NSString stringWithFormat:@"%@,%@",self.shareTitle,self.shareUrl] image:image type:SSDKContentTypeAuto];
+                
+                //进行分享
+                [ShareSDK share:SSDKPlatformTypeFacebook
+                     parameters:shareParams
+                 onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+                     
+                     switch (state) {
+                         case SSDKResponseStateSuccess:
+                         {
+                             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                             [alertView show];
+                             break;
+                         }
+                         case SSDKResponseStateFail:
+                         {
+                             NSLog(@"%@",error);
+                             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享失败"  message:[NSString stringWithFormat:@"%@", error] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                             [alertView show];
+                             break;
+                         }
+                         case SSDKResponseStateCancel:
+                         {
+                             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享已取消" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                             [alertView show];
+                             break;
+                         }
+                         default:
+                             break;
+                     }
+                 }];
+            }
+        }
+            break;
+            case 1:
+        {
+            
+            FBSDKShareLinkContent *content = [[FBSDKShareLinkContent alloc] init];
+            content.contentURL = [NSURL URLWithString:@"https://itunes.apple.com/us/app/id1145763548"];
+            //            content.imageURL = [NSURL URLWithString:[self.imageArray firstObject]];
+            [FBSDKMessageDialog showWithContent:content delegate:nil];        }
+            break;
+        case 2:
+        {
+            //创建分享参数
+            NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+            
+            NSArray* imageArray = @[[UIImage imageNamed:@"shangpingtu_img"]];
+            
+            if (imageArray) {
+                [shareParams SSDKSetupLineParamsByText:@"haode" image:imageArray type:SSDKContentTypeAuto];
+                //进行分享
+                [ShareSDK share:SSDKPlatformTypeLine
+                     parameters:shareParams
+                 onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+                     
+                     switch (state) {
+                         case SSDKResponseStateSuccess:
+                         {
+                             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                             [alertView show];
+                             break;
+                         }
+                         case SSDKResponseStateFail:
+                         {
+                             NSLog(@"%@",error);
+                             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享失败"  message:[NSString stringWithFormat:@"%@", error] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                             [alertView show];
+                             break;
+                         }
+                         case SSDKResponseStateCancel:
+                         {
+                             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享已取消" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                             [alertView show];
+                             break;
+                         }
+                         default:
+                             break;
+                     }
+                 }];
+            }
+
+        }
+            break;
+        case 3:
+        {
+            //创建分享参数
+            NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+            NSMutableArray* imageArray = [NSMutableArray array];
+            for (NSDictionary *diction in self.shareImage) {
+                [imageArray addObject:diction[@"path"]];
+//                NSLog(@"- - - - - - - - - - - %@",diction[@"path"]);
+            }
+            if (imageArray) {
+                UIImage *image = imageArray[0];
+                [shareParams SSDKSetupInstagramByImage:image menuDisplayPoint:CGPointMake(0, 0)];
+                //进行分享
+                [ShareSDK share:SSDKPlatformTypeInstagram
+                     parameters:shareParams
+                 onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+                     
+                     switch (state) {
+                         case SSDKResponseStateSuccess:
+                         {
+                             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                             [alertView show];
+                             break;
+                         }
+                         case SSDKResponseStateFail:
+                         {
+                             NSLog(@"%@",error);
+                             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享失败"  message:[NSString stringWithFormat:@"%@", error] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                             [alertView show];
+                             break;
+                         }
+                         case SSDKResponseStateCancel:
+                         {
+                             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享已取消" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                             [alertView show];
+                             break;
+                         }
+                         default:
+                             break;
+                     }
+                 }];
+            }
+
+        }
+            break;
+        case 4:
+        {
+            //创建分享参数
+            NSMutableDictionary *shareParams = [NSMutableDictionary dictionary];
+            NSMutableArray* imageArray = [NSMutableArray array];
+            for (NSDictionary *diction in self.shareImage) {
+                [imageArray addObject:diction[@"path"]];
+//                NSLog(@"- - - - - - - - - - - %@",diction[@"path"]);
+            }
+            
+            if (imageArray) {
+                [shareParams SSDKSetupTwitterParamsByText:@"share goods" images:imageArray latitude:0.9 longitude:0.9 type:SSDKContentTypeImage];
+                //进行分享
+                [ShareSDK share:SSDKPlatformTypeTwitter
+                     parameters:shareParams
+                 onStateChanged:^(SSDKResponseState state, NSDictionary *userData, SSDKContentEntity *contentEntity, NSError *error) {
+                     
+                     switch (state) {
+                         case SSDKResponseStateSuccess:
+                         {
+                             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享成功" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                             [alertView show];
+                             break;
+                         }
+                         case SSDKResponseStateFail:
+                         {
+                             NSLog(@"%@",error);
+                             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享失败"  message:[NSString stringWithFormat:@"%@", error] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                             [alertView show];
+                             break;
+                         }
+                         case SSDKResponseStateCancel:
+                         {
+                             UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"分享已取消" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil];
+                             [alertView show];
+                             break;
+                         }
+                         default:
+                             break;
+                     }
+                 }];
+            }
+        }
+            break;
+        case 5:
+        {
+            UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+            pasteboard.string = [NSString stringWithFormat:@"%@  %@",self.shareTitle,self.shareUrl];
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -150,7 +355,7 @@
     } else {
         MarkerGoodListViewController *place = [[MarkerGoodListViewController alloc] init];
         place.marketModel = model;
-        NSLog(@"----   %@",model);
+//        NSLog(@"----   %@",model);
         [self.navigationController pushViewController:place animated:YES];
     }
 }
@@ -196,10 +401,15 @@
     [self.navigationController pushViewController:editView animated:YES];
 }
 
-- (void)didselectCellWithButton:(UIButton *)btn
+- (void)didselectCellWithButton:(UITableViewCell *)cell
 {
-    ProductsTableViewCell *cell = (ProductsTableViewCell *)[[[btn superview] superview] superview];
-    NSIndexPath *pathCell = [self.productTableView indexPathForCell:cell];
+    NSIndexPath *prePath = [self.productTableView indexPathForCell:cell];
+    MarketListModel *marke = self.productArray[prePath.section];
+    NSString *goodUrl = [NSString stringWithFormat:@"http://%@/Good/app/gooddetails.aspx?goodid=%@",publickUrl,marke.goodid];
+    self.shareUrl = goodUrl;
+    self.shareTitle = marke.goodname;
+    self.shareImage = [NSArray arrayWithArray:marke.goodimgs];
+//    NSLog(@"shareImage - - - - %@",self.shareImage);
     [self shareAction];
 }
 
@@ -219,12 +429,13 @@
 //        NSLog(@"failure");
 //    }];
     [PPNetworkHelper GET:goodTable parameters:nil responseCache:^(id responseCache) {
-        NSLog(@"responseObject - %@",responseCache);
+//        NSLog(@"responseObject - %@",responseCache);
         [self getGoodTableWith:responseCache];
     } success:^(id responseObject) {
-        NSLog(@"responseObject - %@",responseObject);
+//        NSLog(@"responseObject - %@",responseObject);
         [self getGoodTableWith:responseObject];
     } failure:^(NSError *error) {
+        self.nothingView.hidden = NO;
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self.productTableView.mj_header endRefreshing];
         [self.productTableView.mj_footer endRefreshing];
@@ -243,11 +454,15 @@
                 MarketListModel *mark = [[MarketListModel alloc] init];
                 [mark setValuesForKeysWithDictionary:dict];
                 [self.productArray addObject:mark];
-                NSLog(@"responseObject - %@",self.productArray);
+//                NSLog(@"responseObject - %@",self.productArray);
             }
+            self.nothingView.hidden = YES;
             [self.productTableView reloadData];
         } else {
-            
+            self.nothingView.hidden = NO;
+            [MBProgressHUD hideHUDForView:self.view animated:YES];
+            [self.productTableView.mj_header endRefreshing];
+            [self.productTableView.mj_footer endRefreshing];
         }
         [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self.productTableView.mj_header endRefreshing];
@@ -259,7 +474,7 @@
 {
     NSIndexPath *prePath = [self.productTableView indexPathForCell:cell];
     MarketListModel *marke = self.productArray[prePath.section];
-    NSString *goodUrl = [NSString stringWithFormat:@"http://%@/Good/app/gooddetails.aspx?goodid=%@",publickUrl,marke.goodid];
+    NSString *goodUrl = [NSString stringWithFormat:@"http://%@/GoodHander/product.aspx?goodid=%@",publickUrl,marke.goodid];
     NSLog(@"%@",goodUrl);
     WebViewController *webView = [[WebViewController alloc] init];
     webView.showUrl = goodUrl;
@@ -270,10 +485,10 @@
 {
     NSIndexPath *selectPath =  [self.productTableView indexPathForCell:cell];
     MarketListModel *mark = self.productArray[selectPath.section];
-    NSLog(@"---------%@,%@",mark.goodimgs,mark.line);
+//    NSLog(@"---------%@,%@",mark.goodimgs,mark.line);
     
     UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
-    NSArray *title = @[@"Save the picture", @"copy the name & line" , @"copy the name",@"copy the link"];
+    NSArray *title = @[ASLocalizedString(@"Save the picture"), ASLocalizedString(@"copy the name & link") , ASLocalizedString(@"copy the name"),ASLocalizedString(@"copy the link")];
     CWActionSheet *sheet = [[CWActionSheet alloc] initWithTitles:title clickAction:^(CWActionSheet *sheet, NSIndexPath *indexPath) {
         NSLog(@"点击了%ldd",(long) indexPath.row);
         switch (indexPath.row) {
@@ -285,7 +500,7 @@
                         NSString *urlString = urlDic[@"path"];
                         NSData *data = [NSData dataWithContentsOfURL:[NSURL  URLWithString:urlString]];
                         UIImage *image = [UIImage imageWithData:data]; // 取得图片
-                        NSLog(@"image  =  %@",image);
+//                        NSLog(@"image  =  %@",image);
                         UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), NULL);
                     }
                 }
@@ -328,8 +543,9 @@
 {
     NSIndexPath *prePath = [self.productTableView indexPathForCell:cell];
     MarketListModel *marke = self.productArray[prePath.section];
-    NSString *goodUrl = [NSString stringWithFormat:@"http://%@/Good/app/gooddetails.aspx?goodid=%@",publickUrl,marke.goodid];
-    NSLog(@"%@",goodUrl);
+//    NSString *goodUrl = [NSString stringWithFormat:@"http://%@/Good/app/gooddetails.aspx?goodid=%@",publickUrl,marke.goodid];
+    NSString *goodUrl = [NSString stringWithFormat:@"http://%@/GoodHander/product.aspx?goodid=%@",publickUrl,marke.goodid];
+//    NSLog(@"%@",goodUrl);
     WebViewController *webView = [[WebViewController alloc] init];
     webView.showUrl = goodUrl;
     [self.navigationController pushViewController:webView animated:YES];
@@ -358,22 +574,28 @@
     [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"accessToken"] forHTTPHeaderField:@"accesstoken"];
     [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"refreshToken"] forHTTPHeaderField:@"refreshtoken"];
     [PPNetworkHelper GET:goodsUrl parameters:nil success:^(id responseObject) {
-        NSLog(@"responseCache - %@",responseObject);
+//        NSLog(@"responseCache - %@",responseObject);
         NSDictionary *diction = responseObject;
-        NSLog(@"nNsuserdefaul - %@",[nNsuserdefaul objectForKey:@"accessToken"]);
+//        NSLog(@"nNsuserdefaul - %@",[nNsuserdefaul objectForKey:@"accessToken"]);
         if ([diction[@"returncode"] isEqualToString:@"success"]) {
-            UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"上架成功" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alerV show];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = ASLocalizedString(@"Success");
+            [hud hide:YES afterDelay:2];
             [self.productTableView.mj_header beginRefreshing];
         } else {
             NSString *mess = diction[@"msg"];
-            UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:mess delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alerV show];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = mess;
+            [hud hide:YES afterDelay:2];
         }
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
-        UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"上架失败" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-        [alerV show];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = ASLocalizedString(@"failure");
+        [hud hide:YES afterDelay:2];
     }];
 }
 

@@ -17,6 +17,34 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    NSLog(@"%@-%@-%@",self.phoneNum,self.lineNum,self.facebookNum);
+}
+- (IBAction)callPhoneAction:(UIButton *)sender {
+    UIWebView *webView = [[UIWebView alloc] init];
+    [webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"tel:10086"]]];
+    [self.view addSubview:webView];
+}
+- (IBAction)facebookAction:(UIButton *)sender {
+    NSURL *faceUrl = [NSURL URLWithString:self.facebookNum];
+    if ([[UIApplication sharedApplication] canOpenURL:faceUrl]) {
+        [[UIApplication sharedApplication] openURL:faceUrl];
+    } else {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = ASLocalizedString(@"暂无联系方式");
+        [hud hide:YES afterDelay:2];
+    }
+}
+- (IBAction)lineAction:(UIButton *)sender {
+    UIPasteboard *pasteboard = [UIPasteboard generalPasteboard];
+    if (self.lineNum) {
+        pasteboard.string = self.lineNum;
+    } else {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = ASLocalizedString(@"暂无联系方式");
+        [hud hide:YES afterDelay:2];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

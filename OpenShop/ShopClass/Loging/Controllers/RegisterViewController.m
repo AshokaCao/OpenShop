@@ -27,8 +27,8 @@
     // Do any additional setup after loading the view from its nib.
     
     self.navigationController.navigationBar.translucent = NO;
-    
-    self.title = ASLocalizedString(@"Reset Password");
+    [self.doneBtn setTitle:ASLocalizedString(@"Done") forState:UIControlStateNormal];
+    self.title = ASLocalizedString(@"Password");
     self.codeNumberTextField.clearButtonMode = UITextFieldViewModeWhileEditing;
     
     [self.codeNumberTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];

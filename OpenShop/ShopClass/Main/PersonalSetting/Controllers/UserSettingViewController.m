@@ -24,6 +24,8 @@
 @property (strong, nonatomic) HXPhotoManager *manager;
 @property (strong, nonatomic) UIActionSheet *actionSheet;
 
+@property (nonatomic ,strong) UIImage *selectImage;
+
 @end
 
 @implementation UserSettingViewController
@@ -40,18 +42,21 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
+    [self showUserData];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = ASLocalizedString(@"Account");
+    self.accountLa.text = ASLocalizedString(@"Account");
+    self.nickNameLa.text = ASLocalizedString(@"NickName");
+    self.changePasswordLa.text = ASLocalizedString(@"Change Password");
+    [self.outBtn setTitle:ASLocalizedString(@"Logout") forState:UIControlStateNormal];
     [self changeNickNameAction];
     [self changeHeaderImage];
     
     [self leftItem];
-    [self showUserData];
 }
 
 - (void)viewDidLayoutSubviews
@@ -89,9 +94,34 @@
 
 - (void)showUserData
 {
-    [self.userHeaderImage setImageWithURL:[NSURL URLWithString:self.userData.headimgurl] placeholderImage:[UIImage imageNamed:@""]];
-    self.userNameLabel.text = self.userData.nickname;
-    self.accountIDLabel.text = self.userData.userid;
+    [self getUserData];
+}
+
+
+- (void)getUserData
+{
+    NSString *userUrl = [NSString stringWithFormat:@"http://%@/Account/UserDetial.ashx?userid=%@",publickUrl,[nNsuserdefaul objectForKey:@"userID"]];
+    [PPNetworkHelper GET:userUrl parameters:nil success:^(id responseObject) {
+        NSLog(@"userData - %@",responseObject);
+        NSDictionary *userDic = responseObject;
+        NSString *returnCode = userDic[@"returncode"];
+        if ([returnCode isEqualToString:@"success"]) {
+            NSDictionary *listDic = userDic[@"userinfo"];
+            UserModelData *model = [[UserModelData alloc] init];
+            [model setValuesForKeysWithDictionary:listDic];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (self.selectImage != nil) {
+                    self.userHeaderImage.image = self.selectImage;
+                } else {
+                    [self.userHeaderImage setImageWithURL:[NSURL URLWithString:model.headimgurl] placeholderImage:[UIImage imageNamed:@"touxiang_img_default"]];
+                }
+                self.userNameLabel.text = model.nickname;
+                self.accountIDLabel.text = self.userData.userid;
+            });
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"------failure");
+    }];
 }
 
 - (void)backToMain
@@ -121,10 +151,6 @@
 
 - (void)changeHeaderImageClick
 {
-//    HXPhotoViewController *vc = [[HXPhotoViewController alloc] init];
-//    vc.delegate = self;
-//    vc.manager = self.manager;
-//    [self presentViewController:[[MainNavigationViewController alloc] initWithRootViewController:vc] animated:YES completion:nil];
     [self choosePhoto];
 }
 
@@ -172,7 +198,7 @@
 //    }];
 }
 
-- (void)uploadUserImage
+- (void)uploadUserImageWith:(UIImage *)image
 {
     NSString *upload = [NSString stringWithFormat:@"http://%@/Account/UserModify.ashx",publickUrl];
     NSMutableDictionary *uploadShop = [NSMutableDictionary dictionary];
@@ -182,7 +208,7 @@
     
     [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"accessToken"] forHTTPHeaderField:@"accesstoken"];
     [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"refreshToken"] forHTTPHeaderField:@"refreshtoken"];
-    [PPNetworkHelper uploadImagesWithURL:upload parameters:uploadShop name:@"shopImage" images:@[self.userHeaderImage.image] fileNames:@[@"shopimg.png"] imageScale:0.1f imageType:@"png" progress:^(NSProgress *progress) {
+    [PPNetworkHelper uploadImagesWithURL:upload parameters:uploadShop name:@"userImage" images:@[image] fileNames:@[@"userimg.png"] imageScale:0.1f imageType:@"png" progress:^(NSProgress *progress) {
         
     } success:^(id responseObject) {
         NSLog(@"responseObject - %@",responseObject);
@@ -271,10 +297,10 @@
         
     }];
     
-    UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage *image = [info objectForKey:UIImagePickerControllerEditedImage];
     
-    self.userHeaderImage.image = [self OriginImage:image scaleToSize:CGSizeMake(image.size.width * 0.1, image.size.height * 0.1)];
-    [self uploadUserImage];
+    self.selectImage = image;
+    [self uploadUserImageWith:image];
 }
 
 -(UIImage*) OriginImage:(UIImage *)image scaleToSize:(CGSize)size

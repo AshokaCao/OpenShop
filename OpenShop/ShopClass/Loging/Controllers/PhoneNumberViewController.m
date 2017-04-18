@@ -8,6 +8,7 @@
 
 #import "PhoneNumberViewController.h"
 #import "RegisterViewController.h"
+#import "WebViewController.h"
 
 @interface PhoneNumberViewController () <UITextFieldDelegate>
 @property (weak, nonatomic) IBOutlet UITextField *phoneNumberTextField;
@@ -27,7 +28,11 @@
     
     [self.phoneNumberTextField addTarget:self action:@selector(textFieldDidChange:) forControlEvents:UIControlEventEditingChanged];
     self.nextBtn.enabled = NO;
-//    [self setLiftItem];
+        if ([self.typeStr isEqualToString:ASLocalizedString(@"ForgetPassword")]) {
+            self.title = ASLocalizedString(@"ForgetPassword");
+        } else {
+            self.title = ASLocalizedString(@"Regist");
+        }
     
     NSArray *viewcontrollers = self.navigationController.viewControllers;
     if (viewcontrollers.count > 1) {
@@ -66,7 +71,7 @@
 
 - (IBAction)nextAction:(UIButton *)sender {
     RegisterViewController *regist = [[RegisterViewController alloc] init];
-    if ([self.typeStr isEqualToString:@"ForgetPassword"]) {
+    if ([self.typeStr isEqualToString:ASLocalizedString(@"ForgetPassword")]) {
         regist.typeStr = @"password";
     } else {
         regist.typeStr = @"register";
@@ -76,7 +81,10 @@
 }
 
 - (IBAction)agreementAction:(UIButton *)sender {
-    
+    NSString *urlStr = @"http://api.10bbuy.com/One2Sell%20Terms%20of%20service.html";
+    WebViewController *wenView = [[WebViewController alloc] init];
+    wenView.showUrl = urlStr;
+    [self.navigationController pushViewController:wenView animated:YES];
 }
 
 - (void)textFieldDidChange:(UITextField *)textField

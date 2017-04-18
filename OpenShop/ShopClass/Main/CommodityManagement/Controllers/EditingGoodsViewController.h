@@ -12,5 +12,11 @@
 @interface EditingGoodsViewController : UIViewController
 @property (nonatomic ,strong) MarketListModel *editModel;
 @property (nonatomic ,strong) NSString *imageCount;
+@property (weak, nonatomic) IBOutlet UILabel *categoryLabelText;
+@property (weak, nonatomic) IBOutlet UILabel *distributionLabelText;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabelText;
+@property (weak, nonatomic) IBOutlet UILabel *profitLabelText;
+@property (weak, nonatomic) IBOutlet UIButton *offShelveBtn;
+@property (weak, nonatomic) IBOutlet UIButton *deleteBtn;
 
 @end

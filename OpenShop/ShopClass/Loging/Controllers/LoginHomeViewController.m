@@ -24,6 +24,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.introduction.text = ASLocalizedString(@"It is best to open a shop app");
+    [self.loginBtn setTitle:ASLocalizedString(@"Login") forState:UIControlStateNormal];
+    [self.signupBtn setTitle:ASLocalizedString(@"Sign up") forState:UIControlStateNormal];
     // Do any additional setup after loading the view from its nib.
 }
 - (IBAction)signupAction:(UIButton *)sender {

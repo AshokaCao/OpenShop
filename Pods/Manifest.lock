@@ -14,31 +14,53 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - Bolts (1.8.4):
+    - Bolts/AppLinks (= 1.8.4)
+    - Bolts/Tasks (= 1.8.4)
+  - Bolts/AppLinks (1.8.4):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.8.4)
+  - FBSDKCoreKit (4.21.0):
+    - Bolts (~> 1.7)
+  - FBSDKLoginKit (4.21.0):
+    - FBSDKCoreKit
+  - FBSDKShareKit (4.21.0):
+    - FBSDKCoreKit
   - FMDB (2.6.2):
     - FMDB/standard (= 2.6.2)
   - FMDB/standard (2.6.2)
-  - GTSDK (1.5.0)
+  - GTSDK (1.6.2.0)
   - MBProgressHUD (0.9.2)
   - MJExtension (3.0.13)
   - MJRefresh (3.1.12)
-  - MOBFoundation (2.2.3)
+  - MOBFoundation (2.2.17)
   - SDCycleScrollView (1.65):
     - SDWebImage (~> 3.7)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
-  - ShareSDK3 (3.5.2):
-    - ShareSDK3/ShareSDK (= 3.5.2)
-  - ShareSDK3/ShareSDK (3.5.2)
-  - ShareSDK3/ShareSDKExtension (3.5.2)
-  - ShareSDK3/ShareSDKPlatforms/Copy (3.5.2)
-  - ShareSDK3/ShareSDKPlatforms/Facebook (3.5.2)
-  - ShareSDK3/ShareSDKPlatforms/Instagram (3.5.2)
-  - ShareSDK3/ShareSDKPlatforms/Line (3.5.2)
+  - ShareSDK3 (3.6.2.1):
+    - MOBFoundation
+    - ShareSDK3/ShareSDK (= 3.6.2.1)
+  - ShareSDK3/ShareSDK (3.6.2.1):
+    - MOBFoundation
+  - ShareSDK3/ShareSDKExtension (3.6.2.1):
+    - MOBFoundation
+  - ShareSDK3/ShareSDKPlatforms/Copy (3.6.2.1):
+    - MOBFoundation
+  - ShareSDK3/ShareSDKPlatforms/Facebook (3.6.2.1):
+    - MOBFoundation
+  - ShareSDK3/ShareSDKPlatforms/Instagram (3.6.2.1):
+    - MOBFoundation
+  - ShareSDK3/ShareSDKPlatforms/Line (3.6.2.1):
+    - MOBFoundation
   - YYCache (1.0.4)
 
 DEPENDENCIES:
   - AFNetworking (~> 3.1.0)
+  - FBSDKCoreKit
+  - FBSDKLoginKit
+  - FBSDKShareKit
   - FMDB (~> 2.6.2)
   - GTSDK
   - MBProgressHUD (~> 0.9.2)
@@ -56,17 +78,21 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  FBSDKCoreKit: 8a372ab194b5c7c26355c1920ef52dbeb44bc222
+  FBSDKLoginKit: a1a5f4b4ac445823a020fbeeaf5f03714a67ff9c
+  FBSDKShareKit: 649a7acfd01a3e056a33994c1bfbb997814cc8a2
   FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
-  GTSDK: 4380de452178d8ba2a67189f10c6743d0f9536b9
+  GTSDK: 6089897a86579d4a7d66eb4245f2c8639c2e5e8f
   MBProgressHUD: 1569cf7ace17a8bac47aabfbb8580a49690386d1
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
-  MOBFoundation: 2bc5cd7011a2db75cf2b3ceacb7f4227eec88f3e
+  MOBFoundation: fa12570bb16a7655dca3b3472ce6cd962e7ff5e3
   SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
-  ShareSDK3: 08ed714e2bbdcd97ab60f58cb398227341dfc20a
+  ShareSDK3: 3c531b5e64576e4b947127b9b1f46b685dfa3b37
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
 
-PODFILE CHECKSUM: 4c863118833088b69dad58ea87c9d7d357b3be1d
+PODFILE CHECKSUM: d7f6b4b8dbe52c63050e827daee69e5c22e49575
 
 COCOAPODS: 1.1.1

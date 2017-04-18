@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MarketListModel.h"
 
 @interface SearchViewController : UIViewController
+@property (nonatomic ,strong) MarketListModel *searchModel;
+@property (nonatomic ,strong) NSString *searchStr;
 
 @end

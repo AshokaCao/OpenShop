@@ -17,5 +17,6 @@
 @property (nonatomic ,strong) NSString *authentication;
 @property (nonatomic ,strong) NSString *phone;
 @property (nonatomic ,strong) NSString *line;
+@property (nonatomic ,strong) NSString *authtype;
 
 @end

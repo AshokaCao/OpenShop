@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SearchHistoryRecordfooter">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="45"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="搜索icon_小" translatesAutoresizingMaskIntoConstraints="NO" id="5Hx-Ds-zmU">
+                    <frame key="frameInset" minX="15" minY="15" width="15" height="15"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="历史搜索" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nPs-Xr-8LT">
+                    <frame key="frameInset" minX="44" minY="13.5" width="60" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" red="0.47058823529411764" green="0.47058823529411764" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uhk-7v-8gR">
+                    <color key="backgroundColor" red="0.8666666666666667" green="0.8666666666666667" blue="0.8666666666666667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="0kZ-iU-cQ0"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Uhk-7v-8gR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="65u-yj-AKX"/>
+                <constraint firstAttribute="trailing" secondItem="Uhk-7v-8gR" secondAttribute="trailing" id="Cea-rm-oNf"/>
+                <constraint firstItem="nPs-Xr-8LT" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="V9j-WX-NBL"/>
+                <constraint firstAttribute="bottom" secondItem="Uhk-7v-8gR" secondAttribute="bottom" id="VEU-fD-0gs"/>
+                <constraint firstItem="5Hx-Ds-zmU" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="a8q-is-IXq"/>
+                <constraint firstItem="5Hx-Ds-zmU" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="do4-Gy-WgS"/>
+                <constraint firstItem="nPs-Xr-8LT" firstAttribute="leading" secondItem="5Hx-Ds-zmU" secondAttribute="trailing" constant="14" id="h4M-3u-efJ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="img" destination="5Hx-Ds-zmU" id="Uhw-6i-LJh"/>
+                <outlet property="labelHis" destination="nPs-Xr-8LT" id="NR4-At-rZ1"/>
+            </connections>
+            <point key="canvasLocation" x="48" y="223.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="搜索icon_小" width="13" height="13"/>
+    </resources>
+</document>

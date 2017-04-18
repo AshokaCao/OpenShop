@@ -92,8 +92,9 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     PersonSettingTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"personCell"];
-    NSDictionary *diction = @{@"one":@[@"Help&FAQ",@"About us",@"Rate us"],@"two":@[@"Invite Friends"]};
+    NSDictionary *diction = @{@"one":@[ASLocalizedString(@"Help&FAQ"),ASLocalizedString(@"About us"),ASLocalizedString(@"Rate us")],@"two":@[ASLocalizedString(@"Invite Friends")]};
     NSArray *arr = @[@"one",@"two"];
+    
     cell.firstLable.text = diction[arr[indexPath.section]][indexPath.row];
     switch (indexPath.section) {
         case 0:
@@ -173,7 +174,7 @@
             [model setValuesForKeysWithDictionary:listDic];
             self.setUserData = model;
             dispatch_async(dispatch_get_main_queue(), ^{
-                [self.userHeaderImage setImageWithURL:[NSURL URLWithString:model.headimgurl] placeholderImage:[UIImage imageNamed:@""]];
+                [self.userHeaderImage setImageWithURL:[NSURL URLWithString:model.headimgurl] placeholderImage:[UIImage imageNamed:@"touxiang_img_default"]];
                 self.userNameLabel.text = model.nickname;
             });
         }
