@@ -168,7 +168,7 @@
             case 1:
             {
                 WebViewController *webVC = [[WebViewController alloc] init];
-                webVC.showUrl = @"https://www.baidu.com";
+                webVC.showUrl = [NSString stringWithFormat:@"http://%@/Handler/aboutus/about.html",publickUrl];
                 [self.navigationController pushViewController:webVC animated:YES];
             }
                 break;

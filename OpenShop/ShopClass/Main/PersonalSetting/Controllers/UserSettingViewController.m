@@ -13,6 +13,7 @@
 #import "MainNavigationViewController.h"
 #import "LoginHomeViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "PhoneNumberViewController.h"
 
 @interface UserSettingViewController () <HXPhotoViewControllerDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate, UIActionSheetDelegate>
 @property (weak, nonatomic) IBOutlet UIView *accountView;
@@ -147,6 +148,19 @@
     nameView.changeStr = @"userName";
     nameView.nameStr = self.userData.nickname;
     [self.navigationController pushViewController:nameView animated:YES];
+}
+
+- (void)changeThePassword
+{
+    UITapGestureRecognizer *headerTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changePasswordAction)];
+    [self.passwordView addGestureRecognizer:headerTap];
+}
+
+- (void)changePasswordAction
+{
+    PhoneNumberViewController *phoneNum = [[PhoneNumberViewController alloc] init];
+    phoneNum.typeStr = ASLocalizedString(@"ForgetPassword");
+    [self.navigationController pushViewController:phoneNum animated:YES];
 }
 
 - (void)changeHeaderImageClick

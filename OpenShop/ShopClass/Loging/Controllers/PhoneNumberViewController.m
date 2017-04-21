@@ -70,14 +70,14 @@
 }
 
 - (IBAction)nextAction:(UIButton *)sender {
-    RegisterViewController *regist = [[RegisterViewController alloc] init];
     if ([self.typeStr isEqualToString:ASLocalizedString(@"ForgetPassword")]) {
+        RegisterViewController *regist = [[RegisterViewController alloc] init];
         regist.typeStr = @"password";
+        regist.phoneNum = self.phoneNumberTextField.text;
+        [self.navigationController pushViewController:regist animated:YES];
     } else {
-        regist.typeStr = @"register";
+        [self validationPhone];
     }
-    regist.phoneNum = self.phoneNumberTextField.text;
-    [self.navigationController pushViewController:regist animated:YES];
 }
 
 - (IBAction)agreementAction:(UIButton *)sender {
@@ -98,6 +98,34 @@
             self.nextBtn.enabled = NO;
         }
     }
+}
+
+- (void)validationPhone
+{
+    NSString *valUrl = [NSString stringWithFormat:@"http://%@/Account/MobileValid.ashx?mobile=%@",publickUrl,self.phoneNumberTextField.text];
+    [PPNetworkHelper GET:valUrl parameters:nil success:^(id responseObject) {
+        NSLog(@" - - -    %@",responseObject);
+        NSDictionary *diction = responseObject;
+        NSString *returnCode = diction[@"returncode"];
+        NSLog(@"returnCode - %@",returnCode);
+        if ([returnCode isEqualToString:@"success"]) {
+            RegisterViewController *regist = [[RegisterViewController alloc] init];
+            regist.typeStr = @"register";
+            regist.phoneNum = self.phoneNumberTextField.text;
+            [self.navigationController pushViewController:regist animated:YES];
+        } else if ([returnCode isEqualToString:@"error"]) {
+            NSString *errorCode = diction[@"msg"];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = errorCode;
+            [hud hide:YES afterDelay:2];
+        }
+    } failure:^(NSError *error) {
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = ASLocalizedString(@"故障");
+        [hud hide:YES afterDelay:2];
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
