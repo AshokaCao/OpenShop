@@ -11,5 +11,6 @@
 
 @interface MarkerGoodListViewController : UIViewController
 @property (nonatomic ,strong) MarketListModel *marketModel;
+@property (nonatomic ,strong) NSString *marketGoodID;
 
 @end

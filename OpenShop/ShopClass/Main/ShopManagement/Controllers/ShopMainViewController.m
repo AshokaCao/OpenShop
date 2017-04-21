@@ -92,20 +92,6 @@
 
 - (void)setNavigationItems
 {
-//    self.navigationController.navigationBar.tintColor = [UIColor blackColor];
-//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [btn setTitle:@"Preview" forState:UIControlStateNormal];
-//    [btn setTitleColor:[UIColor colorWithHexString:@"#111111"] forState:UIControlStateNormal];
-//    btn.titleLabel.font = [UIFont fontWithName:@"STHeitiSC-Medium" size:13];
-//    btn.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-//    // 设置尺寸
-//    //    btn.size = btn.currentTitle.;
-//    btn.size = CGSizeMake(79, 44);
-//    
-//    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
-//    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-//    space.width = -7;//自己设定
-//    self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:space,leftItem, nil];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:ASLocalizedString(@"Preview") style:UIBarButtonItemStylePlain target:self action:@selector(shopShowAction)];
     [self.navigationItem.leftBarButtonItem setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont boldSystemFontOfSize:13], NSFontAttributeName, nil] forState:UIControlStateNormal];
     [self.navigationItem.leftBarButtonItem setTintColor:[UIColor blackColor]];
@@ -166,10 +152,13 @@
                 self.shareUrl = shopInfo;
             });
         } else {
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            UIAlertView *alerV = [[UIAlertView alloc] initWithTitle:@"" message:@"无数据" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-            [alerV show];
+            NSString *mess = diction[@"msg"];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = mess;
+            [hud hide:YES afterDelay:2];
         }
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     } failure:^(NSError *error) {
         
     }];

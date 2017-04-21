@@ -12,6 +12,8 @@
 #import "ShopMainViewController.h"
 #import "PersonalMainViewController.h"
 #import "MainNavigationViewController.h"
+#import "ShopViewController.h"
+#import "ProductsViewController.h"
 
 @interface RootViewController ()
 
@@ -24,8 +26,8 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor colorWithHexString:@"#ffffff"];
     MarketMainViewController *market = [[MarketMainViewController alloc] init];
-    CommodityMainViewController *commdity = [[CommodityMainViewController alloc] init];
-    ShopMainViewController *shop = [[ShopMainViewController alloc] init];
+    ProductsViewController *commdity = [[ProductsViewController alloc] init];
+    ShopViewController *shop = [[ShopViewController alloc] init];
     PersonalMainViewController *personal = [[PersonalMainViewController alloc] init];
     [self addChildVc:market title:ASLocalizedString(@"Market") image:@"tab_icon_market_default" selectedImage:@"tab_icon_market_selected"];
     [self addChildVc:commdity title:ASLocalizedString(@"Products") image:@"tab_icon_products_default" selectedImage:@"tab_icon_products_selected"];

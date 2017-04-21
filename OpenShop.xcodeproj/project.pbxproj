@@ -113,8 +113,21 @@
 		5125BAEA1EA09CBB005EED62 /* SearchHistoryRecordfooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5125BAE11EA09CBB005EED62 /* SearchHistoryRecordfooter.xib */; };
 		5125BAEB1EA09CBB005EED62 /* SearchRecordTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5125BAE31EA09CBB005EED62 /* SearchRecordTableViewCell.m */; };
 		5134C1DF1E88E8F90064255C /* ShopListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5134C1DE1E88E8F90064255C /* ShopListModel.m */; };
+		5145EC461EA847E700385D20 /* ProductsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5145EC441EA847E700385D20 /* ProductsViewController.m */; };
+		5145EC471EA847E700385D20 /* ProductsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5145EC451EA847E700385D20 /* ProductsViewController.xib */; };
+		5145EC4B1EA84E2000385D20 /* SaleProductsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5145EC491EA84E2000385D20 /* SaleProductsViewController.m */; };
+		5145EC4C1EA84E2000385D20 /* SaleProductsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5145EC4A1EA84E2000385D20 /* SaleProductsViewController.xib */; };
+		5145EC501EA8526100385D20 /* ShelveProductsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5145EC4E1EA8526100385D20 /* ShelveProductsViewController.m */; };
+		5145EC511EA8526100385D20 /* ShelveProductsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5145EC4F1EA8526100385D20 /* ShelveProductsViewController.xib */; };
+		5145EC541EA8AEAA00385D20 /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5145EC531EA8AEAA00385D20 /* MessageModel.m */; };
 		51487B361E80BA1E005184ED /* LoginHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 51487B341E80BA1E005184ED /* LoginHomeViewController.m */; };
 		51487B371E80BA1E005184ED /* LoginHomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 51487B351E80BA1E005184ED /* LoginHomeViewController.xib */; };
+		5153E7E51EA5E9E7002839FA /* ShopLogoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5153E7E31EA5E9E7002839FA /* ShopLogoTableViewCell.m */; };
+		5153E7E61EA5E9E7002839FA /* ShopLogoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5153E7E41EA5E9E7002839FA /* ShopLogoTableViewCell.xib */; };
+		5153E7EA1EA5EAC6002839FA /* ShopOtherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5153E7E81EA5EAC6002839FA /* ShopOtherTableViewCell.m */; };
+		5153E7EB1EA5EAC6002839FA /* ShopOtherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5153E7E91EA5EAC6002839FA /* ShopOtherTableViewCell.xib */; };
+		5153E7EF1EA5EBDD002839FA /* ShopViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5153E7ED1EA5EBDD002839FA /* ShopViewController.m */; };
+		5153E7F01EA5EBDD002839FA /* ShopViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5153E7EE1EA5EBDD002839FA /* ShopViewController.xib */; };
 		5154256F1E6E492200034535 /* PromoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5154256D1E6E492200034535 /* PromoteViewController.m */; };
 		515425701E6E492200034535 /* PromoteViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5154256E1E6E492200034535 /* PromoteViewController.xib */; };
 		515F80B41E6CFFCC002D79CD /* MainNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 515F80B21E6CFFCC002D79CD /* MainNavigationViewController.m */; };
@@ -151,6 +164,7 @@
 		517E32371E2CB1EE00ABD652 /* RegisterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 517E32351E2CB1EE00ABD652 /* RegisterViewController.xib */; };
 		517E323B1E2CB48C00ABD652 /* ForgetPassWordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 517E32391E2CB48C00ABD652 /* ForgetPassWordViewController.m */; };
 		517E323C1E2CB48C00ABD652 /* ForgetPassWordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 517E323A1E2CB48C00ABD652 /* ForgetPassWordViewController.xib */; };
+		5181EF811EA9B21700B014B1 /* ScrollModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5181EF801EA9B21700B014B1 /* ScrollModel.m */; };
 		5187C3441E24736500EC797F /* MarketMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5187C3421E24736500EC797F /* MarketMainViewController.m */; };
 		5187C3451E24736500EC797F /* MarketMainViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5187C3431E24736500EC797F /* MarketMainViewController.xib */; };
 		5187C3491E24739100EC797F /* CommodityMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5187C3471E24739100EC797F /* CommodityMainViewController.m */; };
@@ -391,9 +405,29 @@
 		5125BAE31EA09CBB005EED62 /* SearchRecordTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchRecordTableViewCell.m; sourceTree = "<group>"; };
 		5134C1DD1E88E8F90064255C /* ShopListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopListModel.h; sourceTree = "<group>"; };
 		5134C1DE1E88E8F90064255C /* ShopListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopListModel.m; sourceTree = "<group>"; };
+		5145EC431EA847E700385D20 /* ProductsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProductsViewController.h; sourceTree = "<group>"; };
+		5145EC441EA847E700385D20 /* ProductsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProductsViewController.m; sourceTree = "<group>"; };
+		5145EC451EA847E700385D20 /* ProductsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProductsViewController.xib; sourceTree = "<group>"; };
+		5145EC481EA84E2000385D20 /* SaleProductsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaleProductsViewController.h; sourceTree = "<group>"; };
+		5145EC491EA84E2000385D20 /* SaleProductsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaleProductsViewController.m; sourceTree = "<group>"; };
+		5145EC4A1EA84E2000385D20 /* SaleProductsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SaleProductsViewController.xib; sourceTree = "<group>"; };
+		5145EC4D1EA8526100385D20 /* ShelveProductsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShelveProductsViewController.h; sourceTree = "<group>"; };
+		5145EC4E1EA8526100385D20 /* ShelveProductsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShelveProductsViewController.m; sourceTree = "<group>"; };
+		5145EC4F1EA8526100385D20 /* ShelveProductsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShelveProductsViewController.xib; sourceTree = "<group>"; };
+		5145EC521EA8AEAA00385D20 /* MessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
+		5145EC531EA8AEAA00385D20 /* MessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
 		51487B331E80BA1E005184ED /* LoginHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginHomeViewController.h; sourceTree = "<group>"; };
 		51487B341E80BA1E005184ED /* LoginHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginHomeViewController.m; sourceTree = "<group>"; };
 		51487B351E80BA1E005184ED /* LoginHomeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginHomeViewController.xib; sourceTree = "<group>"; };
+		5153E7E21EA5E9E7002839FA /* ShopLogoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopLogoTableViewCell.h; sourceTree = "<group>"; };
+		5153E7E31EA5E9E7002839FA /* ShopLogoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopLogoTableViewCell.m; sourceTree = "<group>"; };
+		5153E7E41EA5E9E7002839FA /* ShopLogoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopLogoTableViewCell.xib; sourceTree = "<group>"; };
+		5153E7E71EA5EAC6002839FA /* ShopOtherTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopOtherTableViewCell.h; sourceTree = "<group>"; };
+		5153E7E81EA5EAC6002839FA /* ShopOtherTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopOtherTableViewCell.m; sourceTree = "<group>"; };
+		5153E7E91EA5EAC6002839FA /* ShopOtherTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopOtherTableViewCell.xib; sourceTree = "<group>"; };
+		5153E7EC1EA5EBDD002839FA /* ShopViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShopViewController.h; sourceTree = "<group>"; };
+		5153E7ED1EA5EBDD002839FA /* ShopViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShopViewController.m; sourceTree = "<group>"; };
+		5153E7EE1EA5EBDD002839FA /* ShopViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShopViewController.xib; sourceTree = "<group>"; };
 		5154256C1E6E492200034535 /* PromoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PromoteViewController.h; sourceTree = "<group>"; };
 		5154256D1E6E492200034535 /* PromoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PromoteViewController.m; sourceTree = "<group>"; };
 		5154256E1E6E492200034535 /* PromoteViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PromoteViewController.xib; sourceTree = "<group>"; };
@@ -451,6 +485,8 @@
 		517E32381E2CB48C00ABD652 /* ForgetPassWordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPassWordViewController.h; sourceTree = "<group>"; };
 		517E32391E2CB48C00ABD652 /* ForgetPassWordViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPassWordViewController.m; sourceTree = "<group>"; };
 		517E323A1E2CB48C00ABD652 /* ForgetPassWordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ForgetPassWordViewController.xib; sourceTree = "<group>"; };
+		5181EF7F1EA9B21700B014B1 /* ScrollModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollModel.h; sourceTree = "<group>"; };
+		5181EF801EA9B21700B014B1 /* ScrollModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollModel.m; sourceTree = "<group>"; };
 		5184EA331E1DE21C00FA2A4D /* OpenShop.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OpenShop.entitlements; sourceTree = "<group>"; };
 		5187C3411E24736500EC797F /* MarketMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MarketMainViewController.h; sourceTree = "<group>"; };
 		5187C3421E24736500EC797F /* MarketMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MarketMainViewController.m; sourceTree = "<group>"; };
@@ -884,6 +920,8 @@
 				51633E491E78DA9500113256 /* MarketListModel.m */,
 				516948081E7A363100C26F57 /* GoodsListModel.h */,
 				516948091E7A363100C26F57 /* GoodsListModel.m */,
+				5181EF7F1EA9B21700B014B1 /* ScrollModel.h */,
+				5181EF801EA9B21700B014B1 /* ScrollModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -966,6 +1004,15 @@
 				51E10E311E9B2A9B00CAC8E4 /* PlaceWebViewController.h */,
 				51E10E321E9B2A9B00CAC8E4 /* PlaceWebViewController.m */,
 				51E10E331E9B2A9B00CAC8E4 /* PlaceWebViewController.xib */,
+				5145EC431EA847E700385D20 /* ProductsViewController.h */,
+				5145EC441EA847E700385D20 /* ProductsViewController.m */,
+				5145EC451EA847E700385D20 /* ProductsViewController.xib */,
+				5145EC481EA84E2000385D20 /* SaleProductsViewController.h */,
+				5145EC491EA84E2000385D20 /* SaleProductsViewController.m */,
+				5145EC4A1EA84E2000385D20 /* SaleProductsViewController.xib */,
+				5145EC4D1EA8526100385D20 /* ShelveProductsViewController.h */,
+				5145EC4E1EA8526100385D20 /* ShelveProductsViewController.m */,
+				5145EC4F1EA8526100385D20 /* ShelveProductsViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1039,6 +1086,8 @@
 			children = (
 				51E10E2E1E9B1ABA00CAC8E4 /* UserModelData.h */,
 				51E10E2F1E9B1ABA00CAC8E4 /* UserModelData.m */,
+				5145EC521EA8AEAA00385D20 /* MessageModel.h */,
+				5145EC531EA8AEAA00385D20 /* MessageModel.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1075,6 +1124,9 @@
 				516928041E67ABE70059A8C6 /* IdentificationViewController.h */,
 				516928051E67ABE70059A8C6 /* IdentificationViewController.m */,
 				516928061E67ABE70059A8C6 /* IdentificationViewController.xib */,
+				5153E7EC1EA5EBDD002839FA /* ShopViewController.h */,
+				5153E7ED1EA5EBDD002839FA /* ShopViewController.m */,
+				5153E7EE1EA5EBDD002839FA /* ShopViewController.xib */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -1091,6 +1143,12 @@
 		518C7EE71E1C9F2100BE076B /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5153E7E21EA5E9E7002839FA /* ShopLogoTableViewCell.h */,
+				5153E7E31EA5E9E7002839FA /* ShopLogoTableViewCell.m */,
+				5153E7E41EA5E9E7002839FA /* ShopLogoTableViewCell.xib */,
+				5153E7E71EA5EAC6002839FA /* ShopOtherTableViewCell.h */,
+				5153E7E81EA5EAC6002839FA /* ShopOtherTableViewCell.m */,
+				5153E7E91EA5EAC6002839FA /* ShopOtherTableViewCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1452,15 +1510,18 @@
 				511E94F91E84E520004F66A4 /* compose_photo_preview_highlighted@2x.png in Resources */,
 				511FFD141E1BB4CD0069ADC3 /* Assets.xcassets in Resources */,
 				511E95051E84E520004F66A4 /* page_score_pic_background@2x.png in Resources */,
+				5145EC511EA8526100385D20 /* ShelveProductsViewController.xib in Resources */,
 				51E2BEFD1E602A70008EB69D /* UserSettingViewController.xib in Resources */,
 				511E94F81E84E520004F66A4 /* compose_photo_preview_disable@2x.png in Resources */,
 				511E94E41E84E520004F66A4 /* camera_video_background_highlighted@2x.png in Resources */,
 				511E95071E84E520004F66A4 /* video_delete_button@2x.png in Resources */,
 				51DFD7331E9F603F0071F448 /* ChildDataViewController.xib in Resources */,
+				5153E7F01EA5EBDD002839FA /* ShopViewController.xib in Resources */,
 				5125BAE71EA09CBB005EED62 /* HotSearchCollectionViewCell.xib in Resources */,
 				516928081E67ABE70059A8C6 /* IdentificationViewController.xib in Resources */,
 				511E94D51E84E520004F66A4 /* camera_camera_background_highlighted@2x.png in Resources */,
 				511E94F61E84E520004F66A4 /* compose_photo_photograph@2x.png in Resources */,
+				5145EC4C1EA84E2000385D20 /* SaleProductsViewController.xib in Resources */,
 				51D58A761E1F2F9D00EE8FDD /* ASLocalized.strings in Resources */,
 				5161C0DA1E70F03400B11DBC /* GoodsImageCollectionViewCell.xib in Resources */,
 				51487B371E80BA1E005184ED /* LoginHomeViewController.xib in Resources */,
@@ -1484,6 +1545,7 @@
 				511E94D31E84E520004F66A4 /* camera_ Focusing@2x.png in Resources */,
 				511E95021E84E520004F66A4 /* icon_jixu@2x.png in Resources */,
 				511E94D91E84E520004F66A4 /* camera_flashlight@2x.png in Resources */,
+				5145EC471EA847E700385D20 /* ProductsViewController.xib in Resources */,
 				5177C3921E8A55ED00CD5E9F /* SearchViewController.xib in Resources */,
 				517E32321E2CB1E100ABD652 /* PhoneNumberViewController.xib in Resources */,
 				5125BAEA1EA09CBB005EED62 /* SearchHistoryRecordfooter.xib in Resources */,
@@ -1518,6 +1580,7 @@
 				51DFD71F1E9F5FE90071F448 /* AllDataViewController.xib in Resources */,
 				51DFD72E1E9F602C0071F448 /* MakeupDataViewController.xib in Resources */,
 				51DFD7291E9F600B0071F448 /* MenDataViewController.xib in Resources */,
+				5153E7EB1EA5EAC6002839FA /* ShopOtherTableViewCell.xib in Resources */,
 				511FFD121E1BB4CD0069ADC3 /* Main.storyboard in Resources */,
 				511E950C1E84E520004F66A4 /* video_next_button_highlighted@2x.png in Resources */,
 				511E94ED1E84E520004F66A4 /* compose_live_photo_close_icon@2x.png in Resources */,
@@ -1527,6 +1590,7 @@
 				511E94E71E84E520004F66A4 /* compose_gifbutton_background_highlighted@2x.png in Resources */,
 				51953A771E5EB18100F813A1 /* HomeGoodListTableViewCell.xib in Resources */,
 				5169AE7D1E8C9913008536AF /* PictureShowCollectionViewCell.xib in Resources */,
+				5153E7E61EA5E9E7002839FA /* ShopLogoTableViewCell.xib in Resources */,
 				511E94FC1E84E520004F66A4 /* compose_photo_video@2x.png in Resources */,
 				51DFD7241E9F5FFF0071F448 /* WomenDataViewController.xib in Resources */,
 				511E94FF1E84E520004F66A4 /* feed_more_arrow@2x.png in Resources */,
@@ -1605,6 +1669,7 @@
 				519AF86E1E232A2C00A5C109 /* AppDelegate.m in Sources */,
 				517E32361E2CB1EE00ABD652 /* RegisterViewController.m in Sources */,
 				511E94CB1E84E520004F66A4 /* HXPhotoView.m in Sources */,
+				5153E7EF1EA5EBDD002839FA /* ShopViewController.m in Sources */,
 				51F351771E963E1000AC72C7 /* CWActionSheet.m in Sources */,
 				5177C3911E8A55ED00CD5E9F /* SearchViewController.m in Sources */,
 				516220D31E25D14900F97076 /* ZFJSegmentedControl.m in Sources */,
@@ -1624,6 +1689,7 @@
 				5169AE7C1E8C9913008536AF /* PictureShowCollectionViewCell.m in Sources */,
 				51E10E341E9B2A9B00CAC8E4 /* PlaceWebViewController.m in Sources */,
 				517733861E63B7EF0009DAF9 /* MessageTableTableViewCell.m in Sources */,
+				5145EC501EA8526100385D20 /* ShelveProductsViewController.m in Sources */,
 				516F30191E76A70F0031333B /* WebViewController.m in Sources */,
 				5187C34E1E2473A900EC797F /* PersonalMainViewController.m in Sources */,
 				5177C3951E8A5AA900CD5E9F /* SearchDetailView.m in Sources */,
@@ -1647,6 +1713,7 @@
 				517E32311E2CB1E100ABD652 /* PhoneNumberViewController.m in Sources */,
 				51633E4A1E78DA9500113256 /* MarketListModel.m in Sources */,
 				5125BAEB1EA09CBB005EED62 /* SearchRecordTableViewCell.m in Sources */,
+				5145EC541EA8AEAA00385D20 /* MessageModel.m in Sources */,
 				511E94C61E84E520004F66A4 /* HXPhotoModel.m in Sources */,
 				51DFD71E1E9F5FE90071F448 /* AllDataViewController.m in Sources */,
 				5187C3491E24739100EC797F /* CommodityMainViewController.m in Sources */,
@@ -1655,6 +1722,7 @@
 				51953A7B1E5EC90100F813A1 /* MarkerGoodListViewController.m in Sources */,
 				51DFD7281E9F600B0071F448 /* MenDataViewController.m in Sources */,
 				51DFD74D1E9F6AE60071F448 /* SGSegmentedControlBottomView.m in Sources */,
+				5181EF811EA9B21700B014B1 /* ScrollModel.m in Sources */,
 				517733811E63B7990009DAF9 /* MessageTableViewController.m in Sources */,
 				51F007F21E6902B1008B4CA6 /* CQCustomActionSheet.m in Sources */,
 				51DFD7321E9F603F0071F448 /* ChildDataViewController.m in Sources */,
@@ -1671,6 +1739,7 @@
 				51DF94401E8CDB7A005CE87D /* TZPhotoPreviewCell.m in Sources */,
 				5177338B1E6416090009DAF9 /* ChangeUserNameViewController.m in Sources */,
 				51DFD74F1E9F6AE60071F448 /* SGSegmentedControlStatic.m in Sources */,
+				5145EC461EA847E700385D20 /* ProductsViewController.m in Sources */,
 				51DF94371E8CDB7A005CE87D /* NSBundle+TZImagePicker.m in Sources */,
 				511E94BF1E84E520004F66A4 /* HXAlbumModel.m in Sources */,
 				51D58A851E1F32B800EE8FDD /* UIButton+Help.m in Sources */,
@@ -1688,6 +1757,7 @@
 				5169480A1E7A363100C26F57 /* GoodsListModel.m in Sources */,
 				51DF94421E8CDB7A005CE87D /* TZProgressView.m in Sources */,
 				511E951B1E84ECC0004F66A4 /* SelectTableViewCell.m in Sources */,
+				5145EC4B1EA84E2000385D20 /* SaleProductsViewController.m in Sources */,
 				511E94BE1E84E520004F66A4 /* HXAlbumListView.m in Sources */,
 				51DFD74A1E9F6AE60071F448 /* SGImageButton_Horizontal.m in Sources */,
 				511E94D01E84E520004F66A4 /* HXVideoPresentTransition.m in Sources */,
@@ -1700,6 +1770,8 @@
 				516928111E68186B0059A8C6 /* ShelveTableViewCell.m in Sources */,
 				51DF94411E8CDB7A005CE87D /* TZPhotoPreviewController.m in Sources */,
 				511E94C51E84E520004F66A4 /* HXPhotoManager.m in Sources */,
+				5153E7EA1EA5EAC6002839FA /* ShopOtherTableViewCell.m in Sources */,
+				5153E7E51EA5E9E7002839FA /* ShopLogoTableViewCell.m in Sources */,
 				517E323B1E2CB48C00ABD652 /* ForgetPassWordViewController.m in Sources */,
 				511E94C71E84E520004F66A4 /* HXPhotoPreviewViewCell.m in Sources */,
 				51DFD74C1E9F6AE60071F448 /* SGNavigationItemTitleView.m in Sources */,

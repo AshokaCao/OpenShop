@@ -16,6 +16,8 @@
 #import "CWActionSheet.h"
 #import "MarkerGoodListViewController.h"
 
+#import "LoginHomeViewController.h"
+
 #import <ShareSDK/ShareSDK.h>
 #import <ShareSDKExtension/SSEShareHelper.h>
 #import <ShareSDK/ShareSDK+Base.h>
@@ -42,6 +44,9 @@
 @property (nonatomic ,strong) NSArray *shareImage;
 @property (weak, nonatomic) IBOutlet UIView *nothingView;
 
+@property (nonatomic ,strong) UISwipeGestureRecognizer *recong;
+
+
 @end
 
 @implementation CommodityMainViewController
@@ -49,7 +54,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self getShopGoodsTableWithID:[nNsuserdefaul objectForKey:@"userID"]];
 }
 
 - (void)viewDidLoad {
@@ -61,14 +65,16 @@
     [self.shelveBtn setTitle:ASLocalizedString(@"off shelve") forState:UIControlStateNormal];
     [self.addGoodsBtn setTitle:ASLocalizedString(@"Add good") forState:UIControlStateNormal];
     [self registTableView];
+    [self addRightOrLeft];
     self.shelveBtn.selected = NO;
     self.shelveLine.hidden = YES;
     self.saleBtn.selected = !self.shelveBtn.isSelected;
     self.saleLine.hidden = !self.shelveLine.hidden;
     self.stadeNum = @"1";
     self.goodsPage = 1000;
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow  animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;
+    [self getShopGoodsTableWithID:[nNsuserdefaul objectForKey:@"userID"]];
 //    NSLog(@"[nNsuserdefaul objectForKey -%@",[nNsuserdefaul objectForKey:@"userID"]);
     [self mjRefalish];
     self.productTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
@@ -99,6 +105,7 @@
                              @{@"name" : @"CopyLink" , @"icon" : @"copylink_icon"}];
     [cusSheet showInView:[UIApplication sharedApplication].keyWindow contentArray:contenArray];
 }
+
 #pragma mark shareDelegate
 - (void)customActionSheetButtonClick:(CQActionSheetButton *)btn
 {
@@ -377,7 +384,7 @@
     self.shelveLine.hidden = YES;
     self.saleBtn.selected = !self.shelveBtn.isSelected;
     self.saleLine.hidden = !self.shelveLine.hidden;
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow  animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;
     [self getShopGoodsTableWithID:[nNsuserdefaul objectForKey:@"userID"]];
     [self.productTableView reloadData];
@@ -390,7 +397,7 @@
     self.shelveLine.hidden = NO;
     self.saleBtn.selected = !self.shelveBtn.isSelected;
     self.saleLine.hidden = !self.shelveLine.hidden;
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow  animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;
     [self getShopGoodsTableWithID:[nNsuserdefaul objectForKey:@"userID"]];
     [self.productTableView reloadData];
@@ -419,24 +426,15 @@
     
     [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"accessToken"] forHTTPHeaderField:@"accesstoken"];
     [PPNetworkHelper setValue:[nNsuserdefaul objectForKey:@"refreshToken"] forHTTPHeaderField:@"refreshtoken"];
-    
-//    [PPNetworkHelper GET:goodTable parameters:nil responseCache:^(id responseCache) {
-//        
-//    } success:^(id responseObject) {
-//        NSLog(@"responseObject - %@",responseObject);
-//        [self getGoodTableWith:responseObject];
-//    } failure:^(NSError *error) {
-//        NSLog(@"failure");
-//    }];
     [PPNetworkHelper GET:goodTable parameters:nil responseCache:^(id responseCache) {
 //        NSLog(@"responseObject - %@",responseCache);
-        [self getGoodTableWith:responseCache];
+//        [self getGoodTableWith:responseCache];
     } success:^(id responseObject) {
-//        NSLog(@"responseObject - %@",responseObject);
+        NSLog(@"responseObject - - - %@",responseObject);
         [self getGoodTableWith:responseObject];
     } failure:^(NSError *error) {
         self.nothingView.hidden = NO;
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
         [self.productTableView.mj_header endRefreshing];
         [self.productTableView.mj_footer endRefreshing];
     }];
@@ -446,28 +444,45 @@
 {
     self.productArray = [NSMutableArray array];
     NSMutableDictionary *marketDict = some;
-    NSMutableArray *array = [marketDict valueForKey:@"goodlist"];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog(@"marketDict - %@",array);
-        if (array.count > 0) {
-            for (NSDictionary *dict in marketDict[@"goodlist"]) {
-                MarketListModel *mark = [[MarketListModel alloc] init];
-                [mark setValuesForKeysWithDictionary:dict];
-                [self.productArray addObject:mark];
-//                NSLog(@"responseObject - %@",self.productArray);
+    
+    if ([marketDict[@"returncode"] isEqualToString:@"success"]) {
+        NSMutableArray *array = [marketDict valueForKey:@"goodlist"];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //        NSLog(@"marketDict - %@",array);
+            if (array.count > 0) {
+                for (NSDictionary *dict in marketDict[@"goodlist"]) {
+                    MarketListModel *mark = [[MarketListModel alloc] init];
+                    [mark setValuesForKeysWithDictionary:dict];
+                    [self.productArray addObject:mark];
+                    //                NSLog(@"responseObject - %@",self.productArray);
+                }
+                self.nothingView.hidden = YES;
+                [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
+                [self.productTableView.mj_header endRefreshing];
+                [self.productTableView.mj_footer endRefreshing];
+                [self.productTableView reloadData];
+            } else {
+                self.nothingView.hidden = NO;
+                [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
+                [self.productTableView.mj_header endRefreshing];
+                [self.productTableView.mj_footer endRefreshing];
             }
-            self.nothingView.hidden = YES;
-            [self.productTableView reloadData];
-        } else {
-            self.nothingView.hidden = NO;
-            [MBProgressHUD hideHUDForView:self.view animated:YES];
-            [self.productTableView.mj_header endRefreshing];
-            [self.productTableView.mj_footer endRefreshing];
+        });
+
+    } else {
+        [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
+        NSString *mess = marketDict[@"msg"];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+        hud.mode = MBProgressHUDModeText;
+        hud.labelText = mess;
+        [hud hide:YES afterDelay:2];
+        if ([mess isEqualToString:@"token is wrong"]) {
+            LoginHomeViewController *login = [[LoginHomeViewController alloc] init];
+            [self.navigationController pushViewController:login animated:YES];
         }
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
         [self.productTableView.mj_header endRefreshing];
         [self.productTableView.mj_footer endRefreshing];
-    });
+    }
 }
 
 - (void)selectPreviewBtnWithCell:(UITableViewCell *)cell
@@ -533,7 +548,7 @@
     }else{
         msg = ASLocalizedString(@"保存图片成功");
     }
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
     hud.mode = MBProgressHUDModeText;
     hud.labelText = msg;
     [hud hide:YES afterDelay:2];
@@ -558,7 +573,7 @@
     MarketListModel *mark = self.productArray[selectPath.section];
     NSString *stateNum = [NSString stringWithFormat:@"%@",mark.offsale];
     if ([stateNum isEqualToString:@"3"]) {
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
         hud.mode = MBProgressHUDModeText;
         hud.labelText = ASLocalizedString(@"不能代销");
         [hud hide:YES afterDelay:2];
@@ -578,28 +593,67 @@
         NSDictionary *diction = responseObject;
 //        NSLog(@"nNsuserdefaul - %@",[nNsuserdefaul objectForKey:@"accessToken"]);
         if ([diction[@"returncode"] isEqualToString:@"success"]) {
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
             hud.mode = MBProgressHUDModeText;
             hud.labelText = ASLocalizedString(@"Success");
             [hud hide:YES afterDelay:2];
             [self.productTableView.mj_header beginRefreshing];
         } else {
             NSString *mess = diction[@"msg"];
-            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
             hud.mode = MBProgressHUDModeText;
             hud.labelText = mess;
             [hud hide:YES afterDelay:2];
         }
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
-        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
         hud.mode = MBProgressHUDModeText;
         hud.labelText = ASLocalizedString(@"failure");
         [hud hide:YES afterDelay:2];
     }];
 }
 
+- (void)addRightOrLeft
+{
+    self.recong = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
+    [self.recong setDirection:(UISwipeGestureRecognizerDirectionRight)];
+    [self.view addGestureRecognizer:self.recong];
+    
+    self.recong = [[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeFrom:)];
+    [self.recong setDirection:(UISwipeGestureRecognizerDirectionLeft)];
+    [self.view addGestureRecognizer:self.recong];
+}
 
+- (void)handleSwipeFrom:(UISwipeGestureRecognizer *)recognizer
+{
+    if(recognizer.direction == UISwipeGestureRecognizerDirectionLeft) {
+        NSLog(@"swipe left");
+        self.stadeNum = @"1";
+        self.goodsPage = 1000;
+        self.shelveBtn.selected = NO;
+        self.shelveLine.hidden = YES;
+        self.saleBtn.selected = !self.shelveBtn.isSelected;
+        self.saleLine.hidden = !self.shelveLine.hidden;
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+        hud.mode = MBProgressHUDModeIndeterminate;
+        [self getShopGoodsTableWithID:[nNsuserdefaul objectForKey:@"userID"]];
+        [self.productTableView reloadData];
+    }
+    if(recognizer.direction == UISwipeGestureRecognizerDirectionRight) {
+        NSLog(@"swipe right");
+        self.stadeNum = @"2";
+        self.goodsPage = 1000;
+        self.shelveBtn.selected = YES;
+        self.shelveLine.hidden = NO;
+        self.saleBtn.selected = !self.shelveBtn.isSelected;
+        self.saleLine.hidden = !self.shelveLine.hidden;
+        MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+        hud.mode = MBProgressHUDModeIndeterminate;
+        [self getShopGoodsTableWithID:[nNsuserdefaul objectForKey:@"userID"]];
+        [self.productTableView reloadData];
+    }
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

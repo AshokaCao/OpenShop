@@ -147,7 +147,7 @@
                 <constraint firstItem="Uth-K8-wpf" firstAttribute="top" secondItem="c6a-5g-UHb" secondAttribute="bottom" id="tm3-AC-5ps"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
-            <point key="canvasLocation" x="-206" y="-35"/>
+            <point key="canvasLocation" x="3" y="-6"/>
         </view>
     </objects>
     <resources>

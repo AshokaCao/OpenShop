@@ -99,20 +99,7 @@
 //
 - (void)leftItem
 {
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn addTarget:self action:@selector(searchClick) forControlEvents:UIControlEventTouchUpInside];
-    // 设置图片
-    [btn setBackgroundImage:[UIImage imageNamed:@"nav_icon_sousuo"] forState:UIControlStateNormal];
-    [btn setBackgroundImage:[UIImage imageNamed:@""] forState:UIControlStateHighlighted];
-    
-    // 设置尺寸
-    btn.size = btn.currentBackgroundImage.size;
-    
-    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc] initWithCustomView:btn];
-    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:nil action:nil];
-    space.width = -7;//自己设定
-    self.navigationItem.leftBarButtonItems = [NSArray arrayWithObjects:space,leftItem, nil];
-    //    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(backToMain) image:@"nav_icon_back" highImage:@""];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithTarget:self action:@selector(searchClick) image:@"nav_home_search" highImage:@""];
 }
 
 - (void)searchClick

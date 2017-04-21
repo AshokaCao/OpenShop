@@ -100,13 +100,13 @@
 
 - (void)getUserData
 {
-    NSString *userUrl = [NSString stringWithFormat:@"http://%@/Account/UserDetial.ashx?userid=%@",publickUrl,[nNsuserdefaul objectForKey:@"userID"]];
+    NSString *userUrl = [NSString stringWithFormat:@"http://%@/Account/UserDetial.ashx?userid=%@&system=1",publickUrl,[nNsuserdefaul objectForKey:@"userID"]];
     [PPNetworkHelper GET:userUrl parameters:nil success:^(id responseObject) {
         NSLog(@"userData - %@",responseObject);
         NSDictionary *userDic = responseObject;
         NSString *returnCode = userDic[@"returncode"];
         if ([returnCode isEqualToString:@"success"]) {
-            NSDictionary *listDic = userDic[@"userinfo"];
+            NSDictionary *listDic = userDic[@"memberinfo"];
             UserModelData *model = [[UserModelData alloc] init];
             [model setValuesForKeysWithDictionary:listDic];
             dispatch_async(dispatch_get_main_queue(), ^{

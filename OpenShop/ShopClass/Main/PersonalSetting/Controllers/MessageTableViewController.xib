@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11201" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,10 +21,8 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="J6l-W7-dKc">
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="96" id="v8o-JP-Phq"/>
-                    </constraints>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <color key="backgroundColor" red="0.96470588235294119" green="0.96470588235294119" blue="0.96470588235294119" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="ikj-Sr-8JE"/>
                         <outlet property="delegate" destination="-1" id="0DS-Yl-Z40"/>
@@ -32,8 +33,10 @@
             <constraints>
                 <constraint firstItem="J6l-W7-dKc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Dzn-Sy-Hrk"/>
                 <constraint firstItem="J6l-W7-dKc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ePX-eR-97f"/>
+                <constraint firstAttribute="bottom" secondItem="J6l-W7-dKc" secondAttribute="bottom" id="ycF-1p-noh"/>
                 <constraint firstAttribute="trailing" secondItem="J6l-W7-dKc" secondAttribute="trailing" id="zTw-bV-Swh"/>
             </constraints>
+            <point key="canvasLocation" x="-341" y="83"/>
         </view>
     </objects>
 </document>

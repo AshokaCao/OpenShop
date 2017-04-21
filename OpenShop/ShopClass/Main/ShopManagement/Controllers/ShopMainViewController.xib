@@ -342,7 +342,7 @@
                 <constraint firstItem="WVM-8W-4aV" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="pTv-4d-OB9"/>
                 <constraint firstItem="adT-77-C1Q" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="10" id="plp-j0-syC"/>
             </constraints>
-            <point key="canvasLocation" x="-433" y="5"/>
+            <point key="canvasLocation" x="-613" y="-81"/>
         </view>
     </objects>
     <resources>

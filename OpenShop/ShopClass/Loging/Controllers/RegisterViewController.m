@@ -135,7 +135,11 @@
             LoginMainViewController *main = [[LoginMainViewController alloc] init];
             [self.navigationController pushViewController:main animated:YES];
         } else if ([returnCode isEqualToString:@"error"]) {
-            
+            NSString *errorCode = diction[@"msg"];
+            MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
+            hud.mode = MBProgressHUDModeText;
+            hud.labelText = errorCode;
+            [hud hide:YES afterDelay:2];
         }
         
     } failure:^(NSError *error) {

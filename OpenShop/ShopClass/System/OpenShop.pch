@@ -46,8 +46,6 @@
 //多语言
 #define ASLocalizedString(key)  [NSString stringWithFormat:@"%@", [[NSBundle bundleWithPath:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@",[[NSUserDefaults standardUserDefaults] objectForKey:@"appLanguage"]] ofType:@"lproj"]] localizedStringForKey:(key) value:nil table:@"ASLocalized"]]
 
-// 115.29.247.29:8088
-// 192.168.126.63:8101
 #define publickUrl @"192.168.126.63:8101"
 //#define publickUrl @"115.29.247.29:8088"
 

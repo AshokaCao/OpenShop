@@ -17,6 +17,8 @@
 
 @property (nonatomic ,strong) NSString *nickname;
 
+@property (nonatomic ,strong) NSString *tipscount;
+
 //@property (nonatomic ,strong) NSString *headimgurl;
 
 

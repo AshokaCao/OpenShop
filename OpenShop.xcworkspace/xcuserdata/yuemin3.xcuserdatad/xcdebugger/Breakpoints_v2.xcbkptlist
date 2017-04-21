@@ -68,12 +68,12 @@
                   moduleName = "OpenShop"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yuemin3/Desktop/OpenShop/OpenShop/ShopClass/Main/CommodityManagement/Controllers/EditingGoodsViewController.m"
-                  timestampString = "514173192.637186"
+                  timestampString = "514452234.846657"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "726"
                   endingLineNumber = "726"
-                  offsetFromSymbolStart = "2476">
+                  offsetFromSymbolStart = "2297">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -83,12 +83,12 @@
                   moduleName = "OpenShop"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yuemin3/Desktop/OpenShop/OpenShop/ShopClass/Main/CommodityManagement/Controllers/EditingGoodsViewController.m"
-                  timestampString = "514173192.638403"
+                  timestampString = "514452234.848422"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "726"
                   endingLineNumber = "726"
-                  offsetFromSymbolStart = "56">
+                  offsetFromSymbolStart = "52">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -98,12 +98,12 @@
                   moduleName = "OpenShop"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/yuemin3/Desktop/OpenShop/OpenShop/ShopClass/Main/CommodityManagement/Controllers/EditingGoodsViewController.m"
-                  timestampString = "514173192.639583"
+                  timestampString = "514452234.849755"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "727"
                   endingLineNumber = "727"
-                  offsetFromSymbolStart = "52">
+                  offsetFromSymbolStart = "54">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -281,6 +281,38 @@
             startingLineNumber = "189"
             endingLineNumber = "189"
             landmarkName = "-textViewDidChange:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OpenShop/ShopClass/Main/GoodsMarket/Controllers/ChildViewControllers/AllDataViewController.m"
+            timestampString = "514450018.486669"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
+            landmarkName = "-getMarketDataListWithType:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "OpenShop/ShopClass/Main/GoodsMarket/Controllers/ChildViewControllers/AllDataViewController.m"
+            timestampString = "514450018.486669"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "265"
+            endingLineNumber = "265"
+            landmarkName = "-getMarketDataListWithType:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

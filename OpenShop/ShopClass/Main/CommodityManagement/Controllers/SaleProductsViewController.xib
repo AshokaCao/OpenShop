@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12118" systemVersion="16A323" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12086"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SaleProductsViewController">
+            <connections>
+                <outlet property="addBtn" destination="uaP-4n-fQG" id="2WF-4F-hQN"/>
+                <outlet property="nothingView" destination="YtV-Ry-zKj" id="87u-ks-LBc"/>
+                <outlet property="saleTableView" destination="rfU-IB-pGJ" id="sa1-Pv-sFf"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uaP-4n-fQG">
+                    <rect key="frame" x="10" y="606" width="355" height="44"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <state key="normal" title="Add good" backgroundImage="tianjiashangping_btn"/>
+                    <connections>
+                        <action selector="addProductAction:" destination="-1" eventType="touchUpInside" id="mOx-2j-kvr"/>
+                    </connections>
+                </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rfU-IB-pGJ">
+                    <rect key="frame" x="0.0" y="44" width="375" height="547"/>
+                    <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="Gpl-kK-iEJ"/>
+                        <outlet property="delegate" destination="-1" id="p3c-AI-omG"/>
+                    </connections>
+                </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YtV-Ry-zKj">
+                    <rect key="frame" x="0.0" y="44" width="375" height="547"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="wushangpin_img" translatesAutoresizingMaskIntoConstraints="NO" id="e7I-5s-iRo">
+                            <rect key="frame" x="95" y="127" width="184" height="173"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="nothing in this" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fNl-QE-Pla">
+                            <rect key="frame" x="133.5" y="310" width="108" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="e7I-5s-iRo" firstAttribute="centerY" secondItem="YtV-Ry-zKj" secondAttribute="centerY" constant="-60" id="EXW-wb-iIR"/>
+                        <constraint firstItem="e7I-5s-iRo" firstAttribute="centerX" secondItem="YtV-Ry-zKj" secondAttribute="centerX" id="HN6-nm-Ywr"/>
+                        <constraint firstItem="fNl-QE-Pla" firstAttribute="top" secondItem="e7I-5s-iRo" secondAttribute="bottom" constant="10" id="HXV-qZ-Pt1"/>
+                        <constraint firstItem="fNl-QE-Pla" firstAttribute="centerX" secondItem="YtV-Ry-zKj" secondAttribute="centerX" id="P8K-YY-tnd"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.96078431372549022" green="0.96078431372549022" blue="0.96078431372549022" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="uaP-4n-fQG" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="5An-cy-Ywx"/>
+                <constraint firstItem="uaP-4n-fQG" firstAttribute="top" secondItem="YtV-Ry-zKj" secondAttribute="bottom" constant="15" id="7ox-FO-hkR"/>
+                <constraint firstItem="uaP-4n-fQG" firstAttribute="top" secondItem="rfU-IB-pGJ" secondAttribute="bottom" constant="15" id="7tQ-Zh-bPa"/>
+                <constraint firstAttribute="trailing" secondItem="rfU-IB-pGJ" secondAttribute="trailing" id="QqE-yd-EFc"/>
+                <constraint firstAttribute="trailing" secondItem="YtV-Ry-zKj" secondAttribute="trailing" id="baT-XM-7hC"/>
+                <constraint firstItem="rfU-IB-pGJ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="fRQ-bu-xaV"/>
+                <constraint firstAttribute="bottom" secondItem="uaP-4n-fQG" secondAttribute="bottom" constant="17" id="hHg-xg-9KN"/>
+                <constraint firstItem="YtV-Ry-zKj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="lw0-ym-iQC"/>
+                <constraint firstItem="rfU-IB-pGJ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="44" id="oXz-4l-e9Y"/>
+                <constraint firstItem="YtV-Ry-zKj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="44" id="tej-Tx-Ffi"/>
+            </constraints>
+            <point key="canvasLocation" x="-407.5" y="62.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="tianjiashangping_btn" width="355" height="44"/>
+        <image name="wushangpin_img" width="184" height="173"/>
+    </resources>
+</document>

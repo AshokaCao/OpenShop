@@ -72,7 +72,7 @@
     
     NSString *goodsID = self.marketModel.goodid;
     NSLog(@"goodid - %@",self.marketModel);
-    [self getGoodsListWithGoodID:goodsID andUserID:[nNsuserdefaul objectForKey:@"userID"]];
+    [self getGoodsListWithGoodID:self.marketGoodID andUserID:[nNsuserdefaul objectForKey:@"userID"]];
     
     [self setSDCycleScrollView];
     [self mjRefalish];
@@ -174,15 +174,15 @@
             
             self.goodIntroduce.attributedText = strAtt;
             NSLog(@"goodIntroduce - %f",self.goodIntroduce.sd_height);
-            self.priceLabel.text = [NSString stringWithFormat:ASLocalizedString(@"price: ฿%@"),self.marketModel.price];
+            self.priceLabel.text = [NSString stringWithFormat:ASLocalizedString(@"price: ฿%@"),goodsModel.price];
             
-            NSMutableAttributedString *buyCount = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:ASLocalizedString(@"profit: ฿%@"),self.marketModel.profit]];
+            NSMutableAttributedString *buyCount = [[NSMutableAttributedString alloc] initWithString:[NSString stringWithFormat:ASLocalizedString(@"profit: ฿%@"),goodsModel.profit]];
             NSString *len = [NSString stringWithFormat:ASLocalizedString(@"฿%@"),self.marketModel.profit];
-            NSString *allLen = [NSString stringWithFormat:ASLocalizedString(@"profit: ฿%@"),self.marketModel.profit];
+            NSString *allLen = [NSString stringWithFormat:ASLocalizedString(@"profit: ฿%@"),goodsModel.profit];
             
             [buyCount addAttribute:NSForegroundColorAttributeName value:[UIColor colorWithHexString:@"#ff213b"] range:NSMakeRange(allLen.length - len.length, len.length)];
             self.profitLabel.attributedText = buyCount;
-            self.saleCountLabel.text = [NSString stringWithFormat:ASLocalizedString(@"%@ distribution"),self.marketModel.discount];
+            self.saleCountLabel.text = [NSString stringWithFormat:ASLocalizedString(@"%@ distribution"),goodsModel.discount];
             _cycleScrollView3.localizationImageNamesGroup = self.goodImageArray;
             [self.goodsListTableView reloadData];
             [MBProgressHUD hideHUDForView:self.view animated:YES];

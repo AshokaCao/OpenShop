@@ -13,6 +13,7 @@
 #import "HomeGoodListTableViewCell.h"
 #import "MarkerGoodListViewController.h"
 #import "MarketListModel.h"
+#import "ScrollModel.h"
 
 @interface WomenDataViewController () <SDCycleScrollViewDelegate, UITableViewDelegate, UITableViewDataSource, HomeGoodListTableViewCellDelegate>
 @property (nonatomic ,strong) NSMutableArray *marketDataArray;
@@ -21,6 +22,7 @@
 @property (nonatomic ,strong) NSString *goodsTypeNum;
 @property (nonatomic ,assign) NSInteger goodsPage;
 @property (nonatomic ,strong) UITableView *alltableView;
+@property (nonatomic ,strong) NSMutableArray *scrollArray;
 
 @end
 
@@ -34,6 +36,7 @@
         [self.alltableView registerNib:[UINib nibWithNibName:@"HomeGoodListTableViewCell" bundle:nil] forCellReuseIdentifier:@"homeList"];
         _alltableView.delegate = self;
         _alltableView.dataSource = self;
+        self.alltableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
         [self.view addSubview:self.alltableView];
     }
     return _alltableView;
@@ -41,7 +44,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    MBProgressHUD *hud = [MBProgressHUD showHUDAddedTo:[UIApplication sharedApplication].keyWindow animated:YES];
     hud.mode = MBProgressHUDModeIndeterminate;
     self.navigationController.navigationBar.translucent = NO;
     self.tabBarController.tabBar.translucent = NO;
@@ -95,6 +98,9 @@
             dispatch_async(dispatch_get_main_queue(), ^{
                 NSArray *array = dictionary[@"bannerlist"];
                 for (NSDictionary *imageDic in array) {
+                    ScrollModel *model = [[ScrollModel alloc] init];
+                    [model setValuesForKeysWithDictionary:imageDic];
+                    [self.scrollArray addObject:model];
                     [self.urlImageArray addObject:imageDic[@"img"]];
                     self.cycleScrollView.imageURLStringsGroup = self.urlImageArray;
                     NSLog(@"urlImageArray - %@",imageDic[@"img"]);
@@ -111,7 +117,15 @@
 /** 点击图片回调 */
 - (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index
 {
-    NSLog(@"==5");
+    ScrollModel *model = self.scrollArray[index];
+    NSString *string = [NSString stringWithFormat:@"%@",model.type];
+    if ([string isEqualToString:@"0"]) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:model.link]];
+    } else {
+        MarkerGoodListViewController *markerList = [[MarkerGoodListViewController alloc] init];
+        markerList.marketGoodID = model.goodid;
+        [self.navigationController pushViewController:markerList animated:YES];
+    }
 }
 #pragma mark - 一次性网络状态判断
 - (void)currentNetworkStatus
@@ -165,7 +179,7 @@
 {
     MarketListModel *model = self.marketDataArray[indexPath.section];
     MarkerGoodListViewController *markerList = [[MarkerGoodListViewController alloc] init];
-    markerList.marketModel = model;
+    markerList.marketGoodID = model.goodid;
     [self.navigationController pushViewController:markerList animated:YES];
 }
 
@@ -188,7 +202,7 @@
         [self getGoodTableWith:responseObject];
         NSLog(@"responseObject - %@",responseObject);
     } failure:^(NSError *error) {
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
         [self.alltableView.mj_footer endRefreshing];
         [self.alltableView.mj_header endRefreshing];
         NSLog(@"fail");
@@ -209,12 +223,15 @@
                 //                NSLog(@"responseObject - %@",self.marketDataArray);
             }
             [self.alltableView reloadData];
+            [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
+            [self.alltableView.mj_footer endRefreshing];
+            [self.alltableView.mj_header endRefreshing];
         } else {
             NSLog(@"666666666");
+            [MBProgressHUD hideHUDForView:[UIApplication sharedApplication].keyWindow  animated:YES];
+            [self.alltableView.mj_footer endRefreshing];
+            [self.alltableView.mj_header endRefreshing];
         }
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        [self.alltableView.mj_footer endRefreshing];
-        [self.alltableView.mj_header endRefreshing];
     });
 }
 
